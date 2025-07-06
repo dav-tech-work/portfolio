@@ -1,0 +1,316 @@
+<main class="contenedor">
+  <section class="contacto">
+    <h1><%= titulo %></h1>
+
+    <div class="contacto-info">
+      <div class="info-personal">
+        <h2>📧 Información de Contacto</h2>
+        <div class="contacto-detalles">
+          <div class="contacto-item">
+            <span class="icono">📧</span>
+            <span>Email: <a href="mailto:daniel.arribas@example.com">daniel.arribas@example.com</a></span>
+          </div>
+          <div class="contacto-item">
+            <span class="icono">📱</span>
+            <span>Teléfono: +34 XXX XXX XXX</span>
+          </div>
+          <div class="contacto-item">
+            <span class="icono">📍</span>
+            <span>Ubicación: Barcelona, España</span>
+          </div>
+          <div class="contacto-item">
+            <span class="icono">💼</span>
+            <span>LinkedIn: <a href="https://linkedin.com/in/danielarribas" target="_blank">Daniel Arribas</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="formulario-contacto">
+        <h2>💬 Envíame un mensaje</h2>
+
+        <!-- Mensajes de estado -->
+        <% if (typeof mensajeExito !== 'undefined' && mensajeExito) { %>
+          <div class="mensaje exito">
+            <span class="icono">✅</span>
+            <%= mensajeExito %>
+          </div>
+        <% } %>
+
+        <% if (typeof mensajeError !== 'undefined' && mensajeError) { %>
+          <div class="mensaje error">
+            <span class="icono">❌</span>
+            <%= mensajeError %>
+          </div>
+        <% } %>
+
+        <form method="POST" action="/api/contacto" class="formulario">
+          <!-- Token CSRF -->
+          <input type="hidden" name="csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
+
+          <div class="form-grupo">
+            <label for="nombre">Nombre completo *</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              required
+              placeholder="Tu nombre completo"
+              maxlength="100"
+            >
+          </div>
+
+          <div class="form-grupo">
+            <label for="email">Email *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="tu.email@ejemplo.com"
+              maxlength="255"
+            >
+          </div>
+
+          <div class="form-grupo">
+            <label for="asunto">Asunto *</label>
+            <input
+              type="text"
+              id="asunto"
+              name="asunto"
+              required
+              placeholder="¿En qué puedo ayudarte?"
+              maxlength="200"
+            >
+          </div>
+
+          <div class="form-grupo">
+            <label for="mensaje">Mensaje *</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              required
+              placeholder="Describe tu consulta o propuesta..."
+              rows="6"
+              maxlength="1000"
+            ></textarea>
+            <small class="contador-caracteres">0/1000 caracteres</small>
+          </div>
+
+          <div class="form-grupo">
+            <label class="checkbox-label">
+              <input type="checkbox" name="privacidad" required>
+              <span class="checkmark"></span>
+              Acepto la <a href="/privacidad" target="_blank">política de privacidad</a> *
+            </label>
+          </div>
+
+          <button type="submit" class="btn-enviar">
+            <span class="icono">📤</span>
+            Enviar mensaje
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<style>
+.contacto {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.contacto-info {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.info-personal {
+  background: var(--color-fondo-secundario);
+  padding: 2rem;
+  border-radius: 12px;
+  height: fit-content;
+}
+
+.contacto-detalles {
+  margin-top: 1.5rem;
+}
+
+.contacto-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: var(--color-fondo);
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.contacto-item:hover {
+  transform: translateX(5px);
+}
+
+.contacto-item .icono {
+  font-size: 1.2rem;
+  margin-right: 0.75rem;
+  min-width: 24px;
+}
+
+.contacto-item a {
+  color: var(--color-enlace);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contacto-item a:hover {
+  color: var(--color-enlace-hover);
+  text-decoration: underline;
+}
+
+.formulario-contacto {
+  background: var(--color-fondo-secundario);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.formulario {
+  margin-top: 1.5rem;
+}
+
+.form-grupo {
+  margin-bottom: 1.5rem;
+}
+
+.form-grupo label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-texto);
+}
+
+.form-grupo input,
+.form-grupo textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--color-borde);
+  border-radius: 8px;
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-grupo input:focus,
+.form-grupo textarea:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(var(--color-primario-rgb), 0.1);
+}
+
+.form-grupo textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contador-caracteres {
+  display: block;
+  text-align: right;
+  font-size: 0.875rem;
+  color: var(--color-texto-secundario);
+  margin-top: 0.25rem;
+}
+
+.checkbox-label {
+  display: flex !important;
+  align-items: center;
+  cursor: pointer;
+  font-weight: normal !important;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto !important;
+  margin-right: 0.5rem;
+}
+
+.btn-enviar {
+  background: var(--color-primario);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-enviar:hover {
+  background: var(--color-primario-hover);
+  transform: translateY(-2px);
+}
+
+.btn-enviar:active {
+  transform: translateY(0);
+}
+
+.mensaje {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mensaje.exito {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.mensaje.error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+@media (max-width: 768px) {
+  .contacto-info {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contacto {
+    padding: 1rem;
+  }
+}
+</style>
+
+<script>
+// Contador de caracteres para el textarea
+document.addEventListener('DOMContentLoaded', function() {
+  const textarea = document.getElementById('mensaje');
+  const contador = document.querySelector('.contador-caracteres');
+
+  if (textarea && contador) {
+    textarea.addEventListener('input', function() {
+      const longitud = this.value.length;
+      contador.textContent = `${longitud}/1000 caracteres`;
+
+      if (longitud > 900) {
+        contador.style.color = '#ef4444';
+      } else if (longitud > 800) {
+        contador.style.color = '#f59e0b';
+      } else {
+        contador.style.color = 'var(--color-texto-secundario)';
+      }
+    });
+  }
+});
+</script>

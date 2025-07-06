@@ -1,0 +1,178 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: porfolio
+  namespace: default
+  labels:
+    app: porfolio
+    version: v19
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: porfolio
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: porfolio
+        version: v19
+    spec:
+      containers:
+        - name: porfolio
+          image: davtechw/porfolio:v19 # Versión actualizada
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3001 # Puerto correcto del contenedor
+              protocol: TCP
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PORT
+              value: '3001' # Puerto correcto
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi # Aumentado para mejor rendimiento
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsUser: 2001 # Usuario correcto del contenedor
+            runAsGroup: 2001 # Grupo correcto del contenedor
+            runAsNonRoot: true
+          volumeMounts:
+            - name: tmpfs-tmp
+              mountPath: /tmp
+            - name: tmpfs-logs
+              mountPath: /app/logs
+            - name: tmpfs-uploads
+              mountPath: /app/uploads
+            - name: tmpfs-app-tmp
+              mountPath: /app/tmp
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3001
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3001
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+      volumes:
+        - name: tmpfs-tmp
+          emptyDir:
+            medium: Memory
+            sizeLimit: 50Mi
+        - name: tmpfs-logs
+          emptyDir:
+            medium: Memory
+            sizeLimit: 100Mi
+        - name: tmpfs-uploads
+          emptyDir:
+            medium: Memory
+            sizeLimit: 200Mi
+        - name: tmpfs-app-tmp
+          emptyDir:
+            medium: Memory
+            sizeLimit: 50Mi
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Always
+      securityContext:
+        runAsUser: 2001
+        runAsGroup: 2001
+        runAsNonRoot: true
+        fsGroup: 2001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: porfolio-service
+  namespace: default
+  labels:
+    app: porfolio
+spec:
+  type: NodePort
+  selector:
+    app: porfolio
+  ports:
+    - protocol: TCP
+      port: 3001 # Puerto correcto
+      targetPort: 3001 # Puerto correcto
+      nodePort: 30001
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: porfolio
+  namespace: default
+  labels:
+    app: porfolio
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: porfolio
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 70
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: porfolio-network-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: porfolio
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector: {}
+      ports:
+        - protocol: TCP
+          port: 3001
+  egress:
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 53 # DNS
+        - protocol: UDP
+          port: 53 # DNS
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 443 # HTTPS outbound si es necesario

@@ -1,0 +1,573 @@
+/* Variables globales
+ * --------------------------------------------------------------------------
+ * Sistema de variables CSS para mantener la consistencia en todo el proyecto.
+ * Incluye configuraciones para tipografía, espaciado, colores, sombras y transiciones.
+ */
+:root {
+    /* Tipografía */
+    --font-primary: 'Kanit', system-ui, -apple-system, sans-serif; /* Fuente principal */
+    --font-size-xs: 0.75rem;   /* Tamaño de fuente extra pequeño */
+    --font-size-sm: 0.875rem;  /* Tamaño de fuente pequeño */
+    --font-size-md: 1rem;      /* Tamaño de fuente mediano */
+    --font-size-lg: 1.125rem;  /* Tamaño de fuente grande */
+    --font-size-xl: 1.75rem;   /* Tamaño de fuente extra grande */
+    --font-size-2xl: 2.25rem;  /* Tamaño de fuente doble extra grande */
+    
+    /* Espaciado */
+    --spacing-xs: 0.25rem;   /* Espaciado extra pequeño */
+    --spacing-sm: 0.5rem;    /* Espaciado pequeño */
+    --spacing-md: 1rem;      /* Espaciado mediano */
+    --spacing-lg: 1.5rem;    /* Espaciado grande */
+    --spacing-xl: 2rem;      /* Espaciado extra grande */
+
+    /* Radios de borde */
+    --border-radius-sm: 4px; /* Radio de borde pequeño */
+    --border-radius-md: 8px; /* Radio de borde mediano */
+    --border-radius-lg: 12px; /* Radio de borde grande */
+    --border-radius-full: 9999px; /* Radio de borde completo (círculo) */
+
+    /* Sombras */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05); /* Sombra pequeña */
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Sombra mediana */
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Sombra grande */
+
+    /* Transiciones */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1); /* Transición rápida */
+    --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1); /* Transición normal */
+}
+
+/* Tema Claro
+ * --------------------------------------------------------------------------
+ * Paleta de colores y estilos para el tema claro de la aplicación.
+ * Utiliza un esquema de colores suave y profesional.
+ */
+[data-bs-theme="light"] {
+    --color-bg-primary: #ffffff; /* Fondo principal */
+    --color-bg-secondary: #f3f4f6; /* Fondo secundario */
+    --color-bg-tertiary: #e5e7eb; /* Fondo terciario */
+    --color-bg-accent: #f9fafb; /* Fondo de acento */
+    
+    --color-text-primary: #111827; /* Texto principal */
+    --color-text-secondary: #4b5563; /* Texto secundario */
+    --color-text-tertiary: #6b7280; /* Texto terciario */
+    
+    --color-border: #e5e7eb; /* Color de borde */
+    
+    --color-primary: #2563eb; /* Color primario */
+    --color-primary-hover: #1d4ed8; /* Color primario al pasar el cursor */
+    --color-success: #059669; /* Color de éxito */
+    --color-warning: #d97706; /* Color de advertencia */
+    --color-danger: #dc2626; /* Color de error */
+    --color-info: #0891b2; /* Color de información */
+
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Color de sombra */
+}
+
+/* Tema Oscuro
+ * --------------------------------------------------------------------------
+ * Paleta de colores y estilos para el tema oscuro de la aplicación.
+ * Diseñado para reducir el esfuerzo visual durante el uso nocturno.
+ */
+[data-bs-theme="dark"] {
+    --color-bg-primary: #1f2937; /* Fondo principal */
+    --color-bg-secondary: #111827; /* Fondo secundario */
+    --color-bg-tertiary: #374151; /* Fondo terciario */
+    --color-bg-accent: #1f2937; /* Fondo de acento */
+    
+    --color-text-primary: #f9fafb; /* Texto principal */
+    --color-text-secondary: #e5e7eb; /* Texto secundario */
+    --color-text-tertiary: #d1d5db; /* Texto terciario */
+    
+    --color-border: #374151; /* Color de borde */
+    
+    --color-primary: #3b82f6; /* Color primario */
+    --color-primary-hover: #2563eb; /* Color primario al pasar el cursor */
+    --color-success: #10b981; /* Color de éxito */
+    --color-warning: #f59e0b; /* Color de advertencia */
+    --color-danger: #ef4444; /* Color de error */
+    --color-info: #06b6d4; /* Color de información */
+
+    --shadow-color: rgba(0, 0, 0, 0.25); /* Color de sombra */
+}
+
+/* Estilos Base
+ * --------------------------------------------------------------------------
+ * Estilos fundamentales aplicados a todos los elementos de la página.
+ * Incluye reset de estilos y configuraciones básicas.
+ */
+* {
+    margin: 0; /* Elimina el margen predeterminado */
+    padding: 0; /* Elimina el relleno predeterminado */
+    box-sizing: border-box; /* Incluye el borde y el relleno en el tamaño total del elemento */
+}
+
+body {
+    font-family: var(--font-primary); /* Fuente principal */
+    background-color: var(--color-bg-secondary); /* Fondo del cuerpo */
+    color: var(--color-text-primary); /* Color del texto */
+    line-height: 1.5; /* Altura de línea */
+    transition: background-color var(--transition-normal), color var(--transition-normal); /* Transición suave entre colores */
+}
+
+/* Layout
+ * --------------------------------------------------------------------------
+ * Estructura principal de la aplicación.
+ * Define el contenedor central y el encabezado con su respectiva estilización.
+ */
+.centrado {
+    width: min(95%, 1400px); /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    padding: var(--spacing-md); /* Relleno interno */
+}
+
+/* Estilos para el encabezado */
+header.centrado { /* Encabezado centrado */
+    display: flex; /* Usa un diseño flexible */
+    justify-content: space-between; /* Alinea los elementos al final y al principio */
+    align-items: center; /* Centra los elementos verticalmente */
+    padding-top: var(--spacing-lg); /* Relleno superior */
+    padding-bottom: var(--spacing-lg); /* Relleno inferior */
+}
+
+header h1 { /* Título */
+    font-size: var(--font-size-2xl); /* Tamaño de fuente */
+    font-weight: 700; /* Peso de la fuente */
+    color: var(--color-text-primary); /* Color del texto */
+    letter-spacing: -0.025em; /* Espaciado entre letras */
+}
+
+/* Contenedor Principal
+ * --------------------------------------------------------------------------
+ * Layout principal que divide la interfaz en dos columnas:
+ * - Columna izquierda: Panel de tareas
+ * - Columna derecha: Calendario
+ */
+.app-container {
+    display: grid; /* Usa un diseño de cuadrícula */
+    grid-template-columns: 1fr 450px; /* Define dos columnas: contenido principal y barra lateral */
+    gap: var(--spacing-lg); /* Espaciado entre columnas */
+    margin-top: var(--spacing-lg); /* Margen superior */
+    background-color: var(--color-bg-secondary); /* Fondo del contenedor */
+    padding: var(--spacing-lg); /* Relleno interno */
+    border-radius: var(--border-radius-lg); /* Bordes redondeados */
+    box-shadow: var(--shadow-lg); /* Sombra */
+}
+
+/* Formulario
+ * --------------------------------------------------------------------------
+ * Estilos para el formulario de creación de tareas.
+ * Incluye estilos para inputs, select y botones de acción.
+ */
+#taskForm {
+    background-color: var(--color-bg-primary); /* Fondo del formulario */
+    padding: var(--spacing-lg); /* Relleno interno */
+    border-radius: var(--border-radius-lg); /* Bordes redondeados */
+    box-shadow: var(--shadow-md); /* Sombra */
+    margin-bottom: var(--spacing-lg); /* Margen inferior */
+}
+
+#taskForm h2 {
+    font-size: var(--font-size-lg); /* Tamaño de fuente del título */
+    margin-bottom: var(--spacing-md); /* Espaciado inferior */
+    color: var(--color-text-primary); /* Color del texto */
+}
+
+#taskForm input[type="text"],
+#taskForm input[type="date"],
+#taskForm select {
+    width: 100%; /* Ancho completo */
+    padding: var(--spacing-sm) var(--spacing-md); /* Relleno interno */
+    border: 1px solid var(--color-border); /* Borde */
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+    background-color: var(--color-bg-primary); /* Fondo */
+    color: var(--color-text-primary); /* Color del texto */
+    font-size: var(--font-size-md); /* Tamaño de fuente */
+    transition: border-color var(--transition-fast); /* Transición suave para el borde */
+}
+
+/* Estilos al enfocar los campos del formulario */
+#taskForm input:focus, 
+#taskForm select:focus { /* Al enfocar */
+    outline: none; /* Elimina el contorno predeterminado */
+    border-color: var(--color-primary); /* Cambia el color del borde al enfocar */
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1); /* Añade una sombra al enfocar */
+}
+
+/* Estilos para las etiquetas de los campos del formulario */
+.date-inputs { /* Contenedor de campos de fecha */
+    display: grid; /* Usa un diseño de cuadrícula */
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+    gap: var(--spacing-md); /* Espaciado entre columnas */
+    margin: var(--spacing-md) 0; /* Margen superior e inferior */
+}
+
+/* Botones
+ * --------------------------------------------------------------------------
+ * Estilos generales para todos los botones de la aplicación.
+ * Incluye estados de hover y focus para mejorar la interactividad.
+ */
+button {
+    padding: var(--spacing-sm) var(--spacing-md); /* Relleno interno */
+    border: none; /* Sin borde */
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+    font-size: var(--font-size-sm); /* Tamaño de fuente */
+    font-weight: 500; /* Peso de la fuente */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    transition: all var(--transition-fast); /* Transición suave */
+}
+
+#taskForm button[type="submit"] {
+    background-color: var(--color-primary); /* Fondo del botón */
+    color: white; /* Color del texto */
+    width: 100%; /* Ancho completo */
+    padding: var(--spacing-md); /* Relleno interno */
+    margin-top: var(--spacing-md); /* Margen superior */
+}
+
+#taskForm button[type="submit"]:hover {
+    background-color: var(--color-primary-hover); /* Cambia el fondo al pasar el cursor */
+}
+
+/* Listas de Tareas
+ * --------------------------------------------------------------------------
+ * Estilos específicos para los elementos de la lista de tareas.
+ * Incluye estilos para diferentes estados (pendiente, en progreso, completada).
+ */
+.tasks-section { /* Sección de tareas */
+    background-color: var(--color-bg-primary); /* Fondo */
+    border-radius: var(--border-radius-lg); /* Bordes redondeados */
+    padding: var(--spacing-lg); /* Relleno interno */
+    box-shadow: var(--shadow-md); /* Sombra */
+    margin-bottom: var(--spacing-lg); /* Margen inferior */
+}
+
+.tasks-section h2 { /* Título de la sección */
+    font-size: var(--font-size-lg); /* Tamaño de fuente */
+    margin-bottom: var(--spacing-md); /* Margen inferior */
+    color: var(--color-text-primary); /* Color del texto */
+}
+
+.tasks-list { /* Lista de tareas */
+    list-style: none; /* Sin estilo de lista */
+}
+
+.tasks-list li { /* Elemento de la lista */
+    display: flex; /* Usa un diseño flexible */
+    justify-content: space-between; /* Alinea los elementos al final y al principio */
+    align-items: center; /* Centra los elementos verticalmente */
+    padding: var(--spacing-md); /* Relleno interno */
+    margin-bottom: var(--spacing-sm); /* Margen inferior */
+    background-color: var(--color-bg-secondary); /* Fondo */
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+    border: 1px solid var(--color-border); /* Borde */
+    transition: transform var(--transition-fast); /* Transición suave */
+}
+
+.tasks-list li:hover { /* Al pasar el cursor */
+    transform: translateY(-1px); /* Mueve el elemento hacia arriba */
+}
+
+.task-content { /* Contenido de la tarea */
+    flex: 1; /* Toma el espacio disponible */
+}
+
+.task-buttons { /* Botones de la tarea */
+    display: flex; /* Usa un diseño flexible */
+    gap: var(--spacing-xs); /* Espaciado entre botones */
+}
+
+.task-buttons button { /* Botón de la tarea */
+    width: 32px; /* Ancho del botón */
+    height: 32px; /* Altura del botón */
+    display: flex; /* Usa un diseño flexible */
+    align-items: center; /* Centra los elementos verticalmente */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    border-radius: var(--border-radius-full); /* Bordes redondeados */
+    background-color: var(--color-bg-tertiary); /* Fondo */
+    color: var(--color-text-secondary); /* Color del texto */
+}
+
+.task-buttons button:hover { /* Al pasar el cursor */
+    background-color: var(--color-primary); /* Cambia el fondo al pasar el cursor */
+    color: white; /* Color del texto */
+}
+
+/* Calendario
+ * --------------------------------------------------------------------------
+ * Estilos específicos para el componente de calendario de FullCalendar.
+ * Incluye personalización de eventos y estados de tareas.
+ */
+.calendar-container {
+    display: flex; /* Usa un diseño flexible */
+    flex-direction: column; /* Apila los elementos verticalmente */
+    justify-content: flex-start; /* Alinea los elementos al inicio */
+    align-items: center; /* Centra los elementos horizontalmente */
+    position: relative; /* Posicionamiento relativo */
+    background-color: var(--color-bg-primary); /* Fondo */
+    border-radius: var (--border-radius-md); /* Bordes redondeados */
+    padding: var(--spacing-sm); /* Relleno interno */
+    box-shadow: var(--shadow-md); /* Sombra */
+    height: auto; /* Altura automática */
+    width: 100%; /* Ancho completo */
+}
+
+.calendar-container h2 {
+    margin-bottom: var(--spacing-md); /* Espaciado inferior */
+    text-align: center; /* Centra el texto */
+}
+
+#calendar {
+    align-items: center; /* Centra el contenido verticalmente */
+    min-height: auto; /* Altura automática */
+    aspect-ratio: 7/6; /* Relación de aspecto */
+    margin-bottom: var(--spacing-md); /* Espaciado inferior */
+    text-align: center; /* Centra el texto */
+}
+
+#calendar { /* Calendario */
+    align-items: center; /* Centra el contenido verticalmente */
+    min-height: auto; /* Altura automática */
+    aspect-ratio: 7/6; /* Relación de aspecto */
+    background-color: var(--color-bg-primary); /* Fondo */
+    padding: 0; /* Relleno interno */
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+    width: 100%; /* Ancho completo */
+}
+
+.fc { /* FullCalendar */
+    background-color: var(--color-bg-primary); /* Fondo */
+    border-radius: var(--border-radius-md); /* Bordes redondeados */
+    font-family: var(--font-primary) !important; /* Fuente */
+    height: 100%; /* Altura completa */
+    font-size: 0.85rem; /* Tamaño de fuente */
+    max-width: 100%; /* Ancho máximo */
+    width: 100%; /* Ancho completo */
+}
+
+.fc .fc-toolbar { /* Barra de herramientas de FullCalendar */
+    padding: var(--spacing-sm); /* Relleno interno */
+    background-color: var(--color-bg-primary); /* Fondo */
+    margin-bottom: 0 !important; /* Espaciado inferior */
+    display: flex; /* Diseño flexible */
+    align-items: center; /* Centra el contenido verticalmente */
+    justify-content: space-between; /* Distribuye el espacio */
+    gap: var(--spacing-sm); /* Espaciado entre elementos */
+    flex-wrap: wrap; /* Permite el desplazamiento */
+    width: 100%; /* Ancho completo */
+}
+
+.fc .fc-toolbar-title { /* Título de la barra de herramientas */
+    font-size: var(--font-size-md) !important; /* Tamaño de fuente */
+    color: var(--color-text-primary); /* Color del texto */
+    font-weight: 600; /* Grosor de la fuente */
+}
+
+.fc .fc-col-header { /* Encabezado de la columna */
+    background-color: var(--color-bg-primary); /* Fondo */
+    border-bottom: 1px solid var(--color-border); /* Bordes */
+    padding: var(--spacing-xs) 0; /* Relleno interno */
+}
+
+.fc .fc-col-header-cell { /* Celda del encabezado de la columna */
+    text-align: center; /* Centra el texto */
+    padding: var(--spacing-xs) 0 !important; /* Relleno interno */
+    width: calc(100% / 7); /* Ancho */
+}
+
+.fc .fc-col-header-cell-cushion { /* Celda del encabezado de la columna */
+    font-size: 0.65rem; /* Tamaño de fuente */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    font-weight: 500; /* Grosor de la fuente */
+    color: var(--color-text-primary); /* Color del texto */
+    width: 100%; /* Ancho */    
+    display: block; /* Diseño flexible */
+    padding: var(--spacing-xs) 0 !important; /* Relleno interno */
+    text-align: center; /* Centra el texto */
+    letter-spacing: -0.03em; /* Espaciado entre letras */
+    white-space: nowrap; /* Evita el salto de línea */
+    overflow: hidden; /* Oculta el contenido excedente */
+    text-overflow: ellipsis; /* Texto truncado */
+}
+
+.fc .fc-scrollgrid-section table,   
+.fc .fc-scrollgrid-section-header table,
+.fc .fc-scrollgrid-section-body table { /* Tabla */
+    width: 100% !important; /* Ancho */
+}
+
+.fc .fc-daygrid-day { /* Celda del día */
+    width: calc(100% / 7) !important; /* Ancho */
+    height: auto !important; /* Altura */
+}
+
+.fc .fc-daygrid-day-frame { /* Celda del día */
+    min-height: 45px !important; /* Altura */
+    padding: var(--spacing-xs) var(--spacing-xs) !important; /* Relleno interno */
+}
+
+.fc .fc-daygrid-day-number { /* Número del día */
+    font-size: var(--font-size-xs) !important; /* Tamaño de fuente */
+    padding: 2px !important; /* Relleno interno */
+    color: var(--color-text-primary); /* Color del texto */
+}
+
+.fc .fc-button { /* Botón */
+    background-color: var(--color-primary) !important; /* Color de fondo */
+    border-color: var(--color-primary) !important; /* Color del borde */
+    border-radius: var(--border-radius-md) !important; /* Radio de borde */
+    padding: var(--spacing-xs) var(--spacing-sm) !important; /* Relleno interno */
+    font-size: var(--font-size-xs) !important; /* Tamaño de fuente */
+    font-weight: 500 !important; /* Grosor de la fuente */
+    transition: all var(--transition-fast) !important; /* Transición */
+    box-shadow: var(--shadow-sm); /* Sombra */
+    height: 24px !important; /* Altura */
+    line-height: 1 !important; /* Altura de línea */
+    white-space: nowrap; /* Evita el salto de línea */
+}
+
+.fc .fc-button:hover { /* Botón */
+    background-color: var(--color-primary-hover) !important; /* Color de fondo */
+    border-color: var(--color-primary-hover) !important; /* Color del borde */
+    box-shadow: var(--shadow-md);
+}
+
+.fc .fc-button-active { /* Botón */
+    background-color: var(--color-primary-hover) !important; /* Color de fondo */
+    box-shadow: var(--shadow-sm) !important; /* Sombra */
+}
+
+.fc .fc-day-today { /* Día actual */
+    background-color: rgba(59, 130, 246, 0.1) !important; /* Color de fondo */
+}
+
+.fc .fc-day-other { /* Día de otro mes */
+    background-color: var(--color-bg-secondary) !important; /* Color de fondo */
+}
+
+.fc-event { /* Evento */
+    padding: 1px 3px !important; /* Relleno interno */
+    font-size: var(--font-size-xs) !important; /* Tamaño de fuente */
+    line-height: 1.2 !important; /* Altura de línea */
+    margin: 1px 0 !important; /* Margen */
+    border-radius: 2px !important; /* Radio de borde */
+    cursor: pointer !important; /* Cursor */
+}
+
+.fc-event.task-pending { /* Tarea pendiente */
+    background-color: var(--color-warning) !important; /* Color de fondo */
+    border-color: var(--color-warning) !important; /* Color del borde */
+    color: #000 !important; /* Color del texto */
+}
+
+.fc-event.task-in_progress { /* Tarea en ejecución */
+    background-color: var(--color-info) !important; /* Color de fondo */
+    border-color: var(--color-info) !important; /* Color del borde */
+    color: white !important; /* Color del texto */
+}
+
+.fc-event.task-completed { /* Tarea completada */
+    background-color: var(--color-success) !important; /* Color de fondo */
+    border-color: var(--color-success) !important; /* Color del borde */
+    color: white !important; /* Color del texto */
+}
+
+/* Controles (Tema e Idioma)
+ * --------------------------------------------------------------------------
+ * Estilos para los controles de tema y idioma en la esquina inferior derecha.
+ */
+.controls-container { /* Contenedor de controles */
+    position: fixed; /* Posición fija */
+    bottom: var(--spacing-lg); /* Posición vertical */
+    right: var(--spacing-lg); /* Posición horizontal */
+    display: flex; /* Diseño flexible */
+    gap: var(--spacing-md); /* Espacio entre elementos */
+    align-items: center; /* Alineación vertical */
+    z-index: 1000; /* Z-index */
+}
+
+.theme-toggle { /* Botón de tema */
+    background: var(--color-bg-secondary); /* Color de fondo */
+    border: 1px solid var(--color-border); /* Color del borde */
+    border-radius: var(--border-radius-full); /* Radio de borde */
+    padding: var(--spacing-sm); /* Relleno interno */
+    cursor: pointer; /* Cursor */
+    transition: all var(--transition-fast); /* Transición */
+    width: 40px; /* Ancho */
+    height: 40px; /* Altura */
+    display: flex; /* Diseño flexible */
+    align-items: center; /* Alineación vertical */
+    justify-content: center; /* Alineación horizontal */
+}
+
+.theme-toggle:hover { /* Botón de tema */
+    background: var(--color-bg-hover); /* Color de fondo */
+    transform: translateY(-2px); /* Movimiento vertical */
+    box-shadow: var(--shadow-md); /* Sombra */
+}
+
+.language-selector { /* Selector de idioma */
+    display: flex; /* Diseño flexible */
+    gap: var(--spacing-xs); /* Espacio entre elementos */
+}
+
+.language-selector button { /* Botón de idioma */
+    background: var(--color-bg-secondary); /* Color de fondo */
+    border: 1px solid var(--color-border); /* Color del borde */
+    border-radius: var(--border-radius-full); /* Radio de borde */
+    padding: var(--spacing-sm); /* Relleno interno */
+    cursor: pointer; /* Cursor */
+    transition: all var(--transition-fast); /* Transición */
+    font-size: var(--font-size-md); /* Tamaño de fuente */
+    line-height: 1; /* Altura de línea */
+    width: 40px; /* Ancho */
+    height: 40px; /* Altura */
+    display: flex; /* Diseño flexible */
+    align-items: center; /* Alineación vertical */
+    justify-content: center; /* Alineación horizontal */
+}
+
+.language-selector button:hover { /* Botón de idioma */
+    background: var(--color-bg-hover); /* Color de fondo */
+    transform: translateY(-2px); /* Movimiento vertical */
+    box-shadow: var(--shadow-md); /* Sombra */
+}
+
+.language-selector button.active { /* Botón de idioma */
+    background: var(--color-primary); /* Color de fondo */
+    color: white; /* Color del texto */
+    border-color: var(--color-primary); /* Color del borde */
+}
+
+/* Ajustes responsive
+ * --------------------------------------------------------------------------
+ * Estilos para adaptar la interfaz a diferentes tamaños de pantalla.
+ */
+@media (max-width: 768px) { /* Responsive */
+    .fc .fc-toolbar { /* Calendario */
+        justify-content: center; /* Alineación horizontal */
+    }
+    
+    .fc .fc-toolbar-title { /* Calendario */
+        text-align: center; /* Alineación horizontal */
+        width: 100%; /* Ancho */
+    }
+}
+
+/* Media Queries
+ * --------------------------------------------------------------------------
+ * Estilos para adaptar la interfaz a diferentes tamaños de pantalla.
+ */
+@media screen and (max-width: 900px) { /* Responsive */
+    .app-container { /* Contenedor de la aplicación */
+        grid-template-columns: 1fr; /* Columnas */
+    }
+    
+    .calendar-container { /* Calendario */
+        position: static; /* Posición */
+        margin-top: var(--spacing-lg); /* Margen superior */
+    }
+    
+    .date-inputs { /* Input de fecha */
+        grid-template-columns: 1fr; /* Columnas */
+    }
+}

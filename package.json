@@ -1,0 +1,198 @@
+{
+  "name": "estructura_base",
+  "version": "2.0.0",
+  "description": "Estructura base web Segura - Optimizada para Rendimiento y Seguridad",
+  "main": "app.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node app.mjs",
+    "start:prod": "cross-env NODE_ENV=production node app.mjs",
+    "start:cluster": "cross-env NODE_ENV=production ENABLE_CLUSTERING=true node app.mjs",
+    "dev": "cross-env NODE_ENV=development node --watch app.mjs",
+    "dev:debug": "cross-env NODE_ENV=development node --inspect --watch app.mjs",
+    "dev:trace": "cross-env NODE_ENV=development node --trace-warnings --watch app.mjs",
+    "test": "mocha test/**/*.test.mjs --timeout 15000 --exit",
+    "test:security": "mocha test/security/*.test.mjs --timeout 15000 --exit",
+    "test:coverage": "nyc mocha test/**/*.test.mjs --timeout 10000 --exit",
+    "test:watch": "mocha test/**/*.test.mjs --watch",
+    "test:performance": "mocha test/performance/*.test.mjs --timeout 30000 --exit",
+    "verificar": "node test/verificar-proyecto.mjs",
+    "verify:workflows": "node scripts/verify-workflows.mjs",
+    "test:workflows": "node scripts/test-workflows.mjs",
+    "verify:docker": "node scripts/verify-docker.mjs",
+    "docker:setup": "node scripts/docker-setup.mjs",
+    "docker:setup:background": "node scripts/docker-setup.mjs --background",
+    "security:check": "npm audit --omit=dev && node scripts/security-check.mjs",
+    "security:generate-secrets": "node scripts/generate-secrets.mjs",
+    "security:audit": "npm audit --audit-level moderate",
+    "lint": "eslint . --ext .mjs,.js --ignore-pattern 'public/js/*.js' --max-warnings 50",
+    "lint:fix": "eslint . --ext .mjs,.js --fix --ignore-pattern 'public/js/*.js'",
+    "lint:frontend": "eslint \"public/assets/js/*.js\" --config public/assets/js/.eslintrc.json --no-ignore",
+    "lint:auto-fix": "node scripts/fix-eslint-issues.mjs",
+    "lint:quick-fix": "node scripts/quick-fix.mjs",
+    "format": "prettier --write \"**/*.{js,mjs,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,mjs,json,md}\"",
+    "validate": "npm run lint && npm run format:check && npm run test",
+    "build": "npm run lint && npm run format:check && npm run security:check",
+    "build:full": "npm run validate && npm run security:check",
+    "performance:check": "node scripts/pre-performance-check.mjs",
+    "performance:test": "npm run performance:check && node scripts/performance-test-simple.mjs",
+    "performance:test:direct": "node scripts/performance-test.mjs",
+    "performance:debug": "node scripts/debug-server.mjs",
+    "performance:setup": "node scripts/generate-test-config.mjs",
+    "performance:monitor": "node scripts/performance-monitor.mjs",
+    "clean": "rimraf logs/* coverage .nyc_output",
+    "clean:all": "npm run clean && rimraf node_modules package-lock.json",
+    "health:check": "node scripts/health-check.mjs",
+    "deploy:check": "npm run build && npm run security:check && npm run test:security",
+    "db:init": "node scripts/init-database.mjs",
+    "db:init:force": "node scripts/init-database.mjs --force",
+    "db:status": "node scripts/database-status.mjs",
+    "db:maintenance": "node scripts/database-maintenance.mjs",
+    "db:backup": "node scripts/database-backup.mjs",
+    "prestart": "echo 'Iniciando aplicación...'",
+    "prestart:prod": "npm run deploy:check"
+  },
+  "keywords": [
+    "Node.js",
+    "Express",
+    "EJS",
+    "Security",
+    "Authentication",
+    "Validation",
+    "Performance",
+    "Optimization",
+    "Web Application",
+    "Secure",
+    "Rate Limiting",
+    "CSRF Protection",
+    "XSS Protection"
+  ],
+  "author": {
+    "name": "Daniel Arribas Velazquez",
+    "email": "daniel@example.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/estructura_base.git"
+  },
+  "bugs": {
+    "url": "https://github.com/username/estructura_base/issues"
+  },
+  "homepage": "https://github.com/username/estructura_base#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-ejs-layouts": "^2.5.1",
+    "express-rate-limit": "^7.3.1",
+    "express-session": "^1.18.0",
+    "express-validator": "^7.0.1",
+    "helmet": "^8.0.0",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.3.0"
+  },
+  "devDependencies": {
+    "autocannon": "^7.14.0",
+    "chai": "^4.3.10",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.57.0",
+    "mocha": "^10.2.0",
+    "nodemon": "^3.0.1",
+    "nyc": "^15.1.0",
+    "prettier": "^3.0.3",
+    "rimraf": "^5.0.5",
+    "supertest": "^6.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "nyc": {
+    "reporter": [
+      "text",
+      "html",
+      "lcov"
+    ],
+    "exclude": [
+      "test/**",
+      "coverage/**",
+      "node_modules/**",
+      "scripts/**"
+    ],
+    "check-coverage": true,
+    "lines": 80,
+    "statements": 80,
+    "functions": 80,
+    "branches": 80
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es2022": true,
+      "mocha": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2022,
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-console": "off",
+      "no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_"
+        }
+      ],
+      "prefer-const": "error",
+      "no-var": "error"
+    }
+  },
+  "prettier": {
+    "semi": true,
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "printWidth": 100,
+    "tabWidth": 2,
+    "useTabs": false
+  },
+  "config": {
+    "port": 3000,
+    "test_port": 3001
+  },
+  "files": [
+    "app.mjs",
+    "src/",
+    "views/",
+    "public/",
+    "config.env.example",
+    "README.md",
+    "README_SECURITY.md"
+  ],
+  "nodemonConfig": {
+    "watch": [
+      "src/",
+      "views/",
+      "app.mjs",
+      "config.env"
+    ],
+    "ext": "mjs,js,ejs,json",
+    "ignore": [
+      "test/",
+      "logs/",
+      "coverage/",
+      "node_modules/"
+    ],
+    "delay": 1000
+  }
+}

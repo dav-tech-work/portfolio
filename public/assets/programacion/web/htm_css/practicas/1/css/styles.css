@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'Roboto-bold';
+    src: url('../fonts/Roboto/Roboto-Bold.woff2') format('woff2'),
+        url('../fonts/Roboto/Roboto-Bold.woff') format('woff'),
+        url('../fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto-regular';
+    src: url('../fonts/Roboto/Roboto-Regular.woff2') format('woff2'),
+        url('../fonts/Roboto/Roboto-Regular.woff') format('woff'),
+        url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto-semi';
+    src: url('../fonts/Roboto/Roboto-SemiBold.woff2') format('woff2'),
+        url('../fonts/Roboto/Roboto-SemiBold.woff') format('woff'),
+        url('../fonts/Roboto/Roboto-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto-medium';
+    src: url('../fonts/Roboto/Roboto-Medium.woff2') format('woff2'),
+        url('../fonts/Roboto/Roboto-Medium.woff') format('woff'),
+        url('../fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+*{
+    margin: 5;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto-regular ,Arial, Helvetica, sans-serif;
+}
+h1{
+    font-family: Roboto-bold,Arial, Helvetica, sans-serif;
+    font-size: 900;
+    margin-left: 10%;
+}
+
+h2{
+    font-family: Roboto-semi,Arial, Helvetica, sans-serif;
+}
+h3{
+    margin-left:7%;
+}
+.texto_tab{
+    font-size: 15px;
+    margin-left: 9%;
+}
+.notas{
+    font-size: 13px;
+    margin-left: 2%;
+}
+a {
+    text-decoration: none;
+}
+.tab{
+    margin-left: 3%;
+    font-size:  15px;
+}

@@ -1,0 +1,36 @@
+<main>
+  <h1>Mi Perfil</h1>
+  <% if (user) { %>
+    <div class="profile-info">
+      <h2>Información Personal</h2>
+      <div class="profile-grid">
+        <div class="profile-item">
+          <strong>Nombre:</strong>
+          <span><%= user.name %></span>
+        </div>
+        <div class="profile-item">
+          <strong>Email:</strong>
+          <span><%= user.email %></span>
+        </div>
+        <div class="profile-item">
+          <strong>Rol:</strong>
+          <span class="badge <%= user.role === 'admin' ? 'badge-admin' : 'badge-user' %>"><%= user.role %></span>
+        </div>
+        <div class="profile-item">
+          <strong>Estado:</strong>
+          <span><%= user.status %></span>
+        </div>
+        <div class="profile-item">
+          <strong>Último acceso:</strong>
+          <span><%= user.lastLogin ? formatDate(user.lastLogin) : 'Nunca' %></span>
+        </div>
+      </div>
+    </div>
+  <% } %>
+  <% if (error && error.length) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+  <% if (success && success.length) { %>
+    <div class="alert alert-success"><%= success %></div>
+  <% } %>
+</main>

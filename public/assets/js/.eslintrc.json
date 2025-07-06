@@ -1,0 +1,51 @@
+{
+  "env": {
+    "browser": true,
+    "es2022": true
+  },
+  "extends": ["eslint:recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "prefer-const": "error",
+    "no-var": "error",
+    "no-undef": "off"
+  },
+  "globals": {
+    "document": "readonly",
+    "window": "readonly",
+    "localStorage": "readonly",
+    "sessionStorage": "readonly",
+    "navigator": "readonly",
+    "location": "readonly",
+    "alert": "readonly",
+    "confirm": "readonly",
+    "prompt": "readonly",
+    "setTimeout": "readonly",
+    "setInterval": "readonly",
+    "clearTimeout": "readonly",
+    "clearInterval": "readonly",
+    "fetch": "readonly",
+    "XMLHttpRequest": "readonly",
+    "FormData": "readonly",
+    "URLSearchParams": "readonly",
+    "MutationObserver": "readonly",
+    "IntersectionObserver": "readonly",
+    "ResizeObserver": "readonly",
+    "hljs": "readonly",
+    "FullCalendar": "readonly",
+    "calendar": "readonly",
+    "setLanguage": "readonly",
+    "seguridad": "readonly"
+  }
+}

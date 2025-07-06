@@ -1,0 +1,61 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Mea+Culpa&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap'); */
+@font-face {
+    font-family: 'Amita';
+    src: url('../fonts/Amita/Amita-Regular.woff2') format('woff2'),
+        url('../fonts/Amita/Amita-Regular.woff') format('woff'),
+        url('../fonts/Amita/Amita-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto/Roboto-Regular.woff2') format('woff2'),
+        url('../fonts/Roboto/Roboto-Regular.woff') format('woff'),
+        url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Mea_Culpa';
+    src: url('../fonts/Mea_Culpa/MeaCulpa-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+*{
+    margin: 5;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto ,Arial, Helvetica, sans-serif;
+    }
+
+
+h1{
+    color: grey;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: Mea_Culpa , cursive;
+    font-weight: 500;
+    font-style: normal;
+    span {color: red;
+    font-family: Amita ,Arial, Helvetica, sans-serif;;
+    font-size: 40px;
+    font-weight: 800}
+    }
+#p-azul,#p-azul2{color: darkblue;}
+
+.texto-rojo {color: tomato;}
+p {color: #50f106;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+font-size: 20px;
+}
+a {
+    text-decoration: none;
+    display: block;
+}
+
+
+

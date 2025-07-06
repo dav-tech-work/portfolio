@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="<%= typeof idioma !== 'undefined' ? idioma : 'es' %>" data-tema="dark">
+  <head>
+    <%- include('templates/head', { tipo: typeof tipo !== 'undefined' ? tipo : null }) %>
+  </head>
+  <body>
+    <% if (tipo === 'formacion') { %>
+      <%- include('templates/header', { tipo: 'formacion' }) %>
+    <% } else { %>
+      <%- include('templates/header') %>
+    <% } %>
+
+    <main>
+      <%- body %>
+    </main>
+
+    <%- include('templates/footer') %>
+
+    <!-- Script principal -->
+    <script
+      type="module"
+      src="/assets/js/index.js"
+      <%= typeof nonce !== 'undefined' ? `nonce="${nonce}"` : "" %>>
+    </script>
+
+    <!-- Script adicional opcional -->
+    <% if (typeof scriptAdicional !== 'undefined' && scriptAdicional) { %>
+      <script
+        type="module"
+        src="<%= scriptAdicional %>"
+        <%= typeof nonce !== 'undefined' ? `nonce="${nonce}"` : "" %>>
+      </script>
+    <% } %>
+  </body>
+</html>

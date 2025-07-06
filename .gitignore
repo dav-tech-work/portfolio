@@ -1,0 +1,205 @@
+# ========================================
+# DEPENDENCIAS Y PAQUETES
+# ========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# package-lock.json - NO IGNORAR (necesario para CI/CD)
+yarn.lock
+pnpm-lock.yaml
+
+# ========================================
+# VARIABLES DE ENTORNO Y CONFIGURACIÓN
+# ========================================
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+.env.example
+config.env
+config.local.env
+config.*.env
+secrets/
+*.secret
+
+# ========================================
+# LOGS Y ARCHIVOS DE AUDITORÍA
+# ========================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.log.*
+log/
+audit/
+
+# ========================================
+# REPORTES Y ANÁLISIS
+# ========================================
+reports/
+coverage/
+.nyc_output/
+*.lcov
+test-results/
+test-reports/
+*.test.js.map
+*.spec.js.map
+performance-report.json
+security-report.json
+
+# ========================================
+# ARCHIVOS TEMPORALES DEL SISTEMA
+# ========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+*.tmp
+*.temp
+*.pid
+*.seed
+*.pid.lock
+
+# ========================================
+# IDEs Y EDITORES
+# ========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/extensions.json
+*.sublime-project
+*.sublime-workspace
+
+# ========================================
+# ARCHIVOS DE CACHÉ Y BUILD
+# ========================================
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+dist/
+build/
+out/
+.output/
+
+# ========================================
+# BASE DE DATOS Y ARCHIVOS DE DATOS
+# ========================================
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+data/local/
+data/temp/
+
+# ========================================
+# ARCHIVOS DE RESPALDO
+# ========================================
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+
+# ========================================
+# ARCHIVOS DE SEGURIDAD Y CERTIFICADOS
+# ========================================
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.csr
+certs/
+ssl/
+private/
+
+# ========================================
+# ARCHIVOS DE DOCUMENTACIÓN GENERADA
+# ========================================
+docs/build/
+docs/_build/
+docs/_site/
+docs/.sass-cache/
+
+# ========================================
+# DOCKER Y CONTAINERS
+# ========================================
+.dockerignore
+Dockerfile.dev
+docker-compose.override.yml
+docker-compose.*.yml
+!docker-compose.yml
+
+# ========================================
+# CI/CD Y AUTOMATIZACIÓN
+# ========================================
+.github/workflows/*.yml.bak
+.gitlab-ci.yml.bak
+.travis.yml.bak
+.circleci/config.yml.bak
+
+# ========================================
+# ARCHIVOS ESPECÍFICOS DEL PROYECTO
+# ========================================
+uploads/
+public/uploads/
+temp/
+tmp/
+sessions/
+*.session
+
+# ========================================
+# ARCHIVOS DE DESARROLLO Y DEBUG
+# ========================================
+debug/
+debug-*.log
+*.debug
+test-theme.html
+test-*.html
+
+# ========================================
+# ARCHIVOS DE MONITOREO Y MÉTRICAS
+# ========================================
+metrics/
+monitoring/
+*.metrics
+*.stats
+
+# ========================================
+# ARCHIVOS DE COMPRESIÓN
+# ========================================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ========================================
+# ARCHIVOS DE MEDIA TEMPORALES
+# ========================================
+*.mp4.tmp
+*.mp3.tmp
+*.jpg.tmp
+*.png.tmp
+*.gif.tmp
+*.webp.tmp
+
+
+
+

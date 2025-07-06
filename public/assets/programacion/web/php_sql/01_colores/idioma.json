@@ -1,0 +1,16 @@
+{
+  "ESP": {
+    "lang": "es",
+    "title": "Nuestros colores favoritos"
+  },
+
+  "CAT": {
+    "lang": "ca",
+    "title": "Els nostres colors preferits"
+  },
+
+  "ENG": {
+    "lang": "en",
+    "title": "Our favorite colors"
+  }
+}

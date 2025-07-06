@@ -1,0 +1,144 @@
+# ===================================================================
+# 🐳 DOCKER COMPOSE - PORTFOLIO WEB SEGURO
+# ===================================================================
+# Configuración optimizada para desarrollo y producción
+# Última actualización: 2025-01-27
+# ===================================================================
+
+version: '3.8'
+
+services:
+  portfolio-web-seguro:
+    # ===================================================================
+    # 🏗️ CONFIGURACIÓN DE BUILD E IMAGEN
+    # ===================================================================
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: davtechw/portfolio:v2.1.0
+    container_name: portfolio-web-seguro
+
+    # ===================================================================
+    # 🌍 VARIABLES DE ENTORNO
+    # ===================================================================
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - LOG_TO_FILE=false
+      - SECURITY_LEVEL=high
+      - AUTONOMOUS_MODE=true
+      - TZ=Europe/Madrid
+
+    # ===================================================================
+    # 🔒 CONFIGURACIÓN DE SEGURIDAD AVANZADA
+    # ===================================================================
+    security_opt:
+      - no-new-privileges:true
+    user: "2001:2001"
+    read_only: true
+    cap_drop:
+      - ALL
+
+    # ===================================================================
+    # 💾 TMPFS MOUNTS (Directorios temporales en memoria)
+    # ===================================================================
+    tmpfs:
+      - /tmp:noexec,nosuid,size=50m
+      - /app/tmp:noexec,nosuid,size=50m,uid=2001,gid=2001
+      - /app/logs:noexec,nosuid,size=100m,uid=2001,gid=2001
+      - /app/uploads:noexec,nosuid,size=200m,uid=2001,gid=2001
+      - /app/reports:noexec,nosuid,size=50m,uid=2001,gid=2001
+      - /app/test-results:noexec,nosuid,size=50m,uid=2001,gid=2001
+      - /app/coverage:noexec,nosuid,size=50m,uid=2001,gid=2001
+
+    # ===================================================================
+    # 🌐 CONFIGURACIÓN DE RED
+    # ===================================================================
+    ports:
+      - "3000:3000"
+
+    # ===================================================================
+    # 📊 LÍMITES DE RECURSOS
+    # ===================================================================
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+        reservations:
+          memory: 256M
+          cpus: '0.25'
+
+    # ===================================================================
+    # 📝 CONFIGURACIÓN DE LOGS
+    # ===================================================================
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # ===================================================================
+    # 🏷️ ETIQUETAS Y METADATOS
+    # ===================================================================
+    labels:
+      - "com.dav-tech.portfolio.version=2.1.0"
+      - "com.dav-tech.portfolio.environment=production"
+      - "com.dav-tech.portfolio.security=enterprise"
+      - "com.dav-tech.portfolio.autonomous=true"
+      - "com.dav-tech.portfolio.maintainer=danielarribasvelazquez@dav-tech.work"
+
+    # ===================================================================
+    # 🔍 HEALTHCHECK Y RESTART
+    # ===================================================================
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    restart: unless-stopped
+
+  # ===================================================================
+  # 🗄️ SERVICIO DE BASE DE DATOS (OPCIONAL)
+  # ===================================================================
+  mongodb:
+    image: mongo:7.0
+    container_name: portfolio-mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=secure_password_here
+      - MONGO_INITDB_DATABASE=portfolio
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    restart: unless-stopped
+    profiles:
+      - database
+
+volumes:
+  mongodb_data:
+    driver: local
+
+# ===================================================================
+# 📋 NOTAS DE CONFIGURACIÓN:
+# ===================================================================
+# ✅ Contenedor autónomo - Sin dependencias externas por defecto
+# ✅ Seguridad empresarial - Usuario no-root, read-only, sin privilegios
+# ✅ Tmpfs para datos temporales - Todo en memoria RAM
+# ✅ Límites de recursos - Optimizado para producción
+# ✅ Healthcheck integrado - Monitoreo automático
+# ✅ Logs controlados - Rotación automática
+# ✅ Base de datos opcional - Usar perfil 'database' para habilitar
+# ===================================================================
+
+# ===================================================================
+# 🚀 COMANDOS DE USO:
+# ===================================================================
+# Desarrollo: docker-compose up --build
+# Producción: docker-compose -f docker-compose.yml up -d
+# Con BD: docker-compose --profile database up -d
+# Logs: docker-compose logs -f portfolio-web-seguro
+# ===================================================================

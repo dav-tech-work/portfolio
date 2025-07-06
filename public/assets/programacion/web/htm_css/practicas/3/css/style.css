@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lexend:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-family: "Lato", Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+:root {
+    --breakpoint: 1200px;
+    --color-clar: rgb(245, 245, 245);
+    --color-secundari: #a46d3c;
+    --color-secundari50x100: hsla(28, 46%, 44%, 0.50);
+    --font-titols: "Lexend", Arial, Helvetica, sans-serif;
+}
+body {
+    background-color: var(--color-clar);
+}
+
+.breakpoint {
+    max-width: var(--breakpoint);
+    margin: 0 auto;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--color-secundari);
+    @media (max-width:550px){
+        display: block;
+        
+    }
+}
+h1{
+    font-family: var(--font-titols);
+    font-size: clamp(1.4rem, 3vw + 1rem, 2.5rem);
+    font-weight: 200;
+    text-shadow:4px 4px 2px rgb(128,128,128,.5);
+    span{
+        font-size: inherit;
+        font-family: inherit;
+        color: var(--color-secundari);
+        font-weight: 400;
+    }
+}
+header > div:first-child{
+    display: flex;
+    align-items: center;
+    img{
+        width: clamp(100px, 20vw ,200px);
+    }
+}
+header > div:last-child{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap:0.75rem;
+
+    img{
+        width: 50px;
+    }
+    @media(max-width:600px){
+        
+    }
+}
+ul.breakpoint{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+nav{
+    padding: 20px;
+    box-shadow: 5px 5px 5px grey;
+    margin-bottom: 2rem;
+}
+section.breakpoint{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
+    gap:2rem;
+    article{
+        border: 5px solid var(--color-secundari);
+    }
+    h2{
+        text-align: center;
+        font-family: var(--font-titols);
+        font-weight: 600;
+        color: var(--color-secundari);
+        font-size: 1.5rem;
+    }
+    p{
+        padding: 1rem;
+    }
+    img{
+        width: 100%;
+    }
+    div{
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    a{
+        padding: 5px 10px;
+        border-bottom: 2px solid grey;
+        color: grey;
+        &:hover{
+            border-bottom: 2px solid var(--color-secundari);
+            color: var(--color-secundari)
+        }
+    }
+    @media (max-width: 1200px){
+        padding: 3vw;
+    }
+}

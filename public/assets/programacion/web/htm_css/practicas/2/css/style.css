@@ -1,0 +1,204 @@
+@font-face {
+    font-family: 'Dancing_varia';
+    src: url('../fonts/Dancing_Script/DancingScript-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Dancing_bold';
+    src: url('../fonts/Dancing_Script/DancingScript-Bold.woff2') format('woff2'),
+    url('../fonts/Dancing_Script/DancingScript-Bold.woff') format('woff'),
+    url('../fonts/Dancing_Script/DancingScript-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Dancing_regular';
+    src: url('../fonts/Dancing_Script/DancingScript-Regular.woff2') format('woff2'),
+    url('../fonts/Dancing_Script/DancingScript-Regular.woff') format('woff'),
+    url('../fonts/Dancing_Script/DancingScript-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Dancing_semi';
+    src: url('../fonts/Dancing_Script/DancingScript-SemiBold.woff2') format('woff2'),
+    url('../fonts/Dancing_Script/DancingScript-SemiBold.woff') format('woff'),
+    url('../fonts/Dancing_Script/DancingScript-SemiBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Dancing_medium';
+    src: url('../fonts/Dancing_Script/DancingScript-Medium.woff2') format('woff2'),
+    url('../fonts/Dancing_Script/DancingScript-Medium.woff') format('woff'),
+    url('../fonts/Dancing_Script/DancingScript-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/Lato/Lato-Regular.woff2') format('woff2'),
+        url('../fonts/Lato/Lato-Regular.woff') format('woff'),
+        url('../fonts/Lato/Lato-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+:root{
+    --color_fondo_primario: #053617;
+    --color_texto_primario: #a5a4a4;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Lato, Arial, Helvetica, sans-serif;
+}
+h1,h2{
+    font-family: Dancing_regular;
+}
+h1{
+    position: absolute;
+    top: 5vw;
+    color: antiquewhite;
+    font-size: 7vw;
+    right: 5vw;
+    
+}
+h2{
+    font-size: clamp(2rem, 5vw + 1rem, 3rem);
+
+}
+
+header img{
+    width: 100%;
+    display: block;
+}
+nav{
+    height: 80px;
+    align-content: center;
+    
+    ul{
+        display: flex;
+        justify-content:space-around;
+
+        li {
+            list-style: none; 
+            padding: .5rem 1rem;
+            border-top: 2px solid transparent;
+            border-bottom: 2px solid transparent;
+            &:hover{
+                border-top: 2px solid whitesmoke;
+                border-bottom: 2px solid whitesmoke;
+                color: white;
+            }  
+        }
+        a{
+            text-decoration: none;
+            color: inherit; 
+            font-size: 1.15rem;             
+        }
+    }
+}
+section > div{
+    display: flex;
+    div{
+        width: 100%;
+        overflow: hidden;
+        h2{
+            padding: .5rem;
+            @media (max-width:550px){
+                text-align: center;
+            }
+        }
+        p{
+            font-size: clamp(1rem, 4vw + .8rem ,1.25rem) ;
+            padding: .5rem;
+            @media (max-width:550px){
+                text-align: center;
+                padding: 4vw;
+            }
+        } 
+    }
+    img{
+        width: 100%;
+        display: block;
+        transition: transform 1s ease;
+        &:hover{
+            transform: scale(1.2);
+        } 
+    }
+    video{
+        width: 100%;
+        display: block;
+    }
+
+    @media (max-width:450px) {
+        display: block;
+    }  
+}
+
+section>h2{
+text-align: center;
+margin: 2rem 0 1rem 0;
+}
+
+.centrado_principal{
+    margin: 0 auto;
+    max-width: 1000px; 
+    /* display: flex;     */
+}
+.centrado_texto{
+    align-content: center;         
+}
+.opiniones{
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: flex-start;
+    q{
+        font-size: 1.25rem;
+        
+    }
+    cite{
+        color: rgb(179, 12, 12);
+        font-size: 1.1rem;
+        padding-right: 5px;
+        display: block;
+        text-align: end;
+    }
+    @media (max-width:450px) {
+        display: block;
+        padding: 4vw;
+    }   
+}
+.fondo_oscuro{
+    background-color: var(--color_fondo_primario);
+    color: var(--color_texto_primario);
+}
+.invertir {
+    flex-direction: row-reverse;
+}
+
+footer{
+    margin-top: 2rem;
+    height: 200px;
+}
+.bloques{
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    @media (max-width:450px) {
+        display: block;
+    }
+    max-width: 35%;
+    flex-direction: row;
+}
+
