@@ -1,7 +1,7 @@
 // loggerAuditoria.mjs
 import fs from 'fs';
 import path from 'path';
-// import { fileURLToPath } from "url"; // Currently unused
+
 import config from '../../config/index.mjs';
 
 // const __filename = fileURLToPath(import.meta.url); // Currently unused

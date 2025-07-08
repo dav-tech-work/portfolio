@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-// import _fileURLToPath from "url"; // Currently unused
+
 import config from '../../config/index.mjs';
 
 /**

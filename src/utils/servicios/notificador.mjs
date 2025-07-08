@@ -138,14 +138,10 @@ async function enviarNotificacionPush(_destinatario, _titulo, _mensaje, _datos) 
   // Aquí se implementaría el envío de push notifications
   // Por ejemplo, usando Firebase Cloud Messaging, OneSignal, etc.
 
-  // Simulación
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        success: true,
-        message: 'Push notification enviada',
-      });
-    }, 100);
+  // Simulación sin setTimeout para evitar memory leaks
+  return Promise.resolve({
+    success: true,
+    message: 'Push notification enviada',
   });
 }
 
@@ -160,14 +156,10 @@ async function enviarNotificacionSMS(_destinatario, _mensaje, _datos) {
   // Aquí se implementaría el envío de SMS
   // Por ejemplo, usando Twilio, AWS SNS, etc.
 
-  // Simulación
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        success: true,
-        message: 'SMS enviado',
-      });
-    }, 100);
+  // Simulación sin setTimeout para evitar memory leaks
+  return Promise.resolve({
+    success: true,
+    message: 'SMS enviado',
   });
 }
 
@@ -183,14 +175,10 @@ async function guardarNotificacionInApp(_destinatario, _titulo, _mensaje, _datos
   // Aquí se implementaría el guardado en base de datos
   // Para notificaciones in-app
 
-  // Simulación
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        success: true,
-        message: 'Notificación guardada en la aplicación',
-      });
-    }, 100);
+  // Simulación sin setTimeout para evitar memory leaks
+  return Promise.resolve({
+    success: true,
+    message: 'Notificación guardada en la aplicación',
   });
 }
 

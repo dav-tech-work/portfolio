@@ -1,5 +1,7 @@
 import { registrar } from './logger.mjs';
 import { auditar } from './loggerAuditoria.mjs';
+import config from '../../config/index.mjs';
+import logger from '../logger-production.mjs';
 import { sanitize } from '../seguridad/sanitize.mjs';
 
 /**
@@ -169,6 +171,68 @@ async function _generarHTML(template, data) {
   return plantillas[template] || plantillas.contacto;
 }
 */
+
+/**
+ * Enviar email de verificación
+ * @param {string} userEmail - Email del usuario
+ * @param {string} verificationToken - Token de verificación
+ * @param {string} ip - IP del usuario (opcional)
+ * @returns {Promise<Object>} Resultado del envío
+ */
+export async function enviarEmailVerificacion(userEmail, verificationToken, ip = null) {
+  try {
+    const verificationUrl = `${config.APP_URL || 'http://localhost:3000'}/auth/verify-email/${verificationToken}`;
+
+    const emailData = {
+      to: userEmail,
+      subject: 'Verificación de Email - Estructura Base',
+      template: 'email-verification',
+      data: {
+        verificationUrl,
+        userEmail,
+        appName: 'Estructura Base',
+        supportEmail: 'support@estructurabase.com',
+      },
+    };
+
+    logger.info(`Enviando email de verificación a ${userEmail}`);
+    return await prepararCorreo(emailData, ip);
+  } catch (error) {
+    logger.error('Error enviando email de verificación', { error: error.message, userEmail });
+    throw error;
+  }
+}
+
+/**
+ * Enviar email de recuperación de contraseña
+ * @param {string} userEmail - Email del usuario
+ * @param {string} resetToken - Token de recuperación
+ * @param {string} ip - IP del usuario (opcional)
+ * @returns {Promise<Object>} Resultado del envío
+ */
+export async function enviarEmailRecuperacion(userEmail, resetToken, ip = null) {
+  try {
+    const resetUrl = `${config.APP_URL || 'http://localhost:3000'}/auth/reset-password/${resetToken}`;
+
+    const emailData = {
+      to: userEmail,
+      subject: 'Recuperación de Contraseña - Estructura Base',
+      template: 'password-reset',
+      data: {
+        resetUrl,
+        userEmail,
+        appName: 'Estructura Base',
+        supportEmail: 'support@estructurabase.com',
+      },
+    };
+
+    logger.info(`Enviando email de recuperación a ${userEmail}`);
+    return await prepararCorreo(emailData, ip);
+  } catch (error) {
+    logger.error('Error enviando email de recuperación', { error: error.message, userEmail });
+    throw error;
+  }
+}
 
 /**
  * Valida un email

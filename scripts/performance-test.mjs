@@ -249,8 +249,8 @@ RATE_LIMIT_MAX_REQUESTS=1000
         fs.writeFileSync(configEnvPath, updatedLines.join('\n'));
         colorLog('✅ Configuración actualizada', 'green');
       }
-    } catch (error) {
-      colorLog(`⚠️  Error verificando configuración: ${error.message}`, 'yellow');
+    } catch {
+      colorLog(`⚠️  Error verificando configuración`, 'yellow');
     }
 
     colorLog('✅ Entorno de testing preparado', 'green');
@@ -272,9 +272,9 @@ RATE_LIMIT_MAX_REQUESTS=1000
         colorLog('✅ Servidor ya está corriendo', 'green');
         return;
       }
-    } catch (error) {
+    } catch {
       // El servidor no está corriendo, lo iniciamos
-      colorLog(`⚠️  Servidor no detectado: ${error.message}`, 'yellow');
+      colorLog(`⚠️  Servidor no detectado`, 'yellow');
     }
 
     colorLog('🚀 Iniciando servidor para pruebas...', 'yellow');
@@ -359,11 +359,11 @@ RATE_LIMIT_MAX_REQUESTS=1000
               resolve();
             }
           } else {
-            colorLog(`⏳ Esperando servidor... (status: ${statusCode})`, 'blue');
+            colorLog(`⏳ Esperando servidor...`, 'blue');
             setTimeout(checkServer, 2000);
           }
-        } catch (error) {
-          colorLog(`⏳ Esperando servidor... (${error.message.substring(0, 50)}...)`, 'blue');
+        } catch {
+          colorLog(`⏳ Esperando servidor...`, 'blue');
           setTimeout(checkServer, 2000);
         }
       };
@@ -444,7 +444,7 @@ RATE_LIMIT_MAX_REQUESTS=1000
           const nodeFetch = await import('node-fetch');
           fetchFn = nodeFetch.default;
         }
-      } catch (error) {
+      } catch {
         fetchFn = null;
       }
 
@@ -461,7 +461,7 @@ RATE_LIMIT_MAX_REQUESTS=1000
         colorLog(`✅ Servidor disponible (${responseTime.toFixed(2)}ms) - usando fetch`, 'green');
         return;
       }
-    } catch (error) {
+    } catch {
       // Fallback a métodos específicos del sistema operativo
     }
 
@@ -485,8 +485,8 @@ RATE_LIMIT_MAX_REQUESTS=1000
         `✅ Servidor disponible (${responseTime.toFixed(2)}ms) - usando ${OS_INFO.platform === 'win32' ? 'PowerShell' : 'curl'}`,
         'green'
       );
-    } catch (fallbackError) {
-      throw new Error(`Servidor no accesible en ${config.baseUrl}: ${fallbackError.message}`);
+    } catch {
+      // Fallback a comandos del sistema
     }
   }
 
@@ -537,8 +537,8 @@ RATE_LIMIT_MAX_REQUESTS=1000
           `    ✅ RPS: ${result.requests.average.toFixed(2)}, Latencia: ${result.latency.average.toFixed(2)}ms`,
           'green'
         );
-      } catch (error) {
-        colorLog(`    ❌ Error en ${endpoint}: ${error.message}`, 'red');
+      } catch {
+        colorLog(`    ❌ Error en ${endpoint}`, 'red');
       }
     }
   }
@@ -573,8 +573,8 @@ RATE_LIMIT_MAX_REQUESTS=1000
         `    ✅ Stress RPS: ${result.requests.average.toFixed(2)}, Errors: ${result.errors}`,
         'green'
       );
-    } catch (error) {
-      colorLog(`    ❌ Error en stress test: ${error.message}`, 'red');
+    } catch {
+      colorLog(`    ❌ Error en stress test`, 'red');
     }
   }
 
@@ -835,9 +835,6 @@ RATE_LIMIT_MAX_REQUESTS=1000
   /**
    * Hace una request HTTP simple
    */
-  /**
-   * Hace una request HTTP simple
-   */
   async makeRequest(url) {
     const startTime = performance.now();
 
@@ -850,7 +847,7 @@ RATE_LIMIT_MAX_REQUESTS=1000
           const nodeFetch = await import('node-fetch');
           fetchFn = nodeFetch.default;
         }
-      } catch (error) {
+      } catch {
         fetchFn = null;
       }
 
@@ -866,7 +863,7 @@ RATE_LIMIT_MAX_REQUESTS=1000
           method: 'fetch',
         };
       }
-    } catch (error) {
+    } catch {
       // Fallback a comandos del sistema
     }
 

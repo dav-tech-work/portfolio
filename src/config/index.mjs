@@ -69,15 +69,6 @@ const CSP = (nonce = '') => {
   return baseCSP.join('; ');
 };
 
-// Configuración de base de datos
-const DATABASE = {
-  URI: process.env.DB_URI || 'mongodb://localhost:27017/estructura_base',
-  OPTIONS: {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-};
-
 // Configuración del servidor
 const SERVER = {
   PORT: parseInt(process.env.PORT) || 3000,
@@ -113,7 +104,6 @@ export default {
   SECURITY,
   CORS,
   CSP,
-  DATABASE,
   SERVER,
   IDIOMAS,
   LIMITS,

@@ -1,4 +1,6 @@
 import { body, param, query, validationResult } from 'express-validator';
+import fs from 'fs';
+import path from 'path';
 
 // Validaciones comunes reutilizables
 const suspiciousDomains = [
@@ -10,6 +12,34 @@ const suspiciousDomains = [
 ];
 
 const commandInjectionPattern = /(&&|;|\||\$\(|`)/;
+
+// Cargar claves peligrosas desde JSON
+let dangerousKeys = [
+  '__proto__',
+  'constructor',
+  'prototype',
+  'eval',
+  'function',
+  'require',
+  'module',
+  'process',
+  'global',
+  'window',
+];
+try {
+  const jsonPath = path.resolve(
+    path.dirname(new URL(import.meta.url).pathname),
+    '../../../data/config/security-keys.json'
+  );
+  if (fs.existsSync(jsonPath)) {
+    const jsonData = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+    if (Array.isArray(jsonData.dangerousKeys)) {
+      dangerousKeys = jsonData.dangerousKeys.map((k) => k.toLowerCase());
+    }
+  }
+} catch {
+  // Si falla, usar la lista por defecto
+}
 
 const commonValidations = {
   email: body('email')
@@ -260,19 +290,6 @@ export const validateApiRequest = [
     .withMessage('Los datos deben ser un objeto JSON válido')
     .custom((value) => {
       // Verificar que no contenga propiedades peligrosas
-      const dangerousKeys = [
-        '__proto__',
-        'constructor',
-        'prototype',
-        'eval',
-        'function',
-        'require',
-        'module',
-        'process',
-        'global',
-        'window',
-      ];
-
       const checkKeys = (obj, depth = 0) => {
         if (depth > 10) return; // Prevenir recursión infinita
 

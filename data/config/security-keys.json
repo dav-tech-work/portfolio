@@ -1,0 +1,14 @@
+{
+  "dangerousKeys": [
+    "__proto__",
+    "constructor",
+    "prototype",
+    "eval",
+    "function",
+    "require",
+    "module",
+    "process",
+    "global",
+    "window"
+  ]
+}

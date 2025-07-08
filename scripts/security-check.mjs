@@ -268,8 +268,8 @@ class SecurityChecker {
           if (mode & parseInt('044', 8)) {
             this.addWarning(`${file} es legible por otros usuarios`);
           }
-        } catch (error) {
-          // Ignorar errores de permisos en algunos sistemas
+        } catch {
+          // Manejo de error eliminado por no usarse
         }
       }
     });

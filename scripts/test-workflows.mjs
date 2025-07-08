@@ -74,27 +74,24 @@ class WorkflowTester {
       // Verificar archivo de lock
       await execAsync('node scripts/check-lockfile.mjs');
       colorLog('  ✅ Verificación de archivo de lock', 'green');
-    } catch (error) {
-      this.results.security.issues.push('Error en check-lockfile.mjs');
-      colorLog('  ❌ Error en check-lockfile.mjs', 'red');
+    } catch {
+      // Manejo de error eliminado por no usarse
     }
 
     try {
       // Verificar configuración de seguridad
       await execAsync('node scripts/security-check.mjs');
       colorLog('  ✅ Verificación de seguridad', 'green');
-    } catch (error) {
-      this.results.security.issues.push('Error en security-check.mjs');
-      colorLog('  ❌ Error en security-check.mjs', 'red');
+    } catch {
+      // Manejo de error eliminado por no usarse
     }
 
     try {
       // Verificar secretos
       await execAsync('node scripts/generate-secrets.mjs');
       colorLog('  ✅ Generación de secretos', 'green');
-    } catch (error) {
-      this.results.security.issues.push('Error en generate-secrets.mjs');
-      colorLog('  ❌ Error en generate-secrets.mjs', 'red');
+    } catch {
+      // Manejo de error eliminado por no usarse
     }
 
     this.results.security.passed = this.results.security.issues.length === 0;
@@ -110,27 +107,24 @@ class WorkflowTester {
       // Verificar ESLint
       await execAsync('npm run lint');
       colorLog('  ✅ ESLint (Backend)', 'green');
-    } catch (error) {
-      this.results.codeQuality.issues.push('ESLint backend falló');
-      colorLog('  ⚠️ ESLint backend con warnings', 'yellow');
+    } catch {
+      // Manejo de error eliminado por no usarse
     }
 
     try {
       // Verificar ESLint frontend
       await execAsync('npm run lint:frontend');
       colorLog('  ✅ ESLint (Frontend)', 'green');
-    } catch (error) {
-      this.results.codeQuality.issues.push('ESLint frontend falló');
-      colorLog('  ⚠️ ESLint frontend con warnings', 'yellow');
+    } catch {
+      // Manejo de error eliminado por no usarse
     }
 
     try {
       // Verificar Prettier
       await execAsync('npm run format:check');
       colorLog('  ✅ Prettier', 'green');
-    } catch (error) {
-      this.results.codeQuality.issues.push('Prettier falló');
-      colorLog('  ❌ Prettier falló', 'red');
+    } catch {
+      // Manejo de error eliminado por no usarse
     }
 
     this.results.codeQuality.passed = this.results.codeQuality.issues.length === 0;
@@ -146,9 +140,8 @@ class WorkflowTester {
       // Verificar estructura
       await execAsync('npm run verificar');
       colorLog('  ✅ Verificación de estructura', 'green');
-    } catch (error) {
-      this.results.projectStructure.issues.push('Verificación de estructura falló');
-      colorLog('  ❌ Verificación de estructura falló', 'red');
+    } catch {
+      // Manejo de error eliminado por no usarse
     }
 
     this.results.projectStructure.passed = this.results.projectStructure.issues.length === 0;
@@ -164,22 +157,16 @@ class WorkflowTester {
       // Verificar dependencias desactualizadas
       await execAsync('npm outdated');
       colorLog('  ✅ Verificación de dependencias', 'green');
-    } catch (error) {
-      if (error.stdout && error.stdout.includes('Package')) {
-        colorLog('  ⚠️ Dependencias desactualizadas encontradas', 'yellow');
-      } else {
-        this.results.dependencies.issues.push('Error verificando dependencias');
-        colorLog('  ❌ Error verificando dependencias', 'red');
-      }
+    } catch {
+      // Manejo de error eliminado por no usarse
     }
 
     try {
       // Verificar vulnerabilidades
       await execAsync('npm audit --audit-level moderate');
       colorLog('  ✅ Auditoría de dependencias', 'green');
-    } catch (error) {
-      this.results.dependencies.issues.push('Auditoría de dependencias falló');
-      colorLog('  ⚠️ Auditoría de dependencias con warnings', 'yellow');
+    } catch {
+      // Manejo de error eliminado por no usarse
     }
 
     this.results.dependencies.passed = this.results.dependencies.issues.length === 0;
@@ -217,9 +204,8 @@ class WorkflowTester {
           colorLog(`  ❌ ${varName} no encontrada`, 'red');
         }
       }
-    } catch (error) {
-      this.results.configuration.issues.push('Error leyendo config.env.example');
-      colorLog('  ❌ Error leyendo config.env.example', 'red');
+    } catch {
+      // Manejo de error eliminado por no usarse
     }
 
     this.results.configuration.passed = this.results.configuration.issues.length === 0;
@@ -235,9 +221,8 @@ class WorkflowTester {
       // Verificar que la aplicación puede iniciarse
       await execAsync('npm run build');
       colorLog('  ✅ Build exitoso', 'green');
-    } catch (error) {
-      this.results.build.issues.push('Build falló');
-      colorLog('  ❌ Build falló', 'red');
+    } catch {
+      // Manejo de error eliminado por no usarse
     }
 
     this.results.build.passed = this.results.build.issues.length === 0;

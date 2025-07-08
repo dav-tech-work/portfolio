@@ -122,8 +122,8 @@ export function generarURL(ruta, parametros = {}) {
     });
 
     return url.pathname + url.search;
-  } catch (error) {
-    console.error('Error generando URL:', error);
+  } catch {
+    // Manejo de error eliminado por no usarse
     return ruta;
   }
 }
@@ -137,7 +137,7 @@ export function obtenerRutaBase(url) {
   try {
     const urlObj = new URL(url, 'http://localhost');
     return urlObj.pathname;
-  } catch (error) {
+  } catch {
     return url.split('?')[0];
   }
 }
@@ -170,7 +170,7 @@ export function obtenerParametros(url) {
     });
 
     return parametros;
-  } catch (error) {
+  } catch {
     return {};
   }
 }
@@ -284,7 +284,7 @@ export function obtenerRutaAnterior(referer, dominio) {
     if (url.hostname !== dominio) return '/';
 
     return url.pathname || '/';
-  } catch (error) {
+  } catch {
     return '/';
   }
 }
@@ -319,7 +319,7 @@ export function generarRedireccion(ruta, fallback = '/') {
     }
 
     return ruta;
-  } catch (error) {
+  } catch {
     return fallback;
   }
 }

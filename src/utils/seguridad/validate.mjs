@@ -4,6 +4,7 @@ const REGEX = {
   EMAIL: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,20}$/,
   PHONE: /^[+]?[(]?[0-9]{1,4}[)]?[-\s.0-9]{7,15}$/,
   DANGEROUS: /[<>'"&`]/,
+  // NOTA: Este patrón busca el uso de eval en los datos de entrada, NO ejecuta eval en el código
   SCRIPTING: /\b(?:javascript|expression|eval)\b/i,
 };
 

@@ -12,6 +12,7 @@ const patronesSospechosos = [
   /scan|escaneo|path traversal/i,
   /login-fallido|acceso-denegado|restringido/i,
   /sql|select.*from|union.*select|etc\/passwd/i,
+  // NOTA: Este patrón busca el uso de eval() en los logs, NO ejecuta eval en el código
   /script|<script>|<img.*onerror|eval\(|alert\(/i,
   /\/wp-admin|\/admin|\/phpmyadmin/i,
 ];

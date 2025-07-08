@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-// import { v4 as _uuidv4 } from "uuid"; // Currently unused
+
 import { fileURLToPath } from 'url';
 import { registrar } from './logger.mjs';
 import { auditar } from './loggerAuditoria.mjs';

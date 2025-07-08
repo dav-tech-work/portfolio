@@ -215,8 +215,8 @@ class PrePerformanceCheck {
         } else {
           colorLog('  ✅ Variables de entorno requeridas configuradas', 'green');
         }
-      } catch (error) {
-        this.warnings.push(`Error leyendo config.env: ${error.message}`);
+      } catch {
+        this.warnings.push(`Error leyendo config.env`);
       }
     }
 
@@ -236,7 +236,7 @@ class PrePerformanceCheck {
       try {
         await execAsync('powershell -Command "Get-Command Invoke-WebRequest"');
         colorLog('  ✅ PowerShell con Invoke-WebRequest disponible', 'green');
-      } catch (error) {
+      } catch {
         this.errors.push('PowerShell no disponible o sin Invoke-WebRequest');
       }
     } else {
@@ -244,7 +244,7 @@ class PrePerformanceCheck {
       try {
         await execAsync('which curl');
         colorLog('  ✅ curl disponible', 'green');
-      } catch (error) {
+      } catch {
         this.errors.push('curl no está instalado');
       }
     }
@@ -278,7 +278,7 @@ class PrePerformanceCheck {
       } else {
         colorLog('  ✅ Puerto 3000 disponible', 'green');
       }
-    } catch (error) {
+    } catch {
       // No hay salida = puerto libre
       colorLog('  ✅ Puerto 3000 disponible', 'green');
     }

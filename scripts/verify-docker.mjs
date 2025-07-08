@@ -229,7 +229,7 @@ async function verifyDocker() {
   ) {
     allChecksPassed = false;
   }
-  if (!checkFileExists(path.join(__dirname, '..', 'docker', '.dockerignore'), '.dockerignore')) {
+  if (!checkFileExists(path.join(__dirname, '..', '.dockerignore'), '.dockerignore')) {
     allChecksPassed = false;
   }
 

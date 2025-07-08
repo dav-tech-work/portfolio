@@ -200,6 +200,11 @@ monitoring/
 *.gif.tmp
 *.webp.tmp
 
+# ========================================
+# Directorios de sesiones
+# ========================================
+sessions/
+
 
 
 

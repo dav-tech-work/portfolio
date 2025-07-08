@@ -5,7 +5,7 @@ import express from 'express';
 import session from 'express-session';
 import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
-// import crypto from 'crypto'; // Currently unused
+
 import { protecciones, sanitizer, botDetection } from '../../src/middleware/index.mjs';
 import {
   validateRegister,

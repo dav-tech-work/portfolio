@@ -8,14 +8,15 @@
     "start": "node app.mjs",
     "start:prod": "cross-env NODE_ENV=production node app.mjs",
     "start:cluster": "cross-env NODE_ENV=production ENABLE_CLUSTERING=true node app.mjs",
+    "start:test": "cross-env NODE_ENV=test node test/app_test.mjs",
     "dev": "cross-env NODE_ENV=development node --watch app.mjs",
     "dev:debug": "cross-env NODE_ENV=development node --inspect --watch app.mjs",
     "dev:trace": "cross-env NODE_ENV=development node --trace-warnings --watch app.mjs",
-    "test": "mocha test/**/*.test.mjs --timeout 15000 --exit",
-    "test:security": "mocha test/security/*.test.mjs --timeout 15000 --exit",
-    "test:coverage": "nyc mocha test/**/*.test.mjs --timeout 10000 --exit",
-    "test:watch": "mocha test/**/*.test.mjs --watch",
-    "test:performance": "mocha test/performance/*.test.mjs --timeout 30000 --exit",
+    "test": "cross-env NODE_ENV=test mocha test/**/*.test.mjs --timeout 15000 --exit",
+    "test:security": "cross-env NODE_ENV=test mocha test/security/*.test.mjs --timeout 15000 --exit",
+    "test:coverage": "cross-env NODE_ENV=test nyc mocha test/**/*.test.mjs --timeout 10000 --exit",
+    "test:watch": "cross-env NODE_ENV=test mocha test/**/*.test.mjs --watch",
+    "test:performance": "cross-env NODE_ENV=test mocha test/performance/*.test.mjs --timeout 30000 --exit",
     "verificar": "node test/verificar-proyecto.mjs",
     "verify:workflows": "node scripts/verify-workflows.mjs",
     "test:workflows": "node scripts/test-workflows.mjs",
@@ -25,7 +26,7 @@
     "security:check": "npm audit --omit=dev && node scripts/security-check.mjs",
     "security:generate-secrets": "node scripts/generate-secrets.mjs",
     "security:audit": "npm audit --audit-level moderate",
-    "lint": "eslint . --ext .mjs,.js --ignore-pattern 'public/js/*.js' --max-warnings 50",
+    "lint": "eslint . --ext .mjs,.js --max-warnings 0",
     "lint:fix": "eslint . --ext .mjs,.js --fix --ignore-pattern 'public/js/*.js'",
     "lint:frontend": "eslint \"public/assets/js/*.js\" --config public/assets/js/.eslintrc.json --no-ignore",
     "lint:auto-fix": "node scripts/fix-eslint-issues.mjs",
@@ -45,11 +46,6 @@
     "clean:all": "npm run clean && rimraf node_modules package-lock.json",
     "health:check": "node scripts/health-check.mjs",
     "deploy:check": "npm run build && npm run security:check && npm run test:security",
-    "db:init": "node scripts/init-database.mjs",
-    "db:init:force": "node scripts/init-database.mjs --force",
-    "db:status": "node scripts/database-status.mjs",
-    "db:maintenance": "node scripts/database-maintenance.mjs",
-    "db:backup": "node scripts/database-backup.mjs",
     "prestart": "echo 'Iniciando aplicación...'",
     "prestart:prod": "npm run deploy:check"
   },
@@ -97,19 +93,20 @@
     "helmet": "^8.0.0",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.3.0"
+    "module-alias": "^2.2.3",
+    "session-file-store": "^1.5.0"
   },
   "devDependencies": {
-    "autocannon": "^7.14.0",
-    "chai": "^4.3.10",
+    "autocannon": "^7.15.0",
+    "chai": "^4.4.1",
     "cross-env": "^7.0.3",
-    "eslint": "^8.57.0",
-    "mocha": "^10.2.0",
-    "nodemon": "^3.0.1",
+    "eslint": "^9.0.0",
+    "mocha": "^10.4.0",
+    "nodemon": "^3.1.0",
     "nyc": "^15.1.0",
-    "prettier": "^3.0.3",
-    "rimraf": "^5.0.5",
-    "supertest": "^6.3.3"
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.7",
+    "supertest": "^7.0.0"
   },
   "engines": {
     "node": ">=18.0.0",
@@ -194,5 +191,15 @@
       "node_modules/"
     ],
     "delay": 1000
+  },
+  "_moduleAliases": {
+    "@": "./src",
+    "@config": "./src/config",
+    "@middleware": "./src/middleware",
+    "@routes": "./src/routes",
+    "@utils": "./src/utils",
+    "@services": "./src/utils/servicios",
+    "@security": "./src/utils/seguridad",
+    "@validation": "./src/utils/validation"
   }
 }

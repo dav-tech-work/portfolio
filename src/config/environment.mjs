@@ -101,12 +101,6 @@ function createConfiguration() {
       ? env.ALLOWED_ORIGINS.split(',')
       : ['http://localhost:3000'],
 
-    // === CONFIGURACIÓN DE BASE DE DATOS ===
-    DB_URI: env.DB_URI || 'mongodb://localhost:27017/estructura_base',
-    DB_NAME: env.DB_NAME || 'estructura_base',
-    DB_MAX_POOL_SIZE: parseInt(env.DB_MAX_POOL_SIZE) || 10,
-    DB_TIMEOUT: parseInt(env.DB_TIMEOUT) || 5000,
-
     // === CONFIGURACIÓN DE BCRYPT ===
     BCRYPT_ROUNDS: parseInt(env.BCRYPT_ROUNDS) || 12,
 
@@ -169,11 +163,6 @@ function createConfiguration() {
     SMTP_PASS: env.SMTP_PASS,
     SMTP_FROM: env.SMTP_FROM || 'noreply@example.com',
 
-    // === CONFIGURACIÓN DE REDIS (para sesiones y cache) ===
-    REDIS_URL: env.REDIS_URL || 'redis://localhost:6379',
-    REDIS_PREFIX: env.REDIS_PREFIX || 'app:',
-    REDIS_TTL: parseInt(env.REDIS_TTL) || 3600, // 1 hora
-
     // === URLs EXTERNAS ===
     API_BASE_URL: env.API_BASE_URL || 'http://localhost:3000/api',
     FRONTEND_URL: env.FRONTEND_URL || 'http://localhost:3000',
@@ -203,7 +192,6 @@ function createConfiguration() {
     ),
 
     // === CONFIGURACIÓN DE TESTING ===
-    TEST_DATABASE_URL: env.TEST_DATABASE_URL || 'mongodb://localhost:27017/estructura_base_test',
     SKIP_AUTH_IN_TESTS: parseBooleanEnv(env.SKIP_AUTH_IN_TESTS, false),
   };
 }
@@ -328,22 +316,6 @@ export function isFeatureEnabled(featureName) {
 }
 
 /**
- * Obtiene configuración de base de datos
- * @returns {Object} Configuración de DB
- */
-export function getDatabaseConfig() {
-  return getConfigCategory('DB');
-}
-
-/**
- * Obtiene configuración de Redis
- * @returns {Object} Configuración de Redis
- */
-export function getRedisConfig() {
-  return getConfigCategory('REDIS');
-}
-
-/**
  * Obtiene configuración de SMTP
  * @returns {Object} Configuración de SMTP
  */
@@ -370,11 +342,6 @@ export function validateTestConfig() {
     return false;
   }
 
-  if (!config.TEST_DATABASE_URL) {
-    console.error('❌ TEST_DATABASE_URL no está configurado');
-    return false;
-  }
-
   return true;
 }
 
@@ -391,14 +358,7 @@ export function exportConfig(includeSensitive = false) {
   }
 
   // Censurar datos sensibles
-  const sensitiveKeys = [
-    'SESSION_SECRET',
-    'JWT_SECRET',
-    'CSRF_SECRET',
-    'SMTP_PASS',
-    'DB_URI',
-    'REDIS_URL',
-  ];
+  const sensitiveKeys = ['SESSION_SECRET', 'JWT_SECRET', 'CSRF_SECRET', 'SMTP_PASS'];
 
   const safeConfig = { ...config };
 

@@ -46,9 +46,8 @@ function existeVista(app, nombreVista) {
     // Cachear resultado
     vistaCache.set(nombreVista, existe);
     return existe;
-  } catch (error) {
-    vistaCache.set(nombreVista, false);
-    return false;
+  } catch {
+    // Manejo de error eliminado por no usarse
   }
 }
 
