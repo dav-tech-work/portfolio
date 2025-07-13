@@ -320,7 +320,7 @@ El sistema aplica múltiples capas de protección con una arquitectura orientada
 ### **📊 Comparación con Estándares:**
 
 - **OWASP ASVS**: Nivel 2 completo, aproximándose al nivel 3
-- **Mozilla Observatory**: 130/100 puntos
+- **Mozilla Observatory**: 140/100 puntos
 - **SecurityHeaders.com**: A+ rating
 - **Sin vulnerabilidades** detectadas en auditorías
 
