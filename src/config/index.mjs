@@ -46,25 +46,22 @@ const CORS = {
 };
 
 // Configuración de CSP (Content Security Policy)
-const CSP = (nonce = '') => {
+const CSP = (_nonce = '') => {
   const baseCSP = [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",
-    "img-src 'self' data: https:",
+    "default-src 'none'",
+    `script-src 'self' 'nonce-${_nonce}' 'wasm-unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com https://*.dav-tech.work https://*.cloudflare.com`,
+    `style-src 'self' 'nonce-${_nonce}' https://fonts.googleapis.com https://cdnjs.cloudflare.com`,
+    "img-src 'self' data: https: blob:",
     "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com",
     "connect-src 'self'",
     "media-src 'self'",
     "object-src 'none'",
     "base-uri 'self'",
-    "form-action 'self'",
+    "form-action 'self' https://formspree.io https://api.emailjs.com",
     "frame-ancestors 'none'",
-    'upgrade-insecure-requests',
+    "worker-src 'self'",
+    "manifest-src 'self'",
   ];
-
-  if (nonce) {
-    baseCSP[1] = `script-src 'self' 'nonce-${nonce}' 'unsafe-inline'`;
-  }
 
   return baseCSP.join('; ');
 };
@@ -97,6 +94,18 @@ const LIMITS = {
 // Configuración de dominios bloqueados
 const BLACKLISTED_DOMAINS = ['evil.com', 'malware.org', 'phishing.com', 'scam.net'];
 
+// Configuración de Email
+const EMAIL = {
+  USER: process.env.EMAIL_USER || 'dav.tech.work@gmail.com',
+  PASS: process.env.EMAIL_PASS || '',
+  FROM: process.env.EMAIL_FROM || 'dav.tech.work@gmail.com',
+  ADMIN: process.env.EMAIL_ADMIN || 'dav.tech.work@gmail.com',
+  SMTP_HOST: process.env.SMTP_HOST || 'smtp.gmail.com',
+  SMTP_PORT: parseInt(process.env.SMTP_PORT) || 587,
+  SMTP_SECURE: process.env.SMTP_SECURE === 'true',
+  ENABLED: process.env.EMAIL_ENABLED === 'true' || process.env.NODE_ENV === 'production',
+};
+
 export default {
   PATHS,
   RATE_LIMIT,
@@ -108,4 +117,5 @@ export default {
   IDIOMAS,
   LIMITS,
   BLACKLISTED_DOMAINS,
+  EMAIL,
 };

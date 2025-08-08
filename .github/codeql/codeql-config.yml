@@ -1,0 +1,86 @@
+name: 'CodeQL Config'
+
+# Configuración para análisis de seguridad con CodeQL
+queries:
+  # Queries de seguridad extendidas
+  - uses: security-extended
+  # Queries de seguridad y calidad
+  - uses: security-and-quality
+  # Queries personalizadas para Node.js
+  - uses: security-and-quality/javascript-security-and-quality.qls
+
+# Configuración específica para JavaScript/Node.js
+paths:
+  - src/
+  - app.mjs
+  - scripts/
+  - test/
+
+# Excluir archivos que no necesitan análisis
+paths-ignore:
+  - node_modules/
+  - coverage/
+  - logs/
+  - uploads/
+  - reports/
+  - .nyc_output/
+  - public/
+  - views/
+  - data/idiomas/
+
+# Configuración de alertas
+query-filters:
+  - include:
+      tags contain: security
+  - include:
+      tags contain: external/cwe/cwe-079
+  - include:
+      tags contain: external/cwe/cwe-089
+  - include:
+      tags contain: external/cwe/cwe-200
+  - include:
+      tags contain: external/cwe/cwe-295
+  - include:
+      tags contain: external/cwe/cwe-327
+  - include:
+      tags contain: external/cwe/cwe-434
+  - include:
+      tags contain: external/cwe/cwe-601
+  - include:
+      tags contain: external/cwe/cwe-611
+  - include:
+      tags contain: external/cwe/cwe-614
+  - include:
+      tags contain: external/cwe/cwe-643
+  - include:
+      tags contain: external/cwe/cwe-730
+  - include:
+      tags contain: external/cwe/cwe-754
+  - include:
+      tags contain: external/cwe/cwe-776
+  - include:
+      tags contain: external/cwe/cwe-787
+  - include:
+      tags contain: external/cwe/cwe-78
+  - include:
+      tags contain: external/cwe/cwe-79
+  - include:
+      tags contain: external/cwe/cwe-89
+  - include:
+      tags contain: external/cwe/cwe-90
+  - include:
+      tags contain: external/cwe/cwe-91
+  - include:
+      tags contain: external/cwe/cwe-93
+  - include:
+      tags contain: external/cwe/cwe-94
+  - include:
+      tags contain: external/cwe/cwe-95
+  - include:
+      tags contain: external/cwe/cwe-96
+  - include:
+      tags contain: external/cwe/cwe-97
+  - include:
+      tags contain: external/cwe/cwe-98
+  - include:
+      tags contain: external/cwe/cwe-99

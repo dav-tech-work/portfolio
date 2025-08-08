@@ -1,135 +1,862 @@
 {
-  "nav.home": "Inici",
-  "nav.projects": "Projectes",
-  "nav.cv": "Currículum",
-  "nav.education": "Formació",
-  "error.title": "Pàgina no trobada",
-  "error.description": "Ho sentim, la pàgina que estàs cercant no existeix o ha estat moguda.",
-  "error.backHome": "Tornar a l'inici",
-  "home.title": "Daniel Arribas Velázquez",
-  "home.subtitle": "Administrador de Sistemes Informàtics, xarxes i seguretat",
-  "home.featured": "Destacats",
-  "home.development": "Desenvolupament",
-  "home.development.desc": "Desenvolupament d'aplicacions web modernes i escalables",
-  "home.systems": "Sistemes",
-  "home.systems.desc": "Administració de sistemes Windows i Linux, virtualització i gestió de còpies de seguretat",
-  "home.networks": "Xarxes",
-  "home.networks.desc": "Configuració i manteniment d'infraestructures de xarxa empresarial",
-  "home.security": "Seguretat",
-  "home.security.desc": "Implementació de mesures de seguretat avançades",
-  "cv.subtitle": "Administrador de Sistemes i Seguretat Informàtica",
-  "cv.contact.location": "Barcelona, Espanya",
-  "cv.profile.title": "Perfil Professional",
-  "cv.profile.description": "Tinc més de cinc anys d'experiència com a <strong>Administrador de Sistemes Informàtics</strong>, especialitzat en seguretat IT i gestió d'infraestructures tecnològiques. El meu enfocament se centra a garantir la integritat i resiliència de xarxes i sistemes, implementant solucions proactives per protegir dades i optimitzar el rendiment. Al llarg de la meva trajectòria, he millorat les meves habilitats en eines i aplicacions com <strong>Nmap</strong>, <strong>Sonicwall</strong> i <strong>Metasploit</strong>, reforçant la seguretat informàtica i la capacitat de resposta davant amenaces. Actualment, estic en formació en <strong>programació</strong>, ampliant les meves competències per desenvolupar solucions més eficients i versàtils en entorns IT.",
-  "cv.experience.title": "Experiència Professional",
-  "cv.experience.role": "Administrador de Sistemes i Seguretat Informàtica",
-  "cv.experience.date": "Gener 2019 - Maig 2024",
-  "cv.experience.duties.1": "Administració de sistemes Windows i Linux",
-  "cv.experience.duties.2": "Suport tècnic i resolució de problemes",
-  "cv.experience.duties.3": "Configuració i manteniment de xarxes i servidors",
-  "cv.experience.duties.4": "Implementació de polítiques de seguretat",
-  "cv.experience.duties.5": "Monitoratge i anàlisi de seguretat",
-  "cv.experience.duties.6": "Ús d'eines com Sonicwall, Acronis, Veeam, etc.",
-  "cv.education.title": "Educació",
-  "cv.education.programming.title": "Certificat de Professionalitat en Programació i Bases de Dades",
-  "cv.education.programming.school": "STUCOM Centre d'Estudis | En formació",
-  "cv.education.programming.description": "Python, SQL, HTML, CSS, JavaScript",
-  "cv.education.security.title": "Certificat de Professionalitat en Seguretat Informàtica",
-  "cv.education.security.school": "Grup CIEF | Desembre 2024",
-  "cv.education.security.description": "Auditories i ciberseguretat",
-  "cv.education.systems.title": "Certificat de Professionalitat en Operació de Sistemes",
-  "cv.education.systems.school": "CIFO la Violeta | Desembre 2018",
-  "cv.education.systems.description": "Formació en sistemes operatius",
-  "cv.education.forestry.title": "Grau Mitjà en Treballs Forestals i Conservació del Medi Natural",
-  "cv.education.forestry.school": "IES Pont de Suert | Juliol 2011",
-  "cv.education.forestry.description": "Formació en treballs forestals i conservació del medi natural",
-  "cv.certifications.title": "Certificacions",
-  "cv.certifications.1": "Parallels i Awingu",
-  "cv.certifications.2": "Lexmark - Save4print",
-  "cv.certifications.3": "SNSA Sonicwall",
-  "cv.skills.title": "Habilitats",
-  "cv.skills.selftaught": "Autodidacta",
-  "cv.languages.title": "Idiomes",
-  "cv.languages.spanish": "Castellà - Natiu",
-  "cv.languages.catalan": "Català - Natiu",
-  "cv.languages.english": "Anglès - Tècnic",
-  "projects.title": "Projectes",
-  "projects.description": "Aquests són els projectes que he realitzat i estic desenvolupant actualment.",
-  "projects.system": "Sistema operatiu",
-  "projects.system.description": "El projecte consisteix en un servidor Proxmox amb diversos sistemes en servei. Un exemple és aquest servidor que estàs visitant.",
-  "projects.system.status": "Projecte en desenvolupament constant i millora de seguretat.",
-  "projects.programming": "Programació",
-  "projects.programming.description": "Aquest espai inclou diversos projectes, com el que estàs visitant.",
-  "projects.programming.status": "També estic desenvolupant una web multi-eina per a tasques repetitives en xarxes. El projecte és en fase inicial.",
-  "projects.programming.github": "Veure a GitHub",
-  "projects.programming.github.multi": "Veure a GitHub (Multi-eina)",
-  "projects.programming.github.porfolio": "Veure a GitHub (Porfolio)",
-  "projects.programming.github.proyectos": "Veure a GitHub (Projecte Node Base)",
-  "projects.programming.app-tiempo": "App Temps",
-  "projects.programming.cv": "Currículum Vitae",
-  "projects.programming.github.mail_notification": "Veure a GitHub (Mail Notification)",
-  "python.practices.title": "Pràctiques Python",
-  "python.practices.label": "Pràctica",
-  "python.theory.title": "Teoria Python",
-  "python.theory.basics": "Característiques bàsiques",
-  "python.theory.numbers": "Nombres",
-  "python.theory.booleans": "Booleans",
-  "python.theory.strings": "Cadena de caràcters",
-  "python.theory.conditionals": "if / elif / else",
-  "python.theory.logic": "Operadors lògics",
-  "python.theory.exceptions": "Excepcions",
-  "python.theory.libraries": "Llibreries",
-  "python.theory.match": "Match",
-  "python.theory.lists": "Llistes",
-  "python.theory.loops": "Bucles",
-  "python.theory.dicts": "Diccionaris",
-  "python.theory.tuples": "Tuples",
-  "python.theory.set": "Set",
-  "python.theory.functions": "Funcions",
-  "python.theory.objects": "Objectes",
-  "about.desc": "Soc un professional en administració de sistemes informàtics, xarxes i programació, amb una àmplia experiència en suport tècnic i tecnologia. Em caracteritzo per un enfocament pràctic i directe, resolent problemes amb eficiència i innovació.",
-  "about.desc2": "Sempre tinc una mentalitat curiosa i escèptica, buscant solucions efectives sense embuts. Valoro la claredat, l'originalitat i l'eficiència en cada projecte en el qual treball.",
-  "about.desc3": "A més, gaudeixo d'un bon humor intel·ligent i àgil, sempre en un ambient de respecte i professionalisme.",
-  "about.desc4": "Si busquis a algú amb convicció, creativitat i enfocament tècnic, estic llest per al desafiament!",
-  "education.title": "Formació",
-  "education.description": "Benvinguts a l'apartat de formació, aquí trobareu tot el contingut del curs de Programació Orientada a Objectes i Bases de Dades que he fet.<br> Inclou teoria, exercicis i treballs.<br><br> Inclou exercicis i projectes desenvolupats en Python, HTML, CSS i JavaScript, PHP i MySQL, així com en sistemes operatius Linux i Windows.",
+  "meta": {
+    "title": "Daniel Arribas Velázquez | Administrador de Sistemes Informàtics, xarxes i seguretat",
+    "about": "Sobre Mi | Daniel Arribas Velázquez",
+    "curriculum": "Currículum | Daniel Arribas Velázquez",
+    "projects": "Projectes | Daniel Arribas Velázquez",
+    "education": "Formació | Daniel Arribas Velázquez",
+    "contact": "Contacte | Daniel Arribas Velázquez",
+    "homelab": "Homelab | Daniel Arribas Velázquez",
+    "javascript": {
+      "theory": "JavaScript - Teoria | Daniel Arribas Velázquez",
+      "practices": "JavaScript - Pràctiques | Daniel Arribas Velázquez"
+    },
+    "python": {
+      "theory": "Python - Teoria | Daniel Arribas Velázquez",
+      "practices": "Python - Pràctiques | Daniel Arribas Velázquez"
+    },
+    "html": "HTML/CSS | Daniel Arribas Velázquez",
+    "php": "PHP/SQL | Daniel Arribas Velázquez"
+  },
 
-  "education.python.title": "Python",
-  "education.python.basics.title": "Conceptes Bàsics",
-  "education.python.basics.description": "Python és un llenguatge de programació d'alt nivell, interpretat i orientat a objectes. Es coneix per la seva sintaxi clara i llegible, cosa que en facilita l'aprenentatge i l'ús. Python és versàtil i s'utilitza en una gran varietat d'aplicacions, des del desenvolupament web fins a l'anàlisi de dades i l'aprenentatge automàtic.<br> En aquest apartat s'expliquen els conceptes bàsics de programació.",
+  "navigation": {
+    "home": "Inici",
+    "about": "Sobre Mi",
+    "projects": "Projectes",
+    "cv": "Currículum",
+    "education": "Formació",
+    "homelab": "Homelab",
+    "contact": "Contacte"
+  },
 
-  "education.python.practices.title": "Pràctiques",
-  "education.python.practices.description": "En aquesta secció es presenten exercicis pràctics per aplicar els conceptes apresos en la teoria. Els exercicis estan dissenyats per reforçar el coneixement i millorar les habilitats de programació en Python.",
+  "error": {
+    "title": "Pàgina no trobada",
+    "description": "Ho sentim, la pàgina que estàs cercant no existeix o ha estat moguda.",
+    "backHome": "Tornar a l'inici"
+  },
 
-  "education.web.title": "Desenvolupament Web",
+  "home": {
+    "title": "Daniel Arribas Velázquez",
+    "subtitle": "Administrador de Sistemes • Especialista en Seguretat",
+    "subtitle_verified": "Portafoli tècnic amb auditories A+ de seguretat i infraestructura empresarial",
+    "credenciales": {
+      "title": "Portafoli Tècnic",
+      "security": {
+        "title": "A+ Security Rating",
+        "subtitle": "SecurityHeaders.com verificat"
+      },
+      "testing": {
+        "title": "61 Tests Automatitzats",
+        "subtitle": "Pipeline CI/CD actiu"
+      },
+      "architecture": {
+        "title": "Arquitectura Eficient",
+        "subtitle": "5,638+ línies documentades"
+      },
+      "production": {
+        "title": "Production Ready",
+        "subtitle": "Kubernetes + Docker"
+      }
+    },
+    "experiencia_enterprise": {
+      "title": "Experiència en Seguretat",
+      "stats": {
+        "years": "Anys en Administració",
+        "rating": "Rating de Seguretat",
+        "incidents": "Incidents de Seguretat",
+        "uptime": "Uptime de Serveis"
+      },
+      "herramientas": {
+        "title": "Stack de Seguretat",
+        "endpoint": {
+          "title": "Seguretat Endpoint",
+          "sentinelone": "SentinelOne EDR",
+          "datto": "Datto RMM",
+          "endpoint": "Endpoint Protection",
+          "antivirus": "Antivirus Kaspersky"
+        },
+        "firewall": {
+          "title": "Firewall & Xarxa",
+          "sonicwall": "SonicWall Firewall",
+          "parallel": "Parallel RAS (Accés Remot)",
+          "pfSense": "pfSense Firewall"
+        },
+        "backup": {
+          "title": "Backup & Continuïtat",
+          "veeam": "Veeam Backup & Replication",
+          "acronis": "Acronis Backup",
+          "proxmox": "Proxmox VE Backups"
+        },
+        "infraestructura": {
+          "title": "Infraestructura",
+          "windows": "Windows Server",
+          "ad": "Active Directory",
+          "linux": "Servidors Linux",
+          "hyperv": "Hyper-V",
+          "vmware": "VMware ESXI",
+          "proxmox": "Proxmox VE"
+        }
+      }
+    },
+    "proyectos": {
+      "title": "Implementacions de Seguretat - Production Grade",
+      "sistema_gestion": {
+        "title": "Sistema de Gestió amb Seguretat A+",
+        "badge_live": "En Producció",
+        "badge_verified": "A+ Security",
+        "metrics": {
+          "ssl": "SSL Rating",
+          "headers": "Security Headers",
+          "vulnerabilities": "Vulnerabilitats"
+        },
+        "features": {
+          "title": "Implementacions de Seguretat:",
+          "ssl": "SSL/TLS amb Perfect Forward Secrecy",
+          "headers": "Security Headers complets (HSTS, CSP, etc.)",
+          "mfa": "Autenticació multifactor",
+          "logs": "Logs d'auditoria centralitzats"
+        },
+        "links": {
+          "ver": "Veure Sistema",
+          "auditoria": "Auditoria de Seguretat"
+        }
+      },
+      "laboratorio": {
+        "title": "Homelab d'Administració de Sistemes",
+        "badge_live": "Entorn Actiu",
+        "badge_professional": "Lab Personal",
+        "description": "Entorn de laboratori personal amb Proxmox per virtualització, serveis containeritzats, i pràctica de tecnologies enterprise.",
+        "services": {
+          "title": "Serveis Implementats al Lab:",
+          "virtualizacion": "Virtualització amb Proxmox VE",
+          "contenedores": "Contenidors en clúster Kubernetes per serveis",
+          "proxy": "Reverse proxy amb SSL automatitzat",
+          "backup": "Backup automatitzat de configuracions",
+          "monitoreo": "Monitoratge de serveis",
+          "documentacion": "Documentació tècnica completa (1000+ línies)",
+          "firewall": "Firewall amb pfSense",
+          "scanning": "Escaneig de vulnerabilitats",
+          "segmentation": "Segmentació de xarxa"
+        },
+        "links": {
+          "arquitectura": "Veure Arquitectura"
+        }
+      }
+    },
+    "cta": {
+      "title": "Necessites un Administrador de Sistemes amb Expertise en Seguretat?",
+      "description": "Especialista en seguretat enterprise amb auditories A+, infraestructura hardened i 0 incidents de seguretat en producció.",
+      "buttons": {
+        "cv": "Veure Experiència Completa",
+        "contacto": "Consulta de Seguretat"
+      },
+      "links": {
+        "documentacion": "Documentació Tècnica",
+        "perfil": "Perfil Professional"
+      }
+    }
+  },
 
-  "education.web.html.title": "Conceptes i exercicis sobre HTML i CSS",
-  "education.web.html.description": "HTML (HyperText Markup Language) és el llenguatge d'etiquetatge estàndard per crear pàgines web, mentre que CSS (Cascading Style Sheets) s'utilitza per aplicar estils i disseny a les pàgines web.",
-  "education.web.html.teoria.title": "Teoria HTML i CSS",
-  "education.web.html.practices.title": "Pràctiques HTML i CSS",
+  "cv": {
+    "subtitle": "Administrador de Sistemes i Seguretat Informàtica",
+    "contact": {
+      "location": "Barcelona, Espanya"
+    },
+    "profile": {
+      "title": "Perfil Professional",
+      "description": "Compto amb més de cinc anys d'experiència com a <strong>Administrador de Sistemes Informàtics</strong>, especialitzant-me en seguretat IT i gestió d'infraestructures tecnològiques. El meu enfocament se centra en garantir la integritat i resiliència de xarxes i sistemes, implementant solucions proactives per a la protecció de dades i l'optimització del rendiment. Al llarg de la meva trajectòria, he millorat les meves habilitats en eines i aplicatius avançats com <strong>Nmap</strong>, <strong>Sonicwall</strong> i <strong>Metasploit</strong>, enfortint la seguretat informàtica i la capacitat de resposta davant amenaces. Actualment, em trobo en formació en <strong>programació</strong>, ampliant les meves competències per desenvolupar solucions més eficients i versàtils en entorns IT."
+    },
+    "experience": {
+      "title": "Experiència Laboral",
+      "role": "Administrador de Sistemes i Seguretat Informàtica",
+      "date": "Gener 2019 - Maig 2024",
+      "duties": {
+        "1": "Administració de sistemes Windows i Linux",
+        "2": "Suport tècnic i solució de problemes",
+        "3": "Configuració i manteniment de xarxes i servidors",
+        "4": "Implementació de polítiques de seguretat",
+        "5": "Monitorització i anàlisi de seguretat",
+        "6": "Maneig d'eines: Sonicwall, Acronis, Veeam, etc."
+      }
+    },
+    "education": {
+      "title": "Educació",
+      "programming": {
+        "title": "Certificació Professionalitat en Programació i Bases de Dades",
+        "school": "STUCOM Centre d'Estudis | En formació",
+        "description": "Python, SQL, HTML, CSS, JavaScript"
+      },
+      "security": {
+        "title": "Certificació Professionalitat en Seguretat Informàtica",
+        "school": "Grup CIEF | Desembre 2024",
+        "description": "Auditoria i ciberseguretat"
+      },
+      "systems": {
+        "title": "Certificació Professionalitat en Operador de sistemes",
+        "school": "CIFO la Violeta | Desembre 2018",
+        "description": "Formació en sistemes operatius"
+      },
+      "forestry": {
+        "title": "Grau Mitjà en Treballs forestals i conservació del medi Natural",
+        "school": "IES Pont de Suert | Juliol 2011",
+        "description": "Formació en treballs forestals i conservació del medi natural"
+      }
+    },
+    "certifications": {
+      "title": "Certificacions",
+      "1": "Parallels i Awingu",
+      "2": "Lexmark - Save4print",
+      "3": "SNSA Sonicwall"
+    },
+    "skills": {
+      "title": "Habilitats",
+      "selftaught": "Autodidacta"
+    },
+    "languages": {
+      "title": "Idiomes",
+      "spanish": "Espanyol - Natiu",
+      "catalan": "Català - Natiu",
+      "english": "Anglès - Tècnic"
+    },
+    "download": "Descarregar CV"
+  },
 
-  "education.php.sql.title": "PHP i MySQL",
-  "education.php.sql.description": "PHP és un llenguatge de programació del costat del servidor, utilitzat per crear pàgines web dinàmiques i interactives. MySQL és un sistema de gestió de bases de dades relacional, que s'utilitza per emmagatzemar i gestionar dades en aplicacions web. Aquesta secció inclou teoria i pràctiques relacionades amb PHP i MySQL.",
-  "education.php.sql.practices.title": "Conceptes i exercicis sobre PHP i MySQL",
-  "education.php.sql.sql.title": "Teoria i exercicis sobre SQL",
-  "education.php.sql.php.title": "Pràctiques PHP",
+  "projects": {
+    "title": "Projectes Enterprise",
+    "subtitle": "Implementacions de Seguretat i Sistemes - Production Grade",
+    "subtitle_verified": "Portafoli tècnic amb auditories A+ i arquitectura enterprise verificada",
+    "enterprise": {
+      "title": "Implementacions Enterprise - Production Grade",
+      "portfolio": {
+        "title": "Portafoli Tècnic amb Seguretat A+",
+        "badge_live": "En Producció",
+        "badge_verified": "A+ Security",
+        "metrics": {
+          "ssl": "SSL Rating",
+          "headers": "Security Headers",
+          "vulnerabilities": "Vulnerabilitats"
+        },
+        "features": {
+          "title": "Implementacions de Seguretat:",
+          "ssl": "SSL/TLS amb Perfect Forward Secrecy",
+          "headers": "Security Headers complets (HSTS, CSP, etc.)",
+          "mfa": "Autenticació multifactor",
+          "logs": "Logs d'auditoria centralitzats"
+        },
+        "links": {
+          "ver": "Veure Codi",
+          "auditoria": "Auditoria de Seguretat"
+        }
+      },
+      "homelab": {
+        "title": "Homelab d'Administració de Sistemes",
+        "badge_live": "Entorn Actiu",
+        "badge_professional": "Lab Personal",
+        "description": "Entorn de laboratori personal amb Proxmox per virtualització, serveis containeritzats, i pràctica de tecnologies enterprise.",
+        "figcaption": "Arquitectura del Homelab amb Proxmox VE",
+        "services": {
+          "title": "Serveis Implementats al Lab:",
+          "virtualizacion": "Virtualització amb Proxmox VE",
+          "contenedores": "Contenidors en clúster Kubernetes per serveis",
+          "proxy": "Reverse proxy amb SSL automatitzat",
+          "backup": "Backup automatitzat de configuracions",
+          "monitoreo": "Monitoratge de serveis",
+          "documentacion": "Documentació tècnica completa (1000+ línies)"
+        },
+        "links": {
+          "arquitectura": "Veure Arquitectura"
+        }
+      }
+    },
+    "desarrollo": {
+      "title": "Projectes de Desenvolupament",
+      "app_tiempo": {
+        "title": "App Temps",
+        "badge_live": "En Producció",
+        "badge_tech": "Weather API",
+        "description": "Aplicació web per consulta d'informació meteorològica en temps real.",
+        "link": "Veure Aplicació"
+      },
+      "mail_notification": {
+        "title": "Mail Notification",
+        "badge_tech": "Email System",
+        "badge_security": "Secure",
+        "description": "Sistema de notificacions per email amb validació de seguretat.",
+        "link": "Veure Codi"
+      },
+      "multi": {
+        "title": "Multi-tool",
+        "badge_tech": "Multi-tool",
+        "badge_utility": "Utility",
+        "description": "Eina multipropòsit per administració de sistemes.",
+        "link": "Veure Codi"
+      },
+      "cv": {
+        "title": "CV Digital",
+        "badge_live": "En Producció",
+        "badge_professional": "Professional",
+        "description": "Currículum vitae digital amb disseny responsive i optimitzat.",
+        "link": "Veure CV"
+      }
+    },
+    "cta": {
+      "title": "Interessat en Col·laborar en Projectes de Seguretat?",
+      "description": "Especialista en implementacions de seguretat enterprise amb experiència verificada en producció.",
+      "buttons": {
+        "contacto": "Contactar",
+        "github": "Veure Portafoli a GitHub"
+      }
+    }
+  },
 
-  "education.javascript.title": "JavaScript",
-  "education.web.js.title": "JavaScript",
-  "education.web.js.description": "JavaScript és un llenguatge de programació interpretat i orientat a objectes, àmpliament utilitzat en el desenvolupament web. Permet la creació d'interactivitat i dinamisme a les pàgines web, millorant l'experiència de l'usuari. JavaScript s'executa al navegador del client i pot interactuar amb HTML i CSS per modificar el contingut i l'estil d'una pàgina en temps real.",
-  "js.theory.subtitle": "Teoria JavaScript",
+  "education": {
+    "title": "Formació Professional",
+    "subtitle": "Programes de Formació en Seguretat informàtica i Programació orientada a objectes i bases de dades",
+    "subtitle_verified": "Contingut de les certificacions de Professionalitat Nivell 3 / Tècnic Superior",
+    "practice": "Pràctica",
+    "practice_01": "Pràctica 1",
+    "practice_02": "Pràctica 2",
+    "practice_03": "Pràctica 3",
+    "theory": "Teoria",
+    "practices": "Pràctiques",
+    "programs": {
+      "title": "Programes de Formació Enterprise",
+      "security_title": "Certificat professionalitat Seguretat Informàtica",
+      "programming_title": "Certificat professionalitat Programació orientada a objectes i bases de dades"
+    },
+    "security": {
+      "title": "Seguretat Informàtica",
+      "badge": "A+ Security",
+      "badge_enterprise": "Enterprise",
+      "description": "Programa complet de seguretat enterprise amb auditories, implementacions i millors pràctiques.",
+      "metrics": {
+        "rating": "Security Rating",
+        "practical": "Pràctic"
+      }
+    },
+    "python": {
+      "title": "Python Enterprise",
+      "badge": "Python",
+      "badge_backend": "Backend",
+      "basics": {
+        "description": "Desenvolupament backend amb Python, APIs, bases de dades i arquitectures escalables."
+      }
+    },
+    "javascript": {
+      "title": "JavaScript Modern",
+      "badge": "ES6+",
+      "badge_frontend": "Frontend"
+    },
+    "web": {
+      "html": {
+        "title": "HTML5 & CSS3",
+        "badge": "Web",
+        "badge_responsive": "Responsive",
+        "description": "Desenvolupament web modern amb HTML5, CSS3, responsive design i millors pràctiques."
+      },
+      "js": {
+        "description": "JavaScript modern, frameworks, APIs i desenvolupament frontend enterprise."
+      }
+    },
+    "php_sql": {
+      "title": "PHP & MySQL",
+      "badge": "PHP",
+      "badge_database": "MySQL",
+      "description": "Desenvolupament web amb PHP, bases de dades MySQL i arquitectures MVC."
+    },
+    "systems": {
+      "title": "Sistemes Enterprise",
+      "badge": "Linux",
+      "badge_infrastructure": "Infraestructura",
+      "practice1": {
+        "description": "Administració de sistemes Linux, virtualització, contenidors i infraestructura enterprise."
+      }
+    },
+    "cta": {
+      "title": "Preparat per Aprendre Seguretat Enterprise?",
+      "description": "Formació pràctica amb enfocament en implementacions reals i millors pràctiques de seguretat.",
+      "buttons": {
+        "contacto": "Consultar Formació",
+        "portfolio": "Veure Projectes"
+      }
+    },
+    "python": {
+      "title": "Python",
+      "basics": {
+        "title": "Conceptes Bàsics",
+        "description": "Python és un llenguatge de programació d'alt nivell, interpretat i orientat a objectes. És conegut per la seva sintaxi clara i llegible, el que facilita el seu aprenentatge i ús. Python és versàtil i s'utilitza en una àmplia varietat d'aplicacions, des del desenvolupament web fins a l'anàlisi de dades i l'aprenentatge automàtic.<br> En aquest apartat s'expliquen els conceptes bàsics de programació."
+      },
+      "practices": {
+        "title": "Pràctiques",
+        "description": "En aquesta secció es presenten exercicis pràctics per aplicar els conceptes apresos a la teoria. Els exercicis estan dissenyats per reforçar el coneixement i millorar les habilitats de programació en Python."
+      },
+      "theory": {
+        "title": "Teoria Python",
+        "basics": "Característiques Bàsiques",
+        "numbers": "Nombres",
+        "booleans": "Booleans",
+        "strings": "Strings",
+        "conditionals": "if / elif / else",
+        "logic": "Operadors Lògics",
+        "exceptions": "Excepcions",
+        "libraries": "Llibreries",
+        "match": "Match",
+        "lists": "Llistes",
+        "loops": "Bucles",
+        "dicts": "Diccionaris",
+        "tuples": "Tuples",
+        "set": "Set",
+        "functions": "Funcions",
+        "objects": "Objectes"
+      },
+      "practices_label": "Pràctica"
+    },
+    "web": {
+      "title": "Desenvolupament Web",
+      "html": {
+        "title": "Conceptes i exercicis sobre HTML i CSS",
+        "description": "HTML (HyperText Markup Language) és el llenguatge de marcatge estàndard per crear pàgines web, mentre que CSS (Cascading Style Sheets) s'utilitza per aplicar estils i disseny a les pàgines web.",
+        "theory": "Teoria HTML i CSS",
+        "practices": "Pràctiques HTML i CSS"
+      },
+      "js": {
+        "title": "JavaScript",
+        "description": "JavaScript és un llenguatge de programació interpretat i orientat a objectes, àmpliament utilitzat en el desenvolupament web. Permet la creació d'interactivitat i dinamisme a les pàgines web, millorant l'experiència de l'usuari. JavaScript s'executa al navegador del client i pot interactuar amb HTML i CSS per modificar el contingut i l'estil d'una pàgina en temps real.",
+        "practices": {
+          "title": "Pràctiques JavaScript",
+          "description": "En aquesta secció es presenten exercicis pràctics per aplicar els conceptes apresos a la teoria de JavaScript. Els exercicis estan dissenyats per reforçar el coneixement i millorar les habilitats de programació en JavaScript."
+        }
+      }
+    },
+    "php_sql": {
+      "title": "PHP i MySQL",
+      "description": "PHP és un llenguatge de programació del costat del servidor, àmpliament utilitzat per al desenvolupament web. Permet crear aplicacions dinàmiques i gestionar bases de dades. MySQL és un sistema de gestió de bases de dades relacional que s'integra fàcilment amb PHP, permetent emmagatzemar i recuperar dades de manera eficient.",
+      "practices": "Conceptes i exercicis sobre PHP i MySQL",
+      "sql": "Teoria i exercicis sobre SQL",
+      "php": "Pràctiques PHP"
+    },
+    "javascript": {
+      "title": "JavaScript",
+      "theory_subtitle": "Teoria JavaScript",
+      "practices_subtitle": "Pràctiques JavaScript"
+    },
+    "systems": {
+      "title": "Sistemes Operatius",
+      "practice1": {
+        "title": "Pràctica 1",
+        "description": "Explicació i anàlisi del sistema operatiu Arch Linux."
+      }
+    },
+    "security": {
+      "title": "Seguretat Informàtica",
+      "description": "En aquesta secció es presenten exercicis pràctics per aplicar els conceptes apresos a la teoria de Seguretat Informàtica. Els exercicis estan dissenyats per reforçar el coneixement i millorar les habilitats de seguretat informàtica."
+    }
+  },
 
-  "education.web.js.practices.title": "Pràctiques JavaScript",
-  "education.web.js.practices.description": "En aquesta secció es presenten exercicis pràctics per aplicar els conceptes apresos en la teoria de JavaScript. Els exercicis estan dissenyats per reforçar el coneixement i millorar les habilitats de programació amb JavaScript.",
-  "js.practices.subtitle": "Pràctiques JavaScript",
+  "contact": {
+    "title": "Contacte | Daniel Arribas Velázquez",
+    "info": {
+      "title": "Informació de Contacte"
+    },
+    "form": {
+      "title": "Envia'm un missatge",
+      "name": "Nom complet",
+      "email": "Email",
+      "subject": "Assumpte",
+      "message": "Missatge",
+      "privacy": "Accepto la ",
+      "privacy_link": "política de privadesa",
+      "submit": "Enviar missatge",
+      "name_placeholder": "El teu nom complet",
+      "email_placeholder": "el.teu.email@exemple.com",
+      "subject_placeholder": "En què puc ajudar-te?",
+      "message_placeholder": "Descriu la teva consulta o proposta..."
+    },
+    "location": "Ubicació: Barcelona, Espanya"
+  },
 
-  "education.systems.title": "Sistemes Operatius",
-  "education.systems.practice1.title": "Pràctica 1",
-  "education.systems.practice1.description": "Explicació i anàlisi del sistema operatiu Arch Linux.",
-  "education.practice": "Pràctica",
-  "education.practice.01": "Pràctica 1",
-  "education.practice.02": "Pràctica 2",
-  "education.practice.03": "Pràctica 3",
-  "education.theory": "Teoria",
-  "education.practices": "Pràctiques"
+  "construction": {
+    "title": "En Construcció | Daniel Arribas Velázquez",
+    "description": "Estem treballant en aquesta secció. Torna més endavant."
+  },
+  "homelab": {
+    "title": "Homelab Enterprise",
+    "subtitle": "Infraestructura de Proves i Desenvolupament",
+    "description": "Entorn de proves realista i escalable centrat en virtualització, xarxes segmentades, automatització de serveis i accés segur.",
+    "credenciales": {
+      "title": "Infraestructura Verificada",
+      "security": {
+        "title": "Zero Trust",
+        "subtitle": "Cloudflare Zero Trust"
+      },
+      "virtualization": {
+        "title": "Virtualització",
+        "subtitle": "Proxmox VE + Kubernetes"
+      },
+      "automation": {
+        "title": "Automatització",
+        "subtitle": "CI/CD + Scripts"
+      },
+      "backup": {
+        "title": "Backup Strategy",
+        "subtitle": "Rotació 3 còpies"
+      }
+    },
+    "infraestructura": {
+      "title": "Infraestructura Enterprise",
+      "server": {
+        "title": "Servidor Principal",
+        "description": "Beelink SER5 Mini PC amb AMD Ryzen 5 5500U i 64 GB RAM per virtualització enterprise.",
+        "badge_enterprise": "Enterprise",
+        "badge_performance": "High Performance",
+        "metrics": {
+          "ram": "RAM",
+          "cpu": "CPU Cores",
+          "storage": "Storage"
+        }
+      },
+      "network": {
+        "title": "Xarxa i Equipament",
+        "badge_network": "Network",
+        "badge_security": "Security",
+        "ont": "ONT: Ubiquiti UFiber Nano Loco",
+        "router": "Router/Mesh: ASUS ZenWiFi AX Mini (XD4)",
+        "switch": "Switch: TP-Link TL-SG608E (8 ports Gigabit, gestionable)"
+      },
+      "nas": {
+        "title": "NAS QNAP TS-231K",
+        "badge_storage": "Storage",
+        "badge_backup": "Backup",
+        "hdd_internal": "1× HDD intern de 1 TB",
+        "ssd_nas": "1× SSD SATA de 4 TB",
+        "hdd_external": "2× HDD externs extraïbles de 5 TB",
+        "multiuser": "Multiusuari amb permisos personalitzats per carpeta"
+      }
+    },
+    "virtualizacion": {
+      "title": "Virtualització & Serveis Enterprise",
+      "proxmox": {
+        "title": "Proxmox VE",
+        "description": "Gestió de VMs i CTs per diversos entorns enterprise.",
+        "badge_virtualization": "Virtualization",
+        "badge_enterprise": "Enterprise",
+        "metrics": {
+          "vms": "VMs",
+          "clusters": "K8s Clusters"
+        },
+        "services": {
+          "title": "Serveis Actius:"
+        }
+      },
+      "kubernetes": {
+        "title": "Kubernetes",
+        "badge_container": "Containers",
+        "badge_orchestration": "Orchestration",
+        "cluster1": {
+          "title": "Clúster 1 (Xarxa llar): Ubuntu + Alpine"
+        },
+        "cluster2": {
+          "title": "Clúster 2 (darrere pfSense): Ubuntu"
+        }
+      }
+    },
+    "automatizacion": {
+      "title": "Automatització i Projectes Enterprise",
+      "bot": {
+        "title": "Bot de correu i Telegram",
+        "description": "Contenidor Ubuntu que classifica correus importants i envia notificacions i resums setmanals per Telegram.",
+        "badge_automation": "Automation",
+        "badge_notification": "Notifications"
+      },
+      "minecraft": {
+        "title": "Servidor Minecraft",
+        "description": "Ubuntu Server aïllat, accessible només amb túnel Cloudflare, dedicat a ús familiar.",
+        "badge_gaming": "Gaming",
+        "badge_isolated": "Isolated"
+      },
+      "windows_server": {
+        "title": "Windows Server 2019",
+        "description": "Entorn de laboratori per proves d'Active Directory, DNS i serveis de xarxa empresarial.",
+        "badge_windows": "Windows",
+        "badge_lab": "Lab"
+      },
+      "kali": {
+        "title": "Kali Linux",
+        "description": "Màquina dual-homed per anàlisi de vulnerabilitats amb OpenVAS i Nmap a ambdues xarxes.",
+        "badge_security": "Security",
+        "badge_pentest": "Pentest"
+      }
+    },
+    "seguridad": {
+      "title": "Seguretat i Backups Enterprise",
+      "network": {
+        "title": "Seguretat de Xarxa",
+        "segmentation": "Segmentació de xarxes amb pfSense",
+        "iot": "Xarxa IoT totalment aïllada",
+        "cloudflare": "Cloudflare Zero Trust com a capa d'accés extern"
+      },
+      "backup": {
+        "title": "Estratègia de Backup",
+        "daily": "Backups diaris de totes les màquines (rotació de 3 còpies)",
+        "distributed": "Còpies distribuïdes entre els discs USB de 1 TB"
+      }
+    },
+    "cta": {
+      "title": "Interessat en Infraestructura Enterprise?",
+      "description": "Consulta sobre implementacions de virtualització, seguretat i automatització per al teu entorn.",
+      "buttons": {
+        "contacto": "Consultar Infraestructura",
+        "portfolio": "Veure Projectes"
+      }
+    },
+    "sections": {
+      "diagram": {
+        "title": "🏗️ Esquema d'Arquitectura",
+        "description": "Diagrama visual de la infraestructura i connexions del homelab",
+        "internet": " Internet",
+        "cloudflare": " Cloudflare Zero Trust",
+        "proxmox": " Proxmox VE",
+        "qnap": " QNAP NAS",
+        "pfsense": "pfSense (Firewall)",
+        "home_network": " Xarxa Llar",
+        "iot_network": " Xarxa IoT",
+        "kubernetes_cluster1": " K3s Clúster 1",
+        "kubernetes_cluster2": " K3s Clúster 2",
+        "services": " Serveis",
+        "backups": " Backups"
+      }
+    }
+  },
+
+  "contact": {
+    "title": "Contacte Enterprise",
+    "subtitle": "Consultoria de Seguretat i Sistemes",
+    "subtitle_verified": "Especialista en implementacions de seguretat enterprise amb auditories A+ verificades",
+    "location": "Barcelona, Espanya",
+
+    "info": {
+      "title": "Informació de Contacte Enterprise",
+      "email": {
+        "title": "Email Professional",
+        "subtitle": "Resposta garantida en 24h"
+      },
+      "location": {
+        "title": "Ubicació",
+        "subtitle": "Serveis remots disponibles"
+      },
+      "linkedin": {
+        "title": "LinkedIn",
+        "subtitle": "Perfil professional verificat"
+      },
+      "github": {
+        "title": "GitHub",
+        "subtitle": "Portafoli tècnic públic"
+      }
+    },
+    "form": {
+      "title": "Consulta de Seguretat Enterprise",
+      "name": "Nom complet",
+      "name_placeholder": "El teu nom complet",
+      "email": "Email",
+      "email_placeholder": "el.teu.email@empresa.com",
+      "subject": "Tipus de Consulta",
+      "subject_placeholder": "Selecciona el tipus de consulta",
+      "message": "Descripció del Projecte",
+      "message_placeholder": "Descriu el teu projecte, requeriments de seguretat, timeline, pressupost...",
+      "privacy": "Accepto la ",
+      "privacy_link": "política de privadesa",
+      "security_note": "Totes les dades es transmeten de forma segura amb encriptació SSL/TLS",
+      "submit": "Enviar Consulta Enterprise",
+      "options": {
+        "auditoria": "Auditoria de Seguretat",
+        "implementacion": "Implementació Enterprise",
+        "consultoria": "Consultoria Tècnica",
+        "colaboracion": "Col·laboració en Projecte",
+        "otro": "Altres"
+      }
+    },
+    "cta": {
+      "title": "Preparat per Implementar Seguretat Enterprise?",
+      "description": "Especialista en seguretat enterprise amb auditories A+, infraestructura hardened i 0 incidents de seguretat en producció.",
+      "buttons": {
+        "cv": "Veure Experiència Completa",
+        "portfolio": "Veure Portafoli Tècnic"
+      },
+      "links": {
+        "documentacion": "Documentació Tècnica",
+        "perfil": "Perfil Professional"
+      }
+    }
+  },
+
+  "about": {
+    "title": "Sobre Mi",
+    "presentacion": {
+      "title": "Daniel Arribas Velázquez",
+      "subtitle": "Administrador de Sistemes • Especialista en Seguretat",
+      "description1": "5+ anys d'experiència enterprise amb SentinelOne EDR, SonicWall Firewall i Veeam Backup. Especialista en seguretat de sistemes, infraestructura de xarxa i continuïtat del negoci amb track record verificable: 70% reducció en temps de resposta i 0 incidents crítics de seguretat.",
+      "description2": "Portafoli tècnic verificat amb auditories A+ de seguretat i infraestructura enterprise documentada completament. Experiència en entorns empresarials amb eines valorades en 50k€+/any."
+    },
+    "credenciales": {
+      "ssl": "A+ SSL Rating",
+      "incidentes": "0 Incidents Seguretat",
+      "experiencia": "5 Anys Enterprise",
+      "eficiencia": "70% Millora Eficiència"
+    },
+    "sobre_mi": {
+      "title": "Sobre Mi",
+      "description1": "Apassionat per la tecnologia i la seguretat informàtica des d'una edat primerenca. La meva trajectòria professional s'ha centrat en l'administració de sistemes i la protecció d'infraestructures crítiques en entorns empresarials.",
+      "description2": "Enfocament pràctic i resultats mesurables: No només estudio la teoria, sinó que implemento solucions reals que generen valor tangible. El meu homelab replica infraestructura enterprise amb serveis en producció 24/7, permetent-me experimentar i perfeccionar tècniques de seguretat en un entorn controlat però realista.",
+      "description3": "Compromís amb l'excel·lència: Cada projecte que emprèn està completament documentat i auditat externament. Crec fermament en la transparència i la verificació com a pilars fonamentals de la confiança professional."
+    },
+    "valores": {
+      "title": "Els Meus Valors",
+      "seguridad": {
+        "title": "Seguretat Proactiva",
+        "description": "Prevenir abans que curar, implementant mesures de protecció robustes"
+      },
+      "aprendizaje": {
+        "title": "Aprenentatge Continu",
+        "description": "Mantenir actualitzades les habilitats tècniques i coneixements"
+      },
+      "resultados": {
+        "title": "Resultats Mesurables",
+        "description": "Enfocar-se en mètriques i KPIs que demostrin el valor aportat"
+      },
+      "colaboracion": {
+        "title": "Col·laboració",
+        "description": "Treballar en equip per aconseguir objectius comuns"
+      }
+    },
+    "experiencia": {
+      "title": "Stack de Seguretat Enterprise",
+      "endpoint": {
+        "title": "🛡️ Seguretat Endpoint",
+        "sentinelone": "SentinelOne EDR - 5 anys experiència",
+        "datto": "Datto Endpoint Protection - Implementació i gestió"
+      },
+      "firewall": {
+        "title": "🔥 Firewall & Xarxa",
+        "sonicwall": "SonicWall Firewall - Configuració i manteniment",
+        "parallel": "Parallel RAS - Accés remot segur",
+        "vlan": "VLANs, VPN, pfSense - Segmentació de xarxa"
+      },
+      "backup": {
+        "title": "💾 Backup & Continuïtat",
+        "veeam": "Veeam Backup & Replication - 5 anys experiència",
+        "acronis": "Acronis Backup - Solucions de recuperació"
+      },
+      "infraestructura": {
+        "title": "🖥️ Infraestructura",
+        "windows": "Windows Server & Active Directory",
+        "virtualizacion": "Hyper-V & Proxmox - Virtualització enterprise",
+        "containerizacion": "Docker & Kubernetes - Containerització"
+      }
+    },
+    "logros": {
+      "title": "Logros Verificables",
+      "respuesta": {
+        "numero": "70%",
+        "descripcion": "Reducció en temps de resposta davant incidències"
+      },
+      "incidentes": {
+        "numero": "0",
+        "descripcion": "Incidents crítics de seguretat en 5 anys"
+      },
+      "rating": {
+        "numero": "A+",
+        "descripcion": "Rating de seguretat (SecurityHeaders.com)"
+      },
+      "disponibilidad": {
+        "numero": "24/7",
+        "descripcion": "Disponibilitat de serveis crítics"
+      }
+    },
+    "enfoque": {
+      "title": "Enfocament Professional",
+      "description1": "Seguretat proactiva amb resultats mesurables. La meva experiència enterprise es basa en implementacions reals amb eines de nivell empresarial, no demos o laboratoris acadèmics. Cada projecte està completament documentat i auditat externament.",
+      "description2": "Especialització en continuïtat del negoci: Des de la protecció endpoint fins a la recuperació davant desastres, el meu enfocament garanteix que els sistemes crítics funcionin sense interrupcions i amb la màxima seguretat."
+    },
+    "portfolio": {
+      "title": "Portafoli Tècnic Verificat",
+      "description": "No només parlo de tecnologia, la implemento i documento. El meu homelab replica infraestructura enterprise amb serveis en producció 24/7, documentació completa i auditories de seguretat A+ verificables externament.",
+      "buttons": {
+        "portfolio": "🛡️ Veure Portafoli Verificat",
+        "arquitectura": "🏗️ Arquitectura Enterprise",
+        "cv": "📋 CV Complet"
+      }
+    },
+    "contacto": {
+      "title": "Consulta Professional",
+      "description": "Necessites un especialista en seguretat amb experiència enterprise verificable? Portafoli complet amb 5+ anys d'experiència, track record de 0 incidents crítics i auditories A+ de seguretat.",
+      "buttons": {
+        "contacto": "Contacte Professional",
+        "linkedin": "LinkedIn"
+      }
+    }
+  },
+
+  "privacy": {
+    "title": "Política de Privadesa",
+    "responsible": {
+      "title": "Responsable del Tractament",
+      "name": "Nom:",
+      "email": "Correu electrònic:",
+      "website": "Lloc web:",
+      "purpose": "Finalitat:"
+    },
+    "data_processing": {
+      "title": "Tractament de Dades Personals",
+      "description": "D'acord amb el Reglament (UE) 2016/679 (RGPD) i la Llei Orgànica 3/2018 (LOPDGDD), li informem que les dades personals que vostè proporcioni seran tractades conforme a les següents condicions:",
+      "purpose": {
+        "title": "Finalitat del tractament",
+        "items": [
+          "Atendre consultes o sol·licituds d'informació.",
+          "Comunicar novetats relacionades amb el Portafoli, projectes o col·laboracions (en cas de subscripció voluntària).",
+          "Mantenir contacte professional."
+        ]
+      },
+      "legitimation": {
+        "title": "Legitimació",
+        "description": "El seu consentiment exprés en enviar voluntàriament les seves dades a través del formulari de contacte o correu electrònic."
+      },
+      "retention": {
+        "title": "Conservació",
+        "description": "Les dades es conservaran mentre siguin necessàries per complir amb la finalitat del tractament o fins que vostè sol·liciti la seva supressió."
+      }
+    },
+    "data_sharing": {
+      "title": "Cessió de Dades",
+      "description": "No es cediran dades a tercers excepte obligació legal o consentiment exprés."
+    },
+    "rights": {
+      "title": "Drets",
+      "description": "Vostè té dret a:",
+      "items": [
+        "Accedir a les seves dades personals.",
+        "Rectificar dades inexactes.",
+        "Sol·licitar la supressió de les seves dades.",
+        "Oposar-se al tractament.",
+        "Sol·licitar la limitació del tractament.",
+        "Portar les seves dades a un altre responsable."
+      ],
+      "contact_info": "Per exercir aquests drets, pot escriure a <strong>danielarribasvelazquez@dav-tech.work</strong> amb l'assumpte \"Protecció de Dades\", incloent còpia del seu DNI o document equivalent."
+    },
+    "security": {
+      "title": "Seguretat de la Informació",
+      "description": "S'han implementat mesures tècniques i organitzatives adequades per garantir la seguretat i integritat de les seves dades."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "description": "Aquest lloc pot utilitzar cookies tècniques necessàries per al seu funcionament. No s'utilitzaran cookies amb finalitats publicitàries sense consentiment previ. Consulti la Política de Cookies per a més informació (si aplica)."
+    },
+    "changes": {
+      "title": "Canvis en la Política",
+      "description": "Aquesta política podrà ser modificada per adaptar-se a canvis legals o tècnics. Es notificarà qualsevol canvi en aquesta mateixa pàgina."
+    },
+    "contact": {
+      "title": "Contacte",
+      "description": "Si té alguna dubte sobre aquesta Política de Privadesa, pot contactar a:"
+    }
+  }
 }

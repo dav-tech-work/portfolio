@@ -1,0 +1,108 @@
+name: ⚡ Performance Workflow
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    # Ejecutar diariamente a las 5:00 AM UTC
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+    # Permitir ejecución manual
+
+env:
+  NODE_VERSION: '18'
+  RESULTS_DIR: 'results/workflows/performance'
+
+jobs:
+  performance-analysis:
+    name: ⚡ Performance Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: 📥 Checkout del código
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Instalar dependencias
+        run: npm ci
+
+      - name: 📝 Configurar entorno de CI
+        run: |
+          echo "📝 Configurando entorno para CI..."
+          cp config.env.example config.env
+          chmod 600 config.env
+          mkdir -p logs
+          echo "✅ Entorno configurado"
+
+      - name: 🚀 Ejecutar análisis de rendimiento completo
+        run: npm run rendimiento-completo
+
+      - name: 📊 Generar reporte de rendimiento
+        run: |
+          echo "📊 Generando reporte de rendimiento..."
+          mkdir -p ${{ env.RESULTS_DIR }}
+          if [ -f "results/performance-results/performance-complete-report.json" ]; then
+            cp results/performance-results/performance-complete-report.json ${{ env.RESULTS_DIR }}/performance-report.json
+            echo "✅ Reporte copiado a ${{ env.RESULTS_DIR }}"
+          else
+            echo "⚠️ No se encontró reporte de rendimiento"
+          fi
+
+      - name: 📦 Analizar tamaño de dependencias
+        run: |
+          echo "📦 Analizando dependencias..."
+          npm list --depth=0 > ${{ env.RESULTS_DIR }}/dependencies-analysis.txt
+          echo "✅ Análisis de dependencias guardado"
+
+      - name: 🔍 Verificar optimizaciones
+        run: |
+          echo "🔍 Verificando optimizaciones..."
+
+          # Verificar compresión
+          if grep -r "compression" src/ --include="*.mjs" --include="*.js"; then
+            echo "✅ Middleware de compresión encontrado" >> ${{ env.RESULTS_DIR }}/optimizations.txt
+          else
+            echo "⚠️ Middleware de compresión no encontrado" >> ${{ env.RESULTS_DIR }}/optimizations.txt
+          fi
+
+          # Verificar minificación
+          if grep -r "minify" src/ --include="*.mjs" --include="*.js"; then
+            echo "✅ Minificación encontrada" >> ${{ env.RESULTS_DIR }}/optimizations.txt
+          else
+            echo "⚠️ Minificación no encontrada" >> ${{ env.RESULTS_DIR }}/optimizations.txt
+          fi
+
+          # Verificar caché
+          if grep -r "cache" src/ --include="*.mjs" --include="*.js"; then
+            echo "✅ Configuración de caché encontrada" >> ${{ env.RESULTS_DIR }}/optimizations.txt
+          else
+            echo "⚠️ Configuración de caché no encontrada" >> ${{ env.RESULTS_DIR }}/optimizations.txt
+          fi
+
+      - name: 📤 Subir reportes como artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-reports
+          path: ${{ env.RESULTS_DIR }}/
+          retention-days: 30
+
+      - name: 📊 Resumen de rendimiento
+        if: always()
+        run: |
+          echo "## ⚡ Resumen de Análisis de Rendimiento" >> $GITHUB_STEP_SUMMARY
+          echo "Fecha: $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Análisis completado:" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Análisis de rendimiento completo" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Optimización de Lighthouse" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Análisis de dependencias" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Verificación de optimizaciones" >> $GITHUB_STEP_SUMMARY

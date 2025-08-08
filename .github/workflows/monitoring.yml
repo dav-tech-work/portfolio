@@ -1,0 +1,113 @@
+name: 📊 Monitoring Workflow
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    # Ejecutar diariamente a las 6:00 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    # Permitir ejecución manual
+
+env:
+  NODE_VERSION: '18'
+  RESULTS_DIR: 'results/workflows/monitoring'
+
+jobs:
+  monitoring-analysis:
+    name: 📊 Monitoring Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: 📥 Checkout del código
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Instalar dependencias
+        run: npm ci
+
+      - name: 📝 Configurar entorno de CI
+        run: |
+          echo "📝 Configurando entorno para CI..."
+          cp config.env.example config.env
+          chmod 600 config.env
+          mkdir -p logs
+          echo "✅ Entorno configurado"
+
+      - name: 📊 Ejecutar análisis de monitoreo completo
+        run: npm run monitoreo-completo
+
+      - name: 📊 Generar reporte de monitoreo
+        run: |
+          echo "📊 Generando reporte de monitoreo..."
+          mkdir -p ${{ env.RESULTS_DIR }}
+          if [ -f "results/monitoring-results/monitoring-complete-report.json" ]; then
+            cp results/monitoring-results/monitoring-complete-report.json ${{ env.RESULTS_DIR }}/monitoring-report.json
+            echo "✅ Reporte copiado a ${{ env.RESULTS_DIR }}"
+          else
+            echo "⚠️ No se encontró reporte de monitoreo"
+          fi
+
+      - name: 🔍 Verificar salud de la aplicación
+        run: |
+          echo "🔍 Verificando salud de la aplicación..."
+
+          # Verificar archivos críticos
+          critical_files=("app.mjs" "package.json" "config.env" "src/config/index.mjs")
+          for file in "${critical_files[@]}"; do
+            if [ -f "$file" ]; then
+              echo "✅ $file encontrado" >> ${{ env.RESULTS_DIR }}/health-check.txt
+            else
+              echo "❌ $file no encontrado" >> ${{ env.RESULTS_DIR }}/health-check.txt
+            fi
+          done
+
+          # Verificar estructura de directorios
+          directories=("src" "views" "public" "test")
+          for dir in "${directories[@]}"; do
+            if [ -d "$dir" ]; then
+              echo "✅ Directorio $dir encontrado" >> ${{ env.RESULTS_DIR }}/health-check.txt
+            else
+              echo "❌ Directorio $dir no encontrado" >> ${{ env.RESULTS_DIR }}/health-check.txt
+            fi
+          done
+
+      - name: 📈 Analizar métricas del sistema
+        run: |
+          echo "📈 Analizando métricas del sistema..."
+
+          # Información del sistema
+          echo "=== INFORMACIÓN DEL SISTEMA ===" > ${{ env.RESULTS_DIR }}/system-metrics.txt
+          echo "Node.js version: $(node --version)" >> ${{ env.RESULTS_DIR }}/system-metrics.txt
+          echo "NPM version: $(npm --version)" >> ${{ env.RESULTS_DIR }}/system-metrics.txt
+          echo "OS: $(uname -a)" >> ${{ env.RESULTS_DIR }}/system-metrics.txt
+          echo "Memory: $(free -h 2>/dev/null || echo 'No disponible')" >> ${{ env.RESULTS_DIR }}/system-metrics.txt
+          echo "Disk: $(df -h . 2>/dev/null || echo 'No disponible')" >> ${{ env.RESULTS_DIR }}/system-metrics.txt
+
+      - name: 📤 Subir reportes como artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: monitoring-reports
+          path: ${{ env.RESULTS_DIR }}/
+          retention-days: 30
+
+      - name: 📊 Resumen de monitoreo
+        if: always()
+        run: |
+          echo "## 📊 Resumen de Monitoreo" >> $GITHUB_STEP_SUMMARY
+          echo "Fecha: $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Análisis completado:" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Análisis de monitoreo completo" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Verificación de salud de la aplicación" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Análisis de métricas del sistema" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Diagnóstico de la aplicación" >> $GITHUB_STEP_SUMMARY

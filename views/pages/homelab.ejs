@@ -1,0 +1,450 @@
+<main class="container" role="main" aria-labelledby="homelab-titulo">
+  <!-- Hero Section -->
+  <section class="hero-section" aria-label="Sección de bienvenida a homelab">
+    <h1 id="homelab-titulo"><%= (t.homelab && t.homelab.title) || 'Homelab Enterprise' %></h1>
+    <h2 class="hero-subtitle"><%= (t.homelab && t.homelab.subtitle) || 'Infraestructura de Pruebas y Desarrollo' %></h2>
+    <p class="subtitle"><%= (t.homelab && t.homelab.description) || 'Entorno de pruebas realista y escalable centrado en virtualización, redes segmentadas, automatización de servicios y acceso seguro.' %></p>
+  </section>
+
+  <!-- Credenciales del Homelab -->
+  <section class="credenciales-homelab" aria-label="Credenciales del homelab">
+    <h2><%= (t.homelab && t.homelab.credenciales && t.homelab.credenciales.title) || 'Infraestructura Verificada' %></h2>
+
+    <div class="badges-grid">
+      <div class="badge badge-security">
+        <span class="icon">🛡️</span>
+        <div>
+          <strong><%= (t.homelab && t.homelab.credenciales && t.homelab.credenciales.security && t.homelab.credenciales.security.title) || 'Zero Trust' %></strong>
+          <small><%= (t.homelab && t.homelab.credenciales && t.homelab.credenciales.security && t.homelab.credenciales.security.subtitle) || 'Cloudflare Zero Trust' %></small>
+        </div>
+      </div>
+
+      <div class="badge badge-virtualization">
+        <span class="icon">☁️</span>
+        <div>
+          <strong><%= (t.homelab && t.homelab.credenciales && t.homelab.credenciales.virtualization && t.homelab.credenciales.virtualization.title) || 'Virtualización' %></strong>
+          <small><%= (t.homelab && t.homelab.credenciales && t.homelab.credenciales.virtualization && t.homelab.credenciales.virtualization.subtitle) || 'Proxmox VE + Kubernetes' %></small>
+        </div>
+      </div>
+
+      <div class="badge badge-automation">
+        <span class="icon">🤖</span>
+        <div>
+          <strong><%= (t.homelab && t.homelab.credenciales && t.homelab.credenciales.automation && t.homelab.credenciales.automation.title) || 'Automatización' %></strong>
+          <small><%= (t.homelab && t.homelab.credenciales && t.homelab.credenciales.automation && t.homelab.credenciales.automation.subtitle) || 'CI/CD + Scripts' %></small>
+        </div>
+      </div>
+
+      <div class="badge badge-backup">
+        <span class="icon">💾</span>
+        <div>
+          <strong><%= (t.homelab && t.homelab.credenciales && t.homelab.credenciales.backup && t.homelab.credenciales.backup.title) || 'Backup Strategy' %></strong>
+          <small><%= (t.homelab && t.homelab.credenciales && t.homelab.credenciales.backup && t.homelab.credenciales.backup.subtitle) || 'Rotación 3 copias' %></small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Infraestructura Enterprise -->
+  <section class="infraestructura-enterprise" aria-label="Infraestructura enterprise">
+    <h2><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.title) || 'Infraestructura Enterprise' %></h2>
+
+    <div class="infraestructura-grid">
+      <!-- Servidor Principal -->
+      <div class="infraestructura-card featured">
+        <div class="infraestructura-card-header">
+          <div class="infraestructura-icon">
+            <i class="fas fa-server" aria-hidden="true"></i>
+          </div>
+          <h3><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.server && t.homelab.infraestructura.server.title) || 'Servidor Principal' %></h3>
+          <div class="infraestructura-badges">
+            <span class="badge-enterprise">🏢 <%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.server && t.homelab.infraestructura.server.badge_enterprise) || 'Enterprise' %></span>
+            <span class="badge-performance">⚡ <%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.server && t.homelab.infraestructura.server.badge_performance) || 'High Performance' %></span>
+          </div>
+        </div>
+        <div class="infraestructura-card-content">
+          <p><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.server && t.homelab.infraestructura.server.description) || 'Beelink SER5 Mini PC con AMD Ryzen 5 5500U y 64 GB RAM para virtualización enterprise.' %></p>
+          <div class="infraestructura-metrics">
+            <div class="metric">
+              <span class="value">64GB</span>
+              <span class="label"><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.server && t.homelab.infraestructura.server.metrics && t.homelab.infraestructura.server.metrics.ram) || 'RAM' %></span>
+            </div>
+            <div class="metric">
+              <span class="value">6C/12T</span>
+              <span class="label"><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.server && t.homelab.infraestructura.server.metrics && t.homelab.infraestructura.server.metrics.cpu) || 'CPU Cores' %></span>
+            </div>
+            <div class="metric">
+              <span class="value">4TB</span>
+              <span class="label"><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.server && t.homelab.infraestructura.server.metrics && t.homelab.infraestructura.server.metrics.storage) || 'Storage' %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Red y Equipamiento -->
+      <div class="infraestructura-card">
+        <div class="infraestructura-card-header">
+          <div class="infraestructura-icon">
+            <i class="fas fa-network-wired" aria-hidden="true"></i>
+          </div>
+          <h3><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.network && t.homelab.infraestructura.network.title) || 'Red y Equipamiento' %></h3>
+          <div class="infraestructura-badges">
+            <span class="badge-network">🌐 <%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.network && t.homelab.infraestructura.network.badge_network) || 'Network' %></span>
+            <span class="badge-security">🔒 <%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.network && t.homelab.infraestructura.network.badge_security) || 'Security' %></span>
+          </div>
+        </div>
+        <div class="infraestructura-card-content">
+          <ul class="infraestructura-list">
+            <li><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.network && t.homelab.infraestructura.network.ont) || 'ONT: Ubiquiti UFiber Nano Loco' %></li>
+            <li><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.network && t.homelab.infraestructura.network.router) || 'Router/Mesh: ASUS ZenWiFi AX Mini (XD4)' %></li>
+            <li><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.network && t.homelab.infraestructura.network.switch) || 'Switch: TP-Link TL-SG608E (8 puertos Gigabit, gestionable)' %></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- NAS QNAP -->
+      <div class="infraestructura-card">
+        <div class="infraestructura-card-header">
+          <div class="infraestructura-icon">
+            <i class="fas fa-hdd" aria-hidden="true"></i>
+          </div>
+          <h3><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.nas && t.homelab.infraestructura.nas.title) || 'NAS QNAP TS-231K' %></h3>
+          <div class="infraestructura-badges">
+            <span class="badge-storage">💾 <%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.nas && t.homelab.infraestructura.nas.badge_storage) || 'Storage' %></span>
+            <span class="badge-backup">🔄 <%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.nas && t.homelab.infraestructura.nas.badge_backup) || 'Backup' %></span>
+          </div>
+        </div>
+        <div class="infraestructura-card-content">
+          <ul class="infraestructura-list">
+            <li><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.nas && t.homelab.infraestructura.nas.hdd_internal) || '1× HDD interno de 1 TB' %></li>
+            <li><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.nas && t.homelab.infraestructura.nas.ssd_nas) || '1× SSD SATA de 4 TB' %></li>
+            <li><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.nas && t.homelab.infraestructura.nas.hdd_external) || '2× HDD externos extraíbles de 5 TB' %></li>
+            <li><%= (t.homelab && t.homelab.infraestructura && t.homelab.infraestructura.nas && t.homelab.infraestructura.nas.multiuser) || 'Multiusuario con permisos personalizados por carpeta' %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Virtualización y Servicios -->
+  <section class="virtualizacion-servicios" aria-label="Virtualización y servicios">
+    <h2><%= (t.homelab && t.homelab.virtualizacion && t.homelab.virtualizacion.title) || 'Virtualización & Servicios Enterprise' %></h2>
+
+    <div class="virtualizacion-grid">
+      <!-- Proxmox VE -->
+      <div class="virtualizacion-card featured">
+        <div class="virtualizacion-card-header">
+          <div class="virtualizacion-icon">
+            <i class="fas fa-cloud" aria-hidden="true"></i>
+          </div>
+          <h3><%= (t.homelab && t.homelab.virtualizacion && t.homelab.virtualizacion.proxmox && t.homelab.virtualizacion.proxmox.title) || 'Proxmox VE' %></h3>
+          <div class="virtualizacion-badges">
+            <span class="badge-virtualization">☁️ <%= (t.homelab && t.homelab.virtualizacion && t.homelab.virtualizacion.proxmox && t.homelab.virtualizacion.proxmox.badge_virtualization) || 'Virtualization' %></span>
+            <span class="badge-enterprise">🏢 <%= (t.homelab && t.homelab.virtualizacion && t.homelab.virtualizacion.proxmox && t.homelab.virtualizacion.proxmox.badge_enterprise) || 'Enterprise' %></span>
+          </div>
+        </div>
+        <div class="virtualizacion-card-content">
+          <p><%= (t.homelab && t.homelab.virtualizacion && t.homelab.virtualizacion.proxmox && t.homelab.virtualizacion.proxmox.description) || 'Gestión de VMs y CTs para diversos entornos enterprise.' %></p>
+          <div class="virtualizacion-metrics">
+            <div class="metric">
+              <span class="value">8</span>
+              <span class="label"><%= (t.homelab && t.homelab.virtualizacion && t.homelab.virtualizacion.proxmox && t.homelab.virtualizacion.proxmox.metrics && t.homelab.virtualizacion.proxmox.metrics.vms) || 'VMs' %></span>
+            </div>
+            <div class="metric">
+              <span class="value">2</span>
+              <span class="label"><%= (t.homelab && t.homelab.virtualizacion && t.homelab.virtualizacion.proxmox && t.homelab.virtualizacion.proxmox.metrics && t.homelab.virtualizacion.proxmox.metrics.clusters) || 'K8s Clusters' %></span>
+            </div>
+          </div>
+          <div class="virtualizacion-services">
+            <h4><%= (t.homelab && t.homelab.virtualizacion && t.homelab.virtualizacion.proxmox && t.homelab.virtualizacion.proxmox.services && t.homelab.virtualizacion.proxmox.services.title) || 'Servicios Activos:' %></h4>
+            <ul class="services-list">
+              <li>4× Ubuntu Server</li>
+              <li>1× Alpine Linux</li>
+              <li>1× Kali Linux</li>
+              <li>1× Windows Server 2019</li>
+              <li>1× Contenedor Ubuntu</li>
+              <li>1× pfSense</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kubernetes -->
+      <div class="virtualizacion-card">
+        <div class="virtualizacion-card-header">
+          <div class="virtualizacion-icon">
+            <i class="fab fa-docker" aria-hidden="true"></i>
+          </div>
+          <h3><%= (t.homelab && t.homelab.virtualizacion && t.homelab.virtualizacion.kubernetes && t.homelab.virtualizacion.kubernetes.title) || 'Kubernetes' %></h3>
+          <div class="virtualizacion-badges">
+            <span class="badge-container">🐳 <%= (t.homelab && t.homelab.virtualizacion && t.homelab.virtualizacion.kubernetes && t.homelab.virtualizacion.kubernetes.badge_container) || 'Containers' %></span>
+            <span class="badge-orchestration">⚙️ <%= (t.homelab && t.homelab.virtualizacion && t.homelab.virtualizacion.kubernetes && t.homelab.virtualizacion.kubernetes.badge_orchestration) || 'Orchestration' %></span>
+          </div>
+        </div>
+        <div class="virtualizacion-card-content">
+          <div class="kubernetes-clusters">
+            <div class="cluster">
+              <h4><%= (t.homelab && t.homelab.virtualizacion && t.homelab.virtualizacion.kubernetes && t.homelab.virtualizacion.kubernetes.cluster1 && t.homelab.virtualizacion.kubernetes.cluster1.title) || 'Clúster 1 (Red hogar): Ubuntu + Alpine' %></h4>
+              <ul class="services-list">
+                <li>Pi-hole</li>
+                <li>Transmission</li>
+                <li>Deemix</li>
+                <li>Emby</li>
+                <li>Stirling PDF</li>
+                <li>Portainer</li>
+                <li>ITools</li>
+              </ul>
+            </div>
+            <div class="cluster">
+              <h4><%= (t.homelab && t.homelab.virtualizacion && t.homelab.virtualizacion.kubernetes && t.homelab.virtualizacion.kubernetes.cluster2 && t.homelab.virtualizacion.kubernetes.cluster2.title) || 'Clúster 2 (tras pfSense): Ubuntu' %></h4>
+              <ul class="services-list">
+                <li>Portfolio web</li>
+                <li>CV web descargable</li>
+                <li>Web meteorológica</li>
+                <li>VSCode online</li>
+                <li>Portainer</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Automatización y Proyectos -->
+  <section class="automatizacion-proyectos" aria-label="Automatización y proyectos">
+    <h2><%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.title) || 'Automatización y Proyectos Enterprise' %></h2>
+
+    <div class="automatizacion-grid">
+      <!-- Bot de correo y Telegram -->
+      <div class="automatizacion-card">
+        <div class="automatizacion-card-header">
+          <div class="automatizacion-icon">
+            <i class="fab fa-telegram" aria-hidden="true"></i>
+          </div>
+          <h3><%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.bot && t.homelab.automatizacion.bot.title) || 'Bot de correo y Telegram' %></h3>
+          <div class="automatizacion-badges">
+            <span class="badge-automation">🤖 <%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.bot && t.homelab.automatizacion.bot.badge_automation) || 'Automation' %></span>
+            <span class="badge-notification">📱 <%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.bot && t.homelab.automatizacion.bot.badge_notification) || 'Notifications' %></span>
+          </div>
+        </div>
+        <div class="automatizacion-card-content">
+          <p><%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.bot && t.homelab.automatizacion.bot.description) || 'Contenedor Ubuntu que clasifica correos importantes y envía notificaciones y resúmenes semanales por Telegram.' %></p>
+        </div>
+      </div>
+
+      <!-- Servidor Minecraft -->
+      <div class="automatizacion-card">
+        <div class="automatizacion-card-header">
+          <div class="automatizacion-icon">
+            <i class="fas fa-gamepad" aria-hidden="true"></i>
+          </div>
+          <h3><%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.minecraft && t.homelab.automatizacion.minecraft.title) || 'Servidor Minecraft' %></h3>
+          <div class="automatizacion-badges">
+            <span class="badge-gaming">🎮 <%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.minecraft && t.homelab.automatizacion.minecraft.badge_gaming) || 'Gaming' %></span>
+            <span class="badge-isolated">🔒 <%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.minecraft && t.homelab.automatizacion.minecraft.badge_isolated) || 'Isolated' %></span>
+          </div>
+        </div>
+        <div class="automatizacion-card-content">
+          <p><%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.minecraft && t.homelab.automatizacion.minecraft.description) || 'Ubuntu Server aislado, accesible solo con túnel Cloudflare, dedicado a uso familiar.' %></p>
+        </div>
+      </div>
+
+      <!-- Windows Server 2019 -->
+      <div class="automatizacion-card">
+        <div class="automatizacion-card-header">
+          <div class="automatizacion-icon">
+            <i class="fab fa-windows" aria-hidden="true"></i>
+          </div>
+          <h3><%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.windows_server && t.homelab.automatizacion.windows_server.title) || 'Windows Server 2019' %></h3>
+          <div class="automatizacion-badges">
+            <span class="badge-windows">🪟 <%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.windows_server && t.homelab.automatizacion.windows_server.badge_windows) || 'Windows' %></span>
+            <span class="badge-lab">🧪 <%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.windows_server && t.homelab.automatizacion.windows_server.badge_lab) || 'Lab' %></span>
+          </div>
+        </div>
+        <div class="automatizacion-card-content">
+          <p><%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.windows_server && t.homelab.automatizacion.windows_server.description) || 'Entorno de laboratorio para pruebas de Active Directory, DNS y servicios de red empresarial.' %></p>
+        </div>
+      </div>
+
+      <!-- Kali Linux -->
+      <div class="automatizacion-card">
+        <div class="automatizacion-card-header">
+          <div class="automatizacion-icon">
+            <i class="fab fa-linux" aria-hidden="true"></i>
+          </div>
+          <h3><%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.kali && t.homelab.automatizacion.kali.title) || 'Kali Linux' %></h3>
+          <div class="automatizacion-badges">
+            <span class="badge-security">🛡️ <%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.kali && t.homelab.automatizacion.kali.badge_security) || 'Security' %></span>
+            <span class="badge-pentest">🔍 <%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.kali && t.homelab.automatizacion.kali.badge_pentest) || 'Pentest' %></span>
+          </div>
+        </div>
+        <div class="automatizacion-card-content">
+          <p><%= (t.homelab && t.homelab.automatizacion && t.homelab.automatizacion.kali && t.homelab.automatizacion.kali.description) || 'Máquina dual-homed para análisis de vulnerabilidades con OpenVAS y Nmap en ambas redes.' %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seguridad y Backups -->
+  <section class="seguridad-backups" aria-label="Seguridad y backups">
+    <h2><%= (t.homelab && t.homelab.seguridad && t.homelab.seguridad.title) || 'Seguridad y Backups Enterprise' %></h2>
+
+    <div class="seguridad-grid">
+      <div class="seguridad-card">
+        <div class="seguridad-card-header">
+          <div class="seguridad-icon">
+            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+          </div>
+          <h3><%= (t.homelab && t.homelab.seguridad && t.homelab.seguridad.network && t.homelab.seguridad.network.title) || 'Seguridad de Red' %></h3>
+        </div>
+        <div class="seguridad-card-content">
+          <ul class="seguridad-list">
+            <li><%= (t.homelab && t.homelab.seguridad && t.homelab.seguridad.network && t.homelab.seguridad.network.segmentation) || 'Segmentación de redes con pfSense' %></li>
+            <li><%= (t.homelab && t.homelab.seguridad && t.homelab.seguridad.network && t.homelab.seguridad.network.iot) || 'Red IoT totalmente aislada' %></li>
+            <li><%= (t.homelab && t.homelab.seguridad && t.homelab.seguridad.network && t.homelab.seguridad.network.cloudflare) || 'Cloudflare Zero Trust como capa de acceso externo' %></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="seguridad-card">
+        <div class="seguridad-card-header">
+          <div class="seguridad-icon">
+            <i class="fas fa-database" aria-hidden="true"></i>
+          </div>
+          <h3><%= (t.homelab && t.homelab.seguridad && t.homelab.seguridad.backup && t.homelab.seguridad.backup.title) || 'Estrategia de Backup' %></h3>
+        </div>
+        <div class="seguridad-card-content">
+          <ul class="seguridad-list">
+            <li><%= (t.homelab && t.homelab.seguridad && t.homelab.seguridad.backup && t.homelab.seguridad.backup.daily) || 'Backups diarios de todas las máquinas (rotación de 3 copias)' %></li>
+            <li><%= (t.homelab && t.homelab.seguridad && t.homelab.seguridad.backup && t.homelab.seguridad.backup.distributed) || 'Copias distribuidas entre los discos USB de 1 TB' %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagrama de Arquitectura -->
+  <section class="diagram-section" aria-label="Sección del diagrama de arquitectura">
+    <h2><%= (t.homelab && t.homelab.sections && t.homelab.sections.diagram && t.homelab.sections.diagram.title) || '🏗️ Esquema de Arquitectura' %></h2>
+    <p class="diagram-description"><%= (t.homelab && t.homelab.sections && t.homelab.sections.diagram && t.homelab.sections.diagram.description) || 'Diagrama visual de la infraestructura y conexiones del homelab' %></p>
+
+    <div class="architecture-diagram">
+      <!-- Nivel 1: Internet y Cloudflare -->
+      <div class="diagram-level external-level">
+        <div class="diagram-node internet">
+          <span class="node-icon">🌐</span>
+          <span class="node-label"><%= (t.homelab && t.homelab.sections && t.homelab.sections.diagram && t.homelab.sections.diagram.internet) || 'Internet' %></span>
+        </div>
+        <div class="connection-line horizontal">
+          <div class="connection-arrow-bidirectional"></div>
+        </div>
+        <div class="diagram-node cloudflare">
+          <span class="node-icon">🛡️</span>
+          <span class="node-label"><%= (t.homelab && t.homelab.sections && t.homelab.sections.diagram && t.homelab.sections.diagram.cloudflare) || 'Cloudflare Zero Trust' %></span>
+        </div>
+      </div>
+
+      <!-- Línea de conexión -->
+      <div class="connection-line vertical">
+        <div class="connection-arrow-down"></div>
+      </div>
+
+      <!-- Nivel 2: Router y Switch -->
+      <div class="diagram-level network-level">
+        <div class="diagram-node router">
+          <span class="node-icon">📡</span>
+          <span class="node-label">ASUS ZenWiFi AX</span>
+        </div>
+        <div class="connection-line horizontal">
+          <div class="connection-arrow-bidirectional"></div>
+        </div>
+        <div class="diagram-node switch">
+          <span class="node-icon">🔌</span>
+          <span class="node-label">TP-Link Switch</span>
+        </div>
+      </div>
+
+      <!-- Línea de conexión -->
+      <div class="connection-line vertical">
+        <div class="connection-arrow-down"></div>
+      </div>
+
+      <!-- Nivel 3: Redes -->
+      <div class="diagram-level networks-level">
+        <!-- Red Hogar -->
+        <div class="network-group home-network-group">
+          <div class="network-header">
+            <span class="network-icon">🏠</span>
+            <span class="network-title"><%= (t.homelab && t.homelab.sections && t.homelab.sections.diagram && t.homelab.sections.diagram.home_network) || 'Red Hogar' %></span>
+          </div>
+          <div class="network-content">
+            <!-- Proxmox -->
+            <div class="diagram-node proxmox">
+              <span class="node-icon">☁️</span>
+              <span class="node-label"><%= (t.homelab && t.homelab.sections && t.homelab.sections.diagram && t.homelab.sections.diagram.proxmox) || 'Proxmox VE' %></span>
+            </div>
+
+            <!-- QNAP NAS -->
+            <div class="diagram-node qnap">
+              <span class="node-icon">💾</span>
+              <span class="node-label"><%= (t.homelab && t.homelab.sections && t.homelab.sections.diagram && t.homelab.sections.diagram.qnap) || 'QNAP NAS' %></span>
+            </div>
+
+            <!-- K8s Clúster 1 -->
+            <div class="diagram-node k8s-cluster1">
+              <span class="node-icon">🐳</span>
+              <span class="node-label"><%= (t.homelab && t.homelab.sections && t.homelab.sections.diagram && t.homelab.sections.diagram.kubernetes_cluster1) || 'K8s Clúster 1' %></span>
+            </div>
+
+            <!-- Backups -->
+            <div class="diagram-node backups">
+              <span class="node-icon">💿</span>
+              <span class="node-label"><%= (t.homelab && t.homelab.sections && t.homelab.sections.diagram && t.homelab.sections.diagram.backups) || 'Backups' %></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Red IoT -->
+        <div class="network-group iot-network-group">
+          <div class="network-header">
+            <span class="network-icon">📱</span>
+            <span class="network-title"><%= (t.homelab && t.homelab.sections && t.homelab.sections.diagram && t.homelab.sections.diagram.iot_network) || 'Red IoT' %></span>
+          </div>
+          <div class="network-content">
+            <div class="diagram-node iot-devices">
+              <span class="node-icon">📱</span>
+              <span class="node-label">Dispositivos IoT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Red pfSense -->
+        <div class="network-group pfsense-network-group">
+          <div class="network-header">
+            <span class="network-icon">🔒</span>
+            <span class="network-title">Red pfSense</span>
+          </div>
+          <div class="network-content">
+            <div class="diagram-node pfsense-vm">
+              <span class="node-icon">🖥️</span>
+              <span class="node-label">pfSense VM</span>
+            </div>
+
+            <!-- Servicios -->
+            <div class="diagram-node services">
+              <span class="node-icon">🔧</span>
+              <span class="node-label"><%= (t.homelab && t.homelab.sections && t.homelab.sections.diagram && t.homelab.sections.diagram.services) || 'Servicios' %></span>
+            </div>
+
+            <!-- K8s Clúster 2 -->
+            <div class="diagram-node k8s-cluster2">
+              <span class="node-icon">🐳</span>
+              <span class="node-label"><%= (t.homelab && t.homelab.sections && t.homelab.sections.diagram && t.homelab.sections.diagram.kubernetes_cluster2) || 'K3s Clúster 2' %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

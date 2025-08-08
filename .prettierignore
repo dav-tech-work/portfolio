@@ -1,0 +1,54 @@
+# Archivos minificados - NO formatear
+**/*.min.js
+**/*.min.css
+**/*.min.mjs
+
+# Archivos optimizados - NO formatear
+**/*.optimized.js
+**/*.optimized.css
+**/*.optimized.mjs
+
+# Archivos de producción
+public/assets/optimized/
+public/assets/critical/
+
+# Archivos de dependencias
+node_modules/
+dist/
+coverage/
+.nyc_output/
+
+# Archivos de configuración y datos
+package-lock.json
+*.log
+logs/
+sessions/
+uploads/
+test-results/
+
+# Archivos de auditoría y reportes
+auditorias/
+reports/
+
+# Archivos de configuración del sistema
+.git/
+.github/
+docker/
+kubernetes/
+config/
+
+# Archivos de datos y contenido
+data/
+public/assets/data/
+public/assets/img/
+public/assets/programacion/
+
+# Archivos de configuración específicos
+config.env
+config.env.example
+*.env
+
+# Archivos de documentación y otros
+docs/
+*.md
+LICENSE

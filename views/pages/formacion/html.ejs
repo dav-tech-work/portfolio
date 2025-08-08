@@ -1,8 +1,8 @@
 <main class="container">
     <section class="topic-section html-content">
-        <h1 class="page-title"><%= t["education.web.html.title"] %></h1>
+        <h1 class="page-title"><%= (t.education && t.education.web && t.education.web.html && t.education.web.html.title) || 'HTML/CSS' %></h1>
         <div class="topic-content-container html-layout">        <div class="theory-section">
-            <h2 class="topic-title"><%= t["education.web.html.teoria.title"] %></h2>
+            <h2 class="topic-title"><%= (t.education && t.education.web && t.education.web.html && t.education.web.html.teoria && t.education.web.html.teoria.title) || 'Teoría' %></h2>
             <section class="topic-content">
                 <div class="topic-item">
                     <ul>
@@ -16,18 +16,18 @@
             </div>        </section>
         </div>
         <div class="practice-section">
-            <h2 class="topic-title"><%= t["education.web.html.practices.title"] %></h2>
+            <h2 class="topic-title"><%= (t.education && t.education.web && t.education.web.html && t.education.web.html.practices && t.education.web.html.practices.title) || 'Prácticas' %></h2>
             <section class="topic-content">
                 <div class="topic-item">
-                    <h3 class="topic-title-1"><%= t["education.practice.01"] %></h3>
+                    <h3 class="topic-title-1"><%= (t.education && t.education.practice && t.education.practice['01']) || 'Práctica 1' %></h3>
                     <ul>
                         <li><a href="/assets/programacion/web/htm_css/practicas/1/index.html" class="topic-link" target="_blank">Wiki: Tim Berners-Lee</a></li>
                     </ul>
-                    <h3 class="topic-title-1"><%= t["education.practice.02"] %></h3>
+                    <h3 class="topic-title-1"><%= (t.education && t.education.practice && t.education.practice['02']) || 'Práctica 2' %></h3>
                     <ul>
                         <li><a href="/assets/programacion/web/htm_css/practicas/2/cafe_1.html" class="topic-link" target="_blank">cafe</a></li>
                     </ul>
-                    <h3 class="topic-title-1"><%= t["education.practice.03"] %></h3>
+                    <h3 class="topic-title-1"><%= (t.education && t.education.practice && t.education.practice['03']) || 'Práctica 3' %></h3>
                     <ul>
                         <li><a href="/assets/programacion/web/htm_css/practicas/3/cuina_divina.html" class="topic-link" target="_blank">cuina divina</a></li>
                     </ul>
@@ -36,3 +36,16 @@
         </div>
     </section>
 </main>
+
+<% const archivos = [
+  { archivo: '00_html.html', nombre: 'html_basico' },
+  { archivo: 'dialog.html', nombre: 'dialog' },
+  { archivo: 'grid_1.html', nombre: 'grid1' }
+]; %>
+
+<% archivos.forEach(({ archivo, nombre }) => { %>
+  <details>
+    <summary><%= archivo %></summary>
+    <pre><code class="language-html" data-src="/assets/programacion/web/htm_css/teoria/<%= archivo %>"></code></pre>
+  </details>
+<% }) %>

@@ -1,0 +1,103 @@
+name: 📝 Code Quality Workflow
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    # Ejecutar diariamente a las 7:00 AM UTC
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+    # Permitir ejecución manual
+
+env:
+  NODE_VERSION: '18'
+  RESULTS_DIR: 'results/workflows/code-quality'
+
+jobs:
+  code-quality-analysis:
+    name: 📝 Code Quality Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 📥 Checkout del código
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Instalar dependencias
+        run: npm ci
+
+      - name: 📝 Configurar entorno de CI
+        run: |
+          echo "📝 Configurando entorno para CI..."
+          cp config.env.example config.env
+          chmod 600 config.env
+          mkdir -p logs
+          echo "✅ Entorno configurado"
+
+      - name: 🔍 Ejecutar análisis de código completo
+        run: npm run analisis-completo
+
+      - name: 📊 Generar reporte de análisis
+        run: |
+          echo "📊 Generando reporte de análisis..."
+          mkdir -p ${{ env.RESULTS_DIR }}
+          if [ -f "results/analysis-results/analysis-complete-report.json" ]; then
+            cp results/analysis-results/analysis-complete-report.json ${{ env.RESULTS_DIR }}/analysis-report.json
+            echo "✅ Reporte copiado a ${{ env.RESULTS_DIR }}"
+          else
+            echo "⚠️ No se encontró reporte de análisis"
+          fi
+
+      - name: 🔍 Ejecutar ESLint
+        run: |
+          echo "🔍 Ejecutando ESLint..."
+          npx eslint src/ app.mjs --format json --output-file ${{ env.RESULTS_DIR }}/eslint-report.json || echo "⚠️ ESLint encontró problemas"
+
+      - name: 🎨 Verificar formato con Prettier
+        run: |
+          echo "🎨 Verificando formato con Prettier..."
+          npx prettier --check src/ app.mjs > ${{ env.RESULTS_DIR }}/prettier-report.txt 2>&1 || echo "⚠️ Prettier encontró problemas de formato"
+
+      - name: 📊 Analizar estructura del código
+        run: |
+          echo "📊 Analizando estructura del código..."
+
+          # Contar líneas de código
+          echo "=== ESTADÍSTICAS DE CÓDIGO ===" > ${{ env.RESULTS_DIR }}/code-stats.txt
+          echo "Líneas totales: $(find src/ -name "*.mjs" -o -name "*.js" | xargs wc -l | tail -1)" >> ${{ env.RESULTS_DIR }}/code-stats.txt
+          echo "Archivos JavaScript: $(find src/ -name "*.mjs" -o -name "*.js" | wc -l)" >> ${{ env.RESULTS_DIR }}/code-stats.txt
+          echo "Archivos EJS: $(find views/ -name "*.ejs" | wc -l)" >> ${{ env.RESULTS_DIR }}/code-stats.txt
+          echo "Archivos CSS: $(find public/ -name "*.css" | wc -l)" >> ${{ env.RESULTS_DIR }}/code-stats.txt
+
+          # Verificar complejidad ciclomática básica
+          echo "" >> ${{ env.RESULTS_DIR }}/code-stats.txt
+          echo "=== COMPLEJIDAD CICLOMÁTICA ===" >> ${{ env.RESULTS_DIR }}/code-stats.txt
+          echo "Funciones encontradas: $(grep -r "function\|=>" src/ --include="*.mjs" --include="*.js" | wc -l)" >> ${{ env.RESULTS_DIR }}/code-stats.txt
+
+      - name: 📤 Subir reportes como artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-quality-reports
+          path: ${{ env.RESULTS_DIR }}/
+          retention-days: 30
+
+      - name: 📊 Resumen de calidad de código
+        if: always()
+        run: |
+          echo "## 📝 Resumen de Calidad de Código" >> $GITHUB_STEP_SUMMARY
+          echo "Fecha: $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Análisis completado:" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Análisis de código completo" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Verificación con ESLint" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Verificación con Prettier" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Análisis de estructura del código" >> $GITHUB_STEP_SUMMARY

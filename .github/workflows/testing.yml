@@ -1,0 +1,97 @@
+name: 🧪 Testing Workflow
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    # Ejecutar diariamente a las 4:00 AM UTC
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    # Permitir ejecución manual
+
+env:
+  NODE_VERSION: '18'
+  RESULTS_DIR: 'results/workflows/testing'
+
+jobs:
+  testing-suite:
+    name: 🧪 Test Suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: 📥 Checkout del código
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Instalar dependencias
+        run: npm ci
+
+      - name: 📝 Configurar entorno de CI
+        run: |
+          echo "📝 Configurando entorno para CI..."
+          cp config.env.example config.env
+          chmod 600 config.env
+          mkdir -p logs
+          echo "✅ Entorno configurado"
+
+      - name: 🧪 Ejecutar tests unitarios
+        run: npm run test:unit
+
+      - name: 🧪 Ejecutar tests de integración
+        run: npm run test:integration
+
+      - name: 🧪 Ejecutar tests de seguridad
+        run: npm run test:security
+
+      - name: 🧪 Ejecutar tests E2E
+        run: npm run test:e2e
+
+      - name: 📊 Generar cobertura de código
+        run: |
+          echo "📊 Generando cobertura de código..."
+          npm run test:coverage || echo "⚠️ Cobertura no disponible"
+
+      - name: 🚀 Ejecutar análisis de testing completo
+        run: npm run testing-completo
+
+      - name: 📊 Generar reporte de testing
+        run: |
+          echo "📊 Generando reporte de testing..."
+          mkdir -p ${{ env.RESULTS_DIR }}
+          if [ -f "results/testing-results/testing-complete-report.json" ]; then
+            cp results/testing-results/testing-complete-report.json ${{ env.RESULTS_DIR }}/testing-report.json
+            echo "✅ Reporte copiado a ${{ env.RESULTS_DIR }}"
+          else
+            echo "⚠️ No se encontró reporte de testing"
+          fi
+
+      - name: 📤 Subir reportes como artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testing-reports
+          path: |
+            ${{ env.RESULTS_DIR }}/
+            coverage/
+          retention-days: 30
+
+      - name: 📊 Resumen de testing
+        if: always()
+        run: |
+          echo "## 🧪 Resumen de Testing" >> $GITHUB_STEP_SUMMARY
+          echo "Fecha: $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Tests ejecutados:" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Tests unitarios" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Tests de integración" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Tests de seguridad" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Tests E2E" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Análisis completo de testing" >> $GITHUB_STEP_SUMMARY

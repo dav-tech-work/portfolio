@@ -1,0 +1,87 @@
+<main class="privacy-container">
+  <h1><%= (t && t.privacy && t.privacy.title) || 'Política de Privacidad' %></h1>
+
+  <section class="privacy-section">
+    <h2><%= (t && t.privacy && t.privacy.responsible && t.privacy.responsible.title) || 'Responsable del Tratamiento' %></h2>
+    <ul>
+      <li><strong><%= (t && t.privacy && t.privacy.responsible && t.privacy.responsible.name) || 'Nombre:' %></strong> Daniel Arribas Velázquez</li>
+      <li><strong><%= (t && t.privacy && t.privacy.responsible && t.privacy.responsible.email) || 'Correo electrónico:' %></strong> danielarribasvelazquez@dav-tech.work</li>
+      <li><strong><%= (t && t.privacy && t.privacy.responsible && t.privacy.responsible.website) || 'Sitio web:' %></strong> https://daniel-arribas-velazquez.dav-tech.work/</li>
+      <li><strong><%= (t && t.privacy && t.privacy.responsible && t.privacy.responsible.purpose) || 'Finalidad:' %></strong> Gestión de contactos y comunicaciones relacionadas con el sitio web y proyectos profesionales.</li>
+    </ul>
+  </section>
+
+  <section class="privacy-section">
+    <h2><%= (t && t.privacy && t.privacy.data_processing && t.privacy.data_processing.title) || 'Tratamiento de Datos Personales' %></h2>
+    <p><%= (t && t.privacy && t.privacy.data_processing && t.privacy.data_processing.description) || 'De acuerdo con el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), le informamos que los datos personales que usted proporcione serán tratados conforme a las siguientes condiciones:' %></p>
+
+    <h3><%= (t && t.privacy && t.privacy.data_processing && t.privacy.data_processing.purpose && t.privacy.data_processing.purpose.title) || 'Finalidad del tratamiento' %></h3>
+    <ul>
+      <% if (t && t.privacy && t.privacy.data_processing && t.privacy.data_processing.purpose && t.privacy.data_processing.purpose.items) { %>
+        <% t.privacy.data_processing.purpose.items.forEach(function(item) { %>
+          <li><%= item %></li>
+        <% }); %>
+      <% } else { %>
+        <li>Atender consultas o solicitudes de información.</li>
+        <li>Comunicar novedades relacionadas con el portfolio, proyectos o colaboraciones (en caso de suscripción voluntaria).</li>
+        <li>Mantener contacto profesional.</li>
+      <% } %>
+    </ul>
+
+    <h3><%= (t && t.privacy && t.privacy.data_processing && t.privacy.data_processing.legitimation && t.privacy.data_processing.legitimation.title) || 'Legitimación' %></h3>
+    <p><%= (t && t.privacy && t.privacy.data_processing && t.privacy.data_processing.legitimation && t.privacy.data_processing.legitimation.description) || 'Su consentimiento expreso al enviar voluntariamente sus datos a través del formulario de contacto o correo electrónico.' %></p>
+
+    <h3><%= (t && t.privacy && t.privacy.data_processing && t.privacy.data_processing.retention && t.privacy.data_processing.retention.title) || 'Conservación' %></h3>
+    <p><%= (t && t.privacy && t.privacy.data_processing && t.privacy.data_processing.retention && t.privacy.data_processing.retention.description) || 'Los datos se conservarán mientras sean necesarios para cumplir con la finalidad del tratamiento o hasta que usted solicite su supresión.' %></p>
+  </section>
+
+  <section class="privacy-section">
+    <h2><%= (t && t.privacy && t.privacy.data_sharing && t.privacy.data_sharing.title) || 'Cesión de Datos' %></h2>
+    <p><%= (t && t.privacy && t.privacy.data_sharing && t.privacy.data_sharing.description) || 'No se cederán datos a terceros salvo obligación legal o consentimiento expreso.' %></p>
+  </section>
+
+  <section class="privacy-section">
+    <h2><%= (t && t.privacy && t.privacy.rights && t.privacy.rights.title) || 'Derechos' %></h2>
+    <p><%= (t && t.privacy && t.privacy.rights && t.privacy.rights.description) || 'Usted tiene derecho a:' %></p>
+    <ul>
+      <% if (t && t.privacy && t.privacy.rights && t.privacy.rights.items) { %>
+        <% t.privacy.rights.items.forEach(function(item) { %>
+          <li><%= item %></li>
+        <% }); %>
+      <% } else { %>
+        <li>Acceder a sus datos personales.</li>
+        <li>Rectificar datos inexactos.</li>
+        <li>Solicitar la supresión de sus datos.</li>
+        <li>Oponerse al tratamiento.</li>
+        <li>Solicitar la limitación del tratamiento.</li>
+        <li>Portar sus datos a otro responsable.</li>
+      <% } %>
+    </ul>
+    <p><%- (t && t.privacy && t.privacy.rights && t.privacy.rights.contact_info) || 'Para ejercer estos derechos, puede escribir a <strong>danielarribasvelazquez@dav-tech.work</strong> con el asunto "Protección de Datos", incluyendo copia de su DNI o documento equivalente.' %></p>
+  </section>
+
+  <section class="privacy-section">
+    <h2><%= (t && t.privacy && t.privacy.security && t.privacy.security.title) || 'Seguridad de la Información' %></h2>
+    <p><%= (t && t.privacy && t.privacy.security && t.privacy.security.description) || 'Se han implementado medidas técnicas y organizativas adecuadas para garantizar la seguridad e integridad de sus datos.' %></p>
+  </section>
+
+  <section class="privacy-section">
+    <h2><%= (t && t.privacy && t.privacy.cookies && t.privacy.cookies.title) || 'Cookies' %></h2>
+    <p><%= (t && t.privacy && t.privacy.cookies && t.privacy.cookies.description) || 'Este sitio puede utilizar cookies técnicas necesarias para su funcionamiento. No se utilizarán cookies con fines publicitarios sin consentimiento previo. Consulte la Política de Cookies para más información (si aplica).' %></p>
+  </section>
+
+  <section class="privacy-section">
+    <h2><%= (t && t.privacy && t.privacy.changes && t.privacy.changes.title) || 'Cambios en la Política' %></h2>
+    <p><%= (t && t.privacy && t.privacy.changes && t.privacy.changes.description) || 'Esta política podrá ser modificada para adaptarse a cambios legales o técnicos. Se notificará cualquier cambio en esta misma página.' %></p>
+  </section>
+
+  <div class="contact-info">
+    <h2><%= (t && t.privacy && t.privacy.contact && t.privacy.contact.title) || 'Contacto' %></h2>
+    <p><%= (t && t.privacy && t.privacy.contact && t.privacy.contact.description) || 'Si tiene alguna duda sobre esta Política de Privacidad, puede contactar a:' %></p>
+    <ul>
+      <li><strong><%= (t && t.privacy && t.privacy.responsible && t.privacy.responsible.name) || 'Nombre:' %></strong> Daniel Arribas Velázquez</li>
+      <li><strong><%= (t && t.privacy && t.privacy.responsible && t.privacy.responsible.email) || 'Correo electrónico:' %></strong> danielarribasvelazquez@dav-tech.work</li>
+      <li><strong><%= (t && t.privacy && t.privacy.responsible && t.privacy.responsible.website) || 'Sitio web:' %></strong> https://daniel-arribas-velazquez.dav-tech.work/</li>
+    </ul>
+  </div>
+</main>

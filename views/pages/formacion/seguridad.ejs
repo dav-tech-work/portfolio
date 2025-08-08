@@ -1,0 +1,48 @@
+<main class="code-container" role="main" aria-labelledby="titulo-seguridad">
+  <h1 id="titulo-seguridad" class="page-title"><%= (t.security && t.security.title) || 'Seguridad Informática' %></h1>
+
+  <div id="content">
+    <%
+    const practicas = [
+      { archivo: 'Teorico (MF0489).pdf', nombre: 'Teórico MF0489', descripcion: 'Documento teórico sobre conceptos fundamentales de seguridad informática' },
+      { archivo: 'Teorico (MF0487).pdf', nombre: 'Teórico MF0487', descripcion: 'Teoría avanzada sobre auditoría y ciberseguridad' },
+      { archivo: 'Practica 1  (MF0486_3).pdf', nombre: 'Práctica 1 (MF0486_3)', descripcion: 'Primera práctica de seguridad informática' },
+      { archivo: 'Practica 2  (MF0486_3).pdf', nombre: 'Práctica 2 (MF0486_3)', descripcion: 'Segunda práctica de seguridad informática' },
+      { archivo: 'Practica 5  (MF0486_3).pdf', nombre: 'Práctica 5 (MF0486_3)', descripcion: 'Quinta práctica de seguridad informática' },
+      { archivo: 'Practica 6  (MF0486_3).pdf', nombre: 'Práctica 6 (MF0486_3)', descripcion: 'Sexta práctica de seguridad informática' },
+      { archivo: 'Auditoria Seguridad Nebula (MF0488).pdf', nombre: 'Auditoría Seguridad Nebula (MF0488)', descripcion: 'Auditoría completa de seguridad en entorno Nebula' }
+    ];
+    %>
+
+    <% practicas.forEach(({ archivo, nombre, descripcion }) => { %>
+      <details aria-label="<%= nombre %>">
+        <summary tabindex="0"><%= nombre %></summary>
+        <div class="pdf-container">
+          <div class="pdf-header">
+            <h3><%= nombre %></h3>
+            <p><%= descripcion %></p>
+          </div>
+          <div class="pdf-viewer">
+            <div class="pdf-preview">
+              <div class="pdf-icon">📄</div>
+              <h4><%= nombre %></h4>
+              <p><%= descripcion %></p>
+              <div class="pdf-info">
+                <span class="pdf-type">PDF Document</span>
+                <span class="pdf-size">Seguridad Informática</span>
+              </div>
+            </div>
+            <div class="pdf-actions">
+              <a href="/assets/seguridad/<%= archivo %>" target="_blank" rel="noopener noreferrer" class="btn-view">
+                <i class="fas fa-external-link-alt"></i> Abrir PDF
+              </a>
+              <a href="/assets/seguridad/<%= archivo %>" download class="btn-download">
+                <i class="fas fa-download"></i> Descargar
+              </a>
+            </div>
+          </div>
+        </div>
+      </details>
+    <% }) %>
+  </div>
+</main>

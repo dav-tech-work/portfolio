@@ -15,16 +15,16 @@ import {
   verifyCSRFToken,
   isAuthenticated,
   errorHandler,
-  notFoundHandler,
-  idioma,
-  logger,
-  limiter,
+  rateLimiters,
   protecciones,
   sanitizer,
-  authLimiter,
 } from '../middleware/index.mjs';
+import { authLimiter } from '../middleware/rateLimiters.mjs';
+import { notFoundHandler } from '../middleware/errorHandler.mjs';
 
 import cspMiddleware from '../middleware/csp.mjs';
+import idioma from '../middleware/idioma.mjs';
+import logger from '../middleware/logger.mjs';
 import { formatDate, capitalize, truncate, isValidEmail } from '../utils/helpers.mjs';
 import config from './index.mjs';
 
@@ -115,7 +115,7 @@ export function createExpressApp(options = {}) {
   }
 
   if (enableRateLimit) {
-    app.use(limiter);
+    app.use(rateLimiters.general);
   }
 
   app.use(sanitizer);

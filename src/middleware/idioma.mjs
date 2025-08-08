@@ -1,4 +1,4 @@
-import { obtenerTraducciones } from '../utils/idioma/idioma.mjs';
+import { obtenerTraducciones, obtenerTraduccion } from '../utils/idioma/index.mjs';
 import config from '../config/index.mjs';
 
 function normalizarIdioma(lang) {
@@ -40,6 +40,15 @@ export default function middlewareIdioma(req, res, next) {
   res.locals.traducciones = req.traducciones;
   res.locals.t = req.traducciones;
   res.locals.idioma = req.idioma;
+
+  // Exponer la función helper a las vistas EJS
+  res.locals.obtenerTraduccion = (clave, fallback = '') =>
+    obtenerTraduccion(req.traducciones, clave, fallback);
+
+  // Crear una función t que funcione como helper para las vistas
+  res.locals.t = function (clave, fallback = '') {
+    return obtenerTraduccion(req.traducciones, clave, fallback);
+  };
 
   next();
 }

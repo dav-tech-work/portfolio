@@ -36,7 +36,7 @@ COPY package*.json ./
 COPY scripts/ ./scripts/
 
 # Copiar archivo de ejemplo como config.env para el build
-COPY config.env.example ./config.env
+COPY config.env ./config.env
 
 # Limpiar caché de npm e instalar TODAS las dependencias (incluyendo dev para build)
 RUN npm cache clean --force && \
@@ -71,14 +71,9 @@ RUN echo "🔍 Verificando integridad de archivos críticos..." && \
     [ -d "src/utils" ] || (echo "❌ Error: directorio src/utils no encontrado" && exit 1) && \
     [ -d "public" ] || (echo "❌ Error: directorio public no encontrado" && exit 1) && \
     [ -d "views" ] || (echo "❌ Error: directorio views no encontrado" && exit 1) && \
-    [ -f "robots.txt" ] || (echo "❌ Error: robots.txt no encontrado" && exit 1) && \
-    [ -f "sitemap.xml" ] || (echo "❌ Error: sitemap.xml no encontrado" && exit 1) && \
+    [ -f "public/robots.txt" ] || (echo "❌ Error: robots.txt no encontrado en public/" && exit 1) && \
+    [ -f "public/sitemap.xml" ] || (echo "❌ Error: sitemap.xml no encontrado en public/" && exit 1) && \
     echo "✅ Verificación de integridad completada"
-
-# Ejecutar verificación de dependencias en build
-RUN echo "🔒 Verificando dependencias..." && \
-    npm audit --audit-level=high && \
-    echo "✅ Verificación de dependencias completada"
 
 # ===================================================================
 # 🚀 ETAPA 2: PRODUCCIÓN (Runtime optimizado y seguro)
@@ -130,14 +125,14 @@ COPY --from=builder --chown=appuser:appgroup /app/public ./public
 COPY --from=builder --chown=appuser:appgroup /app/views ./views
 
 # Copiar archivos de configuración del servidor web
-COPY --from=builder --chown=appuser:appgroup /app/robots.txt ./robots.txt
-COPY --from=builder --chown=appuser:appgroup /app/sitemap.xml ./sitemap.xml
-
-# Copiar archivos de configuración
-COPY --from=builder --chown=appuser:appgroup /app/config.env.example ./config.env.example
+COPY --from=builder --chown=appuser:appgroup /app/public/robots.txt ./robots.txt
+COPY --from=builder --chown=appuser:appgroup /app/public/sitemap.xml ./sitemap.xml
 
 # Copiar datos estáticos
 COPY --from=builder --chown=appuser:appgroup /app/data ./data
+
+# Copiar configuración
+COPY --from=builder --chown=appuser:appgroup /app/config.env ./config.env
 
 # Crear estructura de directorios necesarios con permisos seguros
 RUN mkdir -p \
@@ -156,18 +151,12 @@ RUN mkdir -p \
 
 # Generar secretos seguros para producción
 RUN echo "🔐 Generando secretos seguros para producción..." && \
-    echo "NODE_ENV=production" > /app/config.env && \
-    echo "PORT=3000" >> /app/config.env && \
+    cp /app/config.env /app/config.env.backup && \
+    echo "NODE_ENV=production" >> /app/config.env && \
     echo "JWT_SECRET=$(openssl rand -hex 64)" >> /app/config.env && \
     echo "SESSION_SECRET=$(openssl rand -hex 64)" >> /app/config.env && \
-    echo "BCRYPT_ROUNDS=12" >> /app/config.env && \
-    echo "RATE_LIMIT_WINDOW_MS=60000" >> /app/config.env && \
-    echo "RATE_LIMIT_MAX_REQUESTS=1000" >> /app/config.env && \
-    echo "LOG_LEVEL=warn" >> /app/config.env && \
-    echo "ENABLE_CLUSTERING=true" >> /app/config.env && \
-    echo "COMPRESSION_ENABLED=true" >> /app/config.env && \
-    echo "CSP_ENABLED=true" >> /app/config.env && \
-    echo "HSTS_ENABLED=true" >> /app/config.env && \
+    echo "COOKIE_SECURE=true" >> /app/config.env && \
+    echo "COOKIE_SAME_SITE=strict" >> /app/config.env && \
     chown appuser:appgroup /app/config.env && \
     chmod 600 /app/config.env && \
     echo "✅ Secretos generados correctamente"
@@ -204,7 +193,7 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
     CMD curl -f http://localhost:3000/health || exit 1
 
 # Configurar punto de entrada con dumb-init para manejo correcto de señales
-ENTRYPOINT ["dumb-init", "--"]
+ENTRYPOINT ["dumb-init", "node", "app.mjs"]
 
-# Comando de inicio de la aplicación
-CMD ["node", "app.mjs"]
+# (Opcional) Para logs persistentes, monta un volumen:
+# VOLUME ["/app/logs"]

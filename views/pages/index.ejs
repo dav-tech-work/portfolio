@@ -1,80 +1,190 @@
 <main class="container" role="main" aria-label="Contenido principal del sitio">
   <div id="content">
     <!-- Hero principal -->
-    <section class="hero-section" aria-label="Sección de bienvenida">
+    <section id="inicio" class="hero-section" aria-label="Sección de bienvenida">
       <h1 class="hero-title">
-        <%= t["home.title"] %>
+        <%= (t && t.home && t.home.title) || 'Daniel Arribas Velázquez' %>
       </h1>
       <h2 class="hero-subtitle">
-        <%= t["home.subtitle"] %>
+        <%= (t && t.home && t.home.subtitle) || 'Administrador de Sistemas • Especialista en Seguridad' %>
       </h2>
+      <p class="subtitle"><%= (t && t.home && t.home.subtitle_verified) || 'Portfolio técnico verificado con auditorías A+ de seguridad y infraestructura enterprise' %></p>
+    </section>
 
-      <div class="about-text">
-        <p><%= t["about.desc"] %></p>
-        <p><%= t["about.desc2"] %></p>
-        <p><%= t["about.desc3"] %></p>
+    <!-- Sección de credenciales verificadas -->
+    <section class="credenciales-verificadas" aria-label="Credenciales y verificaciones">
+      <h2><%= (t && t.home && t.home.credenciales && t.home.credenciales.title) || 'Portfolio Técnico Verificado' %></h2>
+
+      <div class="badges-grid">
+        <div class="badge badge-security">
+          <span class="icon">🛡️</span>
+          <div>
+            <strong><%= (t && t.home && t.home.credenciales && t.home.credenciales.security && t.home.credenciales.security.title) || 'A+ Security Rating' %></strong>
+            <small><%= (t && t.home && t.home.credenciales && t.home.credenciales.security && t.home.credenciales.security.subtitle) || 'SecurityHeaders.com verified' %></small>
+          </div>
+        </div>
+
+        <div class="badge badge-testing">
+          <span class="icon">✅</span>
+          <div>
+            <strong><%= (t && t.home && t.home.credenciales && t.home.credenciales.testing && t.home.credenciales.testing.title) || '61 Tests Automatizados' %></strong>
+            <small><%= (t && t.home && t.home.credenciales && t.home.credenciales.testing && t.home.credenciales.testing.subtitle) || 'CI/CD pipeline activo' %></small>
+          </div>
+        </div>
+
+        <div class="badge badge-architecture">
+          <span class="icon">🏗️</span>
+          <div>
+            <strong><%= (t && t.home && t.home.credenciales && t.home.credenciales.architecture && t.home.credenciales.architecture.title) || 'Enterprise Architecture' %></strong>
+            <small><%= (t && t.home && t.home.credenciales && t.home.credenciales.architecture && t.home.credenciales.architecture.subtitle) || '5,638+ líneas documentadas' %></small>
+          </div>
+        </div>
+
+        <div class="badge badge-production">
+          <span class="icon">🚀</span>
+          <div>
+            <strong><%= (t && t.home && t.home.credenciales && t.home.credenciales.production && t.home.credenciales.production.title) || 'Production Ready' %></strong>
+            <small><%= (t && t.home && t.home.credenciales && t.home.credenciales.production && t.home.credenciales.production.subtitle) || 'Kubernetes + Docker' %></small>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Sección de destacados -->
-    <section class="featured-section" aria-label="Sección de servicios destacados">
-      <h2><%= t["home.featured"] %></h2>
-      <div class="featured-grid">
-        <div class="featured-item">
-          <i class="fas fa-server featured-icon" aria-hidden="true"></i>
-          <h3 class="featured-title"><%= t["home.systems"] %></h3>
-          <p><%= t["home.systems.desc"] %></p>
+    <!-- Experiencia en seguridad enterprise -->
+    <section class="experiencia-enterprise" aria-label="Experiencia en seguridad enterprise">
+      <h2><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.title) || 'Experiencia en Seguridad Enterprise Verificada' %></h2>
+
+      <div class="enterprise-stats">
+        <div class="stat">
+          <span class="number">5</span>
+          <span class="label"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.stats && t.home.experiencia_enterprise.stats.years) || 'Años en Administración' %></span>
         </div>
-        <div class="featured-item">
-          <i class="fas fa-network-wired featured-icon" aria-hidden="true"></i>
-          <h3 class="featured-title"><%= t["home.networks"] %></h3>
-          <p><%= t["home.networks.desc"] %></p>
+        <div class="stat">
+          <span class="number">A+</span>
+          <span class="label"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.stats && t.home.experiencia_enterprise.stats.rating) || 'Rating de Seguridad' %></span>
         </div>
-        <div class="featured-item">
-          <i class="fas fa-shield-alt featured-icon" aria-hidden="true"></i>
-          <h3 class="featured-title"><%= t["home.security"] %></h3>
-          <p><%= t["home.security.desc"] %></p>
+        <div class="stat">
+          <span class="number">0</span>
+          <span class="label"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.stats && t.home.experiencia_enterprise.stats.incidents) || 'Incidentes de Seguridad' %></span>
+        </div>
+        <div class="stat">
+          <span class="number">99.9%</span>
+          <span class="label"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.stats && t.home.experiencia_enterprise.stats.uptime) || 'Uptime de Servicios' %></span>
+        </div>
+      </div>
+
+      <div class="herramientas-enterprise">
+        <h3><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.title) || 'Stack de Seguridad Enterprise' %></h3>
+        <div class="security-stack">
+          <div class="security-category">
+            <h4>🛡️ <%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.endpoint && t.home.experiencia_enterprise.herramientas.endpoint.title) || 'Seguridad Endpoint' %></h4>
+            <span class="tech-badge enterprise"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.endpoint && t.home.experiencia_enterprise.herramientas.endpoint.sentinelone) || 'SentinelOne EDR' %></span>
+            <span class="tech-badge enterprise"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.endpoint && t.home.experiencia_enterprise.herramientas.endpoint.datto) || 'Datto RMM' %></span>
+            <span class="tech-badge enterprise"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.endpoint && t.home.experiencia_enterprise.herramientas.endpoint.endpoint) || 'Endpoint Protection' %></span>
+            <span class="tech-badge enterprise"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.endpoint && t.home.experiencia_enterprise.herramientas.endpoint.antivirus) || 'Antivirus Kaspersky' %></span>
+          </div>
+          <div class="security-category">
+            <h4>🔥 <%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.firewall && t.home.experiencia_enterprise.herramientas.firewall.title) || 'Firewall & Red' %></h4>
+            <span class="tech-badge enterprise"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.firewall && t.home.experiencia_enterprise.herramientas.firewall.sonicwall) || 'SonicWall Firewall' %></span>
+            <span class="tech-badge enterprise"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.firewall && t.home.experiencia_enterprise.herramientas.firewall.parallel) || 'Parallel RAS (Acceso Remoto)' %></span>
+            <span class="tech-badge enterprise"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.firewall && t.home.experiencia_enterprise.herramientas.firewall.pfSense) || 'pfSense Firewall' %></span>
+          </div>
+          <div class="security-category">
+            <h4>💾 <%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.backup && t.home.experiencia_enterprise.herramientas.backup.title) || 'Backup & Continuidad' %></h4>
+            <span class="tech-badge enterprise"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.backup && t.home.experiencia_enterprise.herramientas.backup.veeam) || 'Veeam Backup & Replication' %></span>
+            <span class="tech-badge enterprise"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.backup && t.home.experiencia_enterprise.herramientas.backup.acronis) || 'Acronis Backup' %></span>
+            <span class="tech-badge enterprise"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.backup && t.home.experiencia_enterprise.herramientas.backup.proxmox) || 'Proxmox VE Backups' %></span>
+          </div>
+          <div class="security-category">
+            <h4>🖥️ <%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.infraestructura && t.home.experiencia_enterprise.herramientas.infraestructura.title) || 'Infraestructura' %></h4>
+            <span class="tech-badge"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.infraestructura && t.home.experiencia_enterprise.herramientas.infraestructura.windows) || 'Windows Server' %></span>
+            <span class="tech-badge"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.infraestructura && t.home.experiencia_enterprise.herramientas.infraestructura.ad) || 'Active Directory' %></span>
+            <span class="tech-badge"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.infraestructura && t.home.experiencia_enterprise.herramientas.infraestructura.linux) || 'Linux Servers' %></span>
+            <span class="tech-badge"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.infraestructura && t.home.experiencia_enterprise.herramientas.infraestructura.hyperv) || 'Hyper-V' %></span>
+            <span class="tech-badge"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.infraestructura && t.home.experiencia_enterprise.herramientas.infraestructura.vmware) || 'VMware ESXI' %></span>
+            <span class="tech-badge"><%= (t && t.home && t.home.experiencia_enterprise && t.home.experiencia_enterprise.herramientas && t.home.experiencia_enterprise.herramientas.infraestructura && t.home.experiencia_enterprise.herramientas.infraestructura.proxmox) || 'Proxmox VE' %></span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Sección de tecnologías -->
-    <section class="tech-section" aria-label="Sección de tecnologías dominadas">
-      <h2><%= t["home.technologies"] %></h2>
-      <ul class="tech-grid">
-        <% const tecnologias = [
-          { img: "Windows.svg", text: "Windows" , alt: "Icono de Windows"},
-          { img: "debian.svg", text: "Debian" , alt: "Icono de debian"},
-          { img: "ubuntu.svg", text: "Ubuntu" , alt: "Icono de Ubuntu"},
-          { img: "fedora.svg", text: "Fedora" , alt: "Icono de Fedora"},
-          { img: "arch.svg", text: "Arch Linux" , alt: "Icono de Arch-Linux"},
-          { img: "kalilinux.svg", text: "Kali Linux" , alt: "Icono de Kali-Linux"},
-          { img: "parrotos.svg", text: "Parrot OS" , alt: "Icono de Parrot OS" },
-          { img: "firewall.svg", text: "pfSense" , alt: "Icono de Firewall" },
-          { img: "firewall.svg", text: "SonicWall" , alt: "Icono de Firewall"},
-          { img: "vmware.svg", text: "VMware" , alt: "Icono de VmWare"},
-          { img: "proxmox.svg", text: "Proxmox" , alt: "Icono de Proxmox"},
-          { img: "docker.svg", text: "Docker" , alt: "Icono de Docker"},
-          { img: "acronis.svg", text: "Acronis" , alt: "Icono de Acronis"},
-          { img: "backupsms.ico", text: "Veeam" , alt: "Icono de Backups"},
-          { img: "datto.svg", text: "Datto" , alt: "Icono de Datto"},
-          { img: "python.svg", text: "Python" , alt: "Icono de Python"},
-          { img: "javascript.svg", text: "JavaScript" , alt: "Icono de Javascript"},
-          { img: "Html.svg", text: "HTML5" , alt: "Icono de HTML"},
-          { img: "css.svg", text: "CSS3" , alt: "Icono de CSS"},
-          { img: "sql.svg", text: "SQL" , alt: "Icono de SQL"},
-          { img: "php.svg", text: "PHP" , alt: "Icono de PHP"},
-          { img: "node.svg", text: "Node.js" , alt: "Icono de Node.js"},
-          { img: "kubernetes.svg", text: "Kubernetes" , alt: "Icono de kubernetes"}
-        ]; %>
+    <!-- Proyectos destacados -->
+    <section class="proyectos-destacados" aria-label="Proyectos destacados">
+      <h2><%= (t && t.home && t.home.proyectos && t.home.proyectos.title) || 'Implementaciones de Seguridad - Production Grade' %></h2>
 
-        <% tecnologias.forEach(t => { %>
-          <li class="tech-item">
-            <img src="/assets/img/logos/<%= t.img %>" alt="<%= t.alt %>" class="tech-icon" loading="lazy" />
-            <span><%= t.text %></span>
-          </li>
-        <% }) %>
-      </ul>
+      <div class="proyecto-card featured">
+        <div class="proyecto-header">
+          <h3><%= (t && t.home && t.home.proyectos && t.home.proyectos.sistema_gestion && t.home.proyectos.sistema_gestion.title) || 'Sistema de Gestión con Seguridad A+' %></h3>
+          <div class="proyecto-badges">
+            <span class="badge-live">🟢 <%= (t && t.home && t.home.proyectos && t.home.proyectos.sistema_gestion && t.home.proyectos.sistema_gestion.badge_live) || 'En Producción' %></span>
+            <span class="badge-verified">🛡️ <%= (t && t.home && t.home.proyectos && t.home.proyectos.sistema_gestion && t.home.proyectos.sistema_gestion.badge_verified) || 'A+ Security' %></span>
+          </div>
+        </div>
+
+        <div class="proyecto-metrics">
+          <div class="metric">
+            <span class="value">A+</span>
+            <span class="label"><%= (t && t.home && t.home.proyectos && t.home.proyectos.sistema_gestion && t.home.proyectos.sistema_gestion.metrics && t.home.proyectos.sistema_gestion.metrics.ssl) || 'SSL Rating' %></span>
+          </div>
+          <div class="metric">
+            <span class="value">A+</span>
+            <span class="label"><%= (t && t.home && t.home.proyectos && t.home.proyectos.sistema_gestion && t.home.proyectos.sistema_gestion.metrics && t.home.proyectos.sistema_gestion.metrics.headers) || 'Security Headers' %></span>
+          </div>
+          <div class="metric">
+            <span class="value">0</span>
+            <span class="label"><%= (t && t.home && t.home.proyectos && t.home.proyectos.sistema_gestion && t.home.proyectos.sistema_gestion.metrics && t.home.proyectos.sistema_gestion.metrics.vulnerabilities) || 'Vulnerabilidades' %></span>
+          </div>
+        </div>
+
+        <div class="security-features">
+          <strong><%= (t && t.home && t.home.proyectos && t.home.proyectos.sistema_gestion && t.home.proyectos.sistema_gestion.features && t.home.proyectos.sistema_gestion.features.title) || 'Implementaciones de Seguridad:' %></strong>
+          <ul>
+            <li><%= (t && t.home && t.home.proyectos && t.home.proyectos.sistema_gestion && t.home.proyectos.sistema_gestion.features && t.home.proyectos.sistema_gestion.features.ssl) || 'SSL/TLS con Perfect Forward Secrecy' %></li>
+            <li><%= (t && t.home && t.home.proyectos && t.home.proyectos.sistema_gestion && t.home.proyectos.sistema_gestion.features && t.home.proyectos.sistema_gestion.features.headers) || 'Security Headers completos (HSTS, CSP, etc.)' %></li>
+            <li><%= (t && t.home && t.home.proyectos && t.home.proyectos.sistema_gestion && t.home.proyectos.sistema_gestion.features && t.home.proyectos.sistema_gestion.features.mfa) || 'Autenticación multifactor' %></li>
+            <li><%= (t && t.home && t.home.proyectos && t.home.proyectos.sistema_gestion && t.home.proyectos.sistema_gestion.features && t.home.proyectos.sistema_gestion.features.logs) || 'Logs de auditoría centralizados' %></li>
+          </ul>
+        </div>
+
+        <div class="proyecto-links">
+          <a href="https://github.com/dav-tech-work/portfolio" class="btn-primary" target="_blank"><%= (t && t.home && t.home.proyectos && t.home.proyectos.sistema_gestion && t.home.proyectos.sistema_gestion.links && t.home.proyectos.sistema_gestion.links.ver) || 'Ver Sistema' %></a>
+          <a href="https://github.com/dav-tech-work/portfolio/tree/main/reports" class="btn-secondary" target="_blank"><%= (t && t.home && t.home.proyectos && t.home.proyectos.sistema_gestion && t.home.proyectos.sistema_gestion.links && t.home.proyectos.sistema_gestion.links.auditoria) || 'Auditoría de Seguridad' %></a>
+        </div>
+      </div>
+
+      <div class="proyecto-card">
+        <div class="proyecto-header">
+          <h3><%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.title) || 'Laboratorio de Seguridad Avanzado' %></h3>
+          <div class="proyecto-badges">
+            <span class="badge-live">🟢 <%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.badge_live) || '24/7 Monitoring' %></span>
+            <span class="badge-professional">🛡️ <%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.badge_professional) || 'Security Lab' %></span>
+          </div>
+        </div>
+
+        <div class="proyecto-description">
+          <p><strong><%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.description) || 'Entorno de seguridad completo con Proxmox, segmentación de red, sistemas de monitoreo, backup automatizado y testing de vulnerabilidades.' %></strong></p>
+        </div>
+
+        <div class="security-services">
+          <strong><%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.services && t.home.proyectos.laboratorio.services.title) || 'Servicios Implementados en Lab:' %></strong>
+          <ul>
+            <li><%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.services && t.home.proyectos.laboratorio.services.virtualizacion) || 'Virtualización con Proxmox VE' %></li>
+            <li><%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.services && t.home.proyectos.laboratorio.services.contenedores) || 'Contenedores en clúster Kubernetes para servicios' %></li>
+            <li><%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.services && t.home.proyectos.laboratorio.services.proxy) || 'Reverse proxy con SSL automatizado' %></li>
+            <li><%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.services && t.home.proyectos.laboratorio.services.backup) || 'Backup automatizado de configuraciones' %></li>
+            <li><%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.services && t.home.proyectos.laboratorio.services.monitoreo) || 'Monitoreo de servicios' %></li>
+            <li><%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.services && t.home.proyectos.laboratorio.services.documentacion) || 'Documentación técnica completa (1000+ líneas)' %></li>
+            <li><%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.services && t.home.proyectos.laboratorio.services.firewall) || 'Firewall con pfSense' %></li>
+            <li><%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.services && t.home.proyectos.laboratorio.services.scanning) || 'Escaneo de vulnerabilidades' %></li>
+            <li><%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.services && t.home.proyectos.laboratorio.services.segmentation) || 'Segmentación de red' %></li>
+          </ul>
+        </div>
+
+        <div class="proyecto-links">
+          <a href="/homelab" class="btn-primary"><%= (t && t.home && t.home.proyectos && t.home.proyectos.laboratorio && t.home.proyectos.laboratorio.links && t.home.proyectos.laboratorio.links.arquitectura) || 'Ver Arquitectura' %></a>
+        </div>
+      </div>
     </section>
+
   </div>
 </main>

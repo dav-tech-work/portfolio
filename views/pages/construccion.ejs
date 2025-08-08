@@ -1,9 +1,9 @@
 <main role="main" aria-label="Página en construcción">
   <section>
-  <h1 id="titulo-construccion"><%= t["construction.title"] %></h1>
+  <h1 id="titulo-construccion"><%= (t.construction && t.construction.title) || 'En Construcción' %></h1>
 
   <p class="descripcion-construccion">
-    <%= t["construction.description"] || "Estamos trabajando en esta sección. Vuelve más adelante." %>
+    <%= (t.construction && t.construction.description) || "Estamos trabajando en esta sección. Vuelve más adelante." %>
   </p>
 
   <div class="linea" aria-hidden="true">

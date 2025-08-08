@@ -1,75 +1,126 @@
 import express from 'express';
 import {
-  procesarFormularioContacto,
-  prepararCorreo,
-  registrar,
-} from '../../utils/servicios/index.mjs';
-import config from '../../config/index.mjs';
-import { body, validationResult } from 'express-validator';
-import asyncHandler from '../../utils/asyncHandler.mjs';
+  sanitizeRequest,
+  validateAndSanitizeEmail,
+  validateAndSanitizeName,
+  validateAndSanitizeMessage,
+} from '../../middleware/sanitizer-advanced.mjs';
+import { procesarFormularioContacto } from '../../utils/servicios/contacto.mjs';
 
 const router = express.Router();
 
-// Validaciones para el formulario de contacto
-const validateContacto = [
-  body('email').isEmail().normalizeEmail().withMessage('Email debe ser válido'),
-  body('nombre')
-    .trim()
-    .isLength({ min: 2, max: 50 })
-    .withMessage('El nombre debe tener entre 2 y 50 caracteres')
-    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/)
-    .withMessage('El nombre solo puede contener letras y espacios'),
-  body('mensaje')
-    .trim()
-    .isLength({ min: 10, max: 1000 })
-    .withMessage('El mensaje debe tener entre 10 y 1000 caracteres'),
-];
+/**
+ * Endpoint de prueba muy simple sin middleware
+ */
+router.get('/simple', (req, res) => {
+  res.json({
+    success: true,
+    message: 'API de contacto funcionando - endpoint simple',
+    timestamp: new Date().toISOString(),
+  });
+});
 
-router.post(
-  '/contacto',
-  express.json(),
-  validateContacto,
-  asyncHandler(async (req, res) => {
-    // Verificar errores de validación
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
+/**
+ * Endpoint de prueba simple sin middleware
+ */
+router.get('/test', (req, res) => {
+  res.json({
+    success: true,
+    message: 'API de contacto funcionando - endpoint de prueba',
+    timestamp: new Date().toISOString(),
+  });
+});
+
+/**
+ * Endpoint de prueba con middleware
+ */
+router.get('/test-with-middleware', sanitizeRequest, (req, res) => {
+  res.json({
+    success: true,
+    message: 'API de contacto funcionando - endpoint con middleware',
+    timestamp: new Date().toISOString(),
+  });
+});
+
+/**
+ * Endpoint API para contacto
+ */
+router.post('/', sanitizeRequest, async (req, res) => {
+  try {
+    const { nombre, email, asunto, mensaje } = req.body;
+
+    // Validar y sanitizar datos
+    const nombreValidation = validateAndSanitizeName(nombre);
+    const emailValidation = validateAndSanitizeEmail(email);
+    const mensajeValidation = validateAndSanitizeMessage(mensaje);
+
+    // Verificar si hay errores de validación
+    const errors = [];
+    if (!nombreValidation.valid) errors.push(nombreValidation.error);
+    if (!emailValidation.valid) errors.push(emailValidation.error);
+    if (!mensajeValidation.valid) errors.push(mensajeValidation.error);
+
+    if (errors.length > 0) {
       return res.status(400).json({
-        error: 'Datos inválidos',
-        details: errors.array(),
+        success: false,
+        errors: errors,
       });
     }
 
-    // Los datos ya están validados
-    const resultado = procesarFormularioContacto(req);
+    // Preparar datos para el servicio
+    const contactoData = {
+      nombre: nombreValidation.value,
+      email: emailValidation.value,
+      asunto: asunto || 'Consulta desde el formulario de contacto',
+      mensaje: mensajeValidation.value,
+    };
 
-    if (!resultado.ok) {
-      registrar(`❌ Formulario inválido: ${resultado.error}`, 'warn');
-      return res.status(400).json({ error: resultado.error });
+    // Procesar el formulario usando el servicio
+    const resultado = await procesarFormularioContacto(
+      contactoData,
+      req.ip || req.connection.remoteAddress,
+      req.get('User-Agent')
+    );
+
+    if (resultado.success) {
+      res.json({
+        success: true,
+        message: resultado.message,
+        data: {
+          nombre: contactoData.nombre,
+          email: contactoData.email,
+          timestamp: new Date().toISOString(),
+        },
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: resultado.error,
+      });
     }
-
-    const correo = prepararCorreo({
-      de: resultado.datos.email,
-      para: config.EMAIL.ADMIN,
-      asunto: '📬 Nuevo mensaje desde el formulario de contacto',
-      mensaje: resultado.datos.mensaje,
+  } catch (error) {
+    console.error('❌ Error en endpoint de contacto:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Error interno del servidor',
+      message: error.message,
     });
+  }
+});
 
-    if (!correo.ok) {
-      registrar(`❌ Error al preparar correo: ${correo.error}`, 'error');
-      return res.status(500).json({ error: correo.error });
-    }
-
-    registrar(`📨 Formulario procesado y correo preparado desde ${resultado.datos.email}`, 'info');
-
-    res.json({
-      mensaje: '✅ Formulario recibido correctamente',
-      datos: resultado.datos,
-    });
-  })
-);
-
-router.get('/email', (_req, res) => {
-  res.json({ email: config.EMAIL.ADMIN });
+/**
+ * Endpoint GET para verificar estado del API de contacto
+ */
+router.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'API de contacto funcionando correctamente',
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      POST: '/api/contacto - Enviar mensaje de contacto',
+      GET: '/api/contacto - Verificar estado del API',
+    },
+  });
 });
 
 export default router;

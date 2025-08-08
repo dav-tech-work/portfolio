@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Página principal - Máxima prioridad -->
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Páginas principales del portfolio -->
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/#about</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/#proyectos</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/#homelab</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/#contacto</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/#formacion</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Páginas informacionales -->
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/privacidad</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Secciones de formación - Python -->
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/formacion/python/teoria</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/formacion/python/practicas</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Secciones de formación - JavaScript -->
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/formacion/javascript/teoria</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/formacion/javascript/practicas</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Secciones de formación - HTML -->
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/formacion/html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Secciones de formación - PHP -->
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/formacion/php</loc>
+        <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Secciones de sistemas -->
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/formacion/sistemas</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/formacion/seguridad</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Páginas de sistemas estáticas -->
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/pages/sistemas/practica_01_sistemas.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://daniel-arribas-velazquez.dav-tech.work/pages/sistemas/practica_02.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

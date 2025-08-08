@@ -1,0 +1,103 @@
+# Configuración de Dependabot para actualización automática de dependencias
+version: 2
+updates:
+  # Actualizar dependencias de npm
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'UTC'
+    open-pull-requests-limit: 10
+    reviewers:
+      - 'username' # Reemplazar con tu username de GitHub
+    assignees:
+      - 'username' # Reemplazar con tu username de GitHub
+    commit-message:
+      prefix: 'chore'
+      prefix-development: 'chore'
+      include: 'scope'
+    labels:
+      - 'dependencies'
+      - 'npm'
+    ignore:
+      # Ignorar actualizaciones mayores que podrían romper la compatibilidad
+      - dependency-name: 'express'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'helmet'
+        update-types: ['version-update:semver-major']
+    # Configurar grupos para actualizaciones relacionadas
+    groups:
+      security-updates:
+        patterns:
+          - 'helmet'
+          - 'express-rate-limit'
+          - 'express-session'
+          - 'bcryptjs'
+          - 'jsonwebtoken'
+        update-types:
+          - 'security'
+      dev-dependencies:
+        patterns:
+          - 'eslint*'
+          - 'prettier*'
+          - 'mocha*'
+          - 'chai*'
+          - 'nyc*'
+        update-types:
+          - 'minor'
+          - 'patch'
+
+  # Actualizar dependencias de GitHub Actions
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '10:00'
+      timezone: 'UTC'
+    open-pull-requests-limit: 5
+    reviewers:
+      - 'username' # Reemplazar con tu username de GitHub
+    assignees:
+      - 'username' # Reemplazar con tu username de GitHub
+    commit-message:
+      prefix: 'ci'
+      include: 'scope'
+    labels:
+      - 'dependencies'
+      - 'github-actions'
+    ignore:
+      # Ignorar actualizaciones mayores de acciones críticas
+      - dependency-name: 'actions/checkout'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'actions/setup-node'
+        update-types: ['version-update:semver-major']
+
+  # Configuración para actualizaciones de seguridad
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+      time: '06:00'
+      timezone: 'UTC'
+    open-pull-requests-limit: 5
+    reviewers:
+      - 'username' # Reemplazar con tu username de GitHub
+    assignees:
+      - 'username' # Reemplazar con tu username de GitHub
+    commit-message:
+      prefix: 'security'
+      include: 'scope'
+    labels:
+      - 'security'
+      - 'dependencies'
+      - 'npm'
+    # Solo actualizar vulnerabilidades de seguridad
+    update-types:
+      - 'security'
+    # Crear PRs inmediatamente para vulnerabilidades críticas
+    allow:
+      - dependency-type: 'direct'
+        update-type: 'security'

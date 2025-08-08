@@ -4,31 +4,71 @@
     <%- include('templates/head', { tipo: typeof tipo !== 'undefined' ? tipo : null }) %>
   </head>
   <body>
-    <% if (tipo === 'formacion') { %>
-      <%- include('templates/header', { tipo: 'formacion' }) %>
-    <% } else { %>
-      <%- include('templates/header') %>
-    <% } %>
+    <%- include('templates/header') %>
 
     <main>
-      <%- body %>
+      <% if (typeof onepage !== 'undefined' && onepage) { %>
+        <!-- Página única con todas las secciones -->
+        <%- body %>
+
+        <!-- Sección Sobre Mí -->
+        <section id="about" class="section-about">
+          <div class="container">
+            <%- include('pages/about') %>
+          </div>
+        </section>
+
+        <!-- Sección Formación -->
+        <section id="formacion" class="section-formacion">
+          <div class="container">
+            <%- include('pages/formacion') %>
+          </div>
+        </section>
+
+        <!-- Sección Proyectos -->
+        <section id="proyectos" class="section-proyectos">
+          <div class="container">
+            <%- include('pages/proyectos') %>
+          </div>
+        </section>
+
+        <!-- Sección Homelab -->
+        <section id="homelab" class="section-homelab">
+          <div class="container">
+            <%- include('pages/homelab') %>
+          </div>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="contacto" class="section-contacto">
+          <div class="container">
+            <%- include('pages/contacto') %>
+          </div>
+        </section>
+
+
+
+        <!-- Botón de volver arriba -->
+        <button class="back-to-top" aria-label="Volver arriba">
+          <i class="fas fa-chevron-up"></i>
+        </button>
+      <% } else { %>
+        <%- body %>
+      <% } %>
     </main>
 
     <%- include('templates/footer') %>
 
-    <!-- Script principal -->
-    <script
-      type="module"
-      src="/assets/js/index.js"
-      <%= typeof nonce !== 'undefined' ? `nonce="${nonce}"` : "" %>>
+    <!-- Script principal inline para máxima seguridad CSP -->
+    <script type="module" nonce="<%= nonce %>">
+<%- typeof jsInline !== 'undefined' ? jsInline : '' %>
     </script>
 
     <!-- Script adicional opcional -->
     <% if (typeof scriptAdicional !== 'undefined' && scriptAdicional) { %>
       <script
-        type="module"
         src="<%= scriptAdicional %>"
-        <%= typeof nonce !== 'undefined' ? `nonce="${nonce}"` : "" %>>
+        nonce="<%= nonce %>">
       </script>
     <% } %>
   </body>

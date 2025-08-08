@@ -1,5 +1,25 @@
 <main class="code-container" role="main" aria-labelledby="titulo-teoria-python">
-  <h1 id="titulo-teoria-python" class="page-title"><%= t["python.theory.title"] %></h1>
+  <h1 id="titulo-teoria-python" class="page-title"><%= (t.python && t.python.theory && t.python.theory.title) || 'Teoría Python' %></h1>
+
+  <!-- Script de debug para verificar que el JavaScript esté funcionando -->
+  <script nonce="<%= nonce %>">
+    console.log('🔍 [DEBUG] Página de teoría Python cargada');
+    console.log('🔍 [DEBUG] Script muestra_contenido.js cargado:', typeof initMuestraContenido !== 'undefined');
+
+    // Verificar que los elementos code existen
+    document.addEventListener('DOMContentLoaded', function() {
+      const codeElements = document.querySelectorAll('code[data-src]');
+      console.log('🔍 [DEBUG] Elementos code encontrados:', codeElements.length);
+
+      codeElements.forEach((element, index) => {
+        console.log(`🔍 [DEBUG] Elemento ${index}:`, {
+          src: element.dataset.src,
+          language: element.dataset.language,
+          hasContent: element.textContent.trim().length > 0
+        });
+      });
+    });
+  </script>
 
   <div id="content">
     <% const temas = [
@@ -21,17 +41,44 @@
     ]; %>
 
     <% temas.forEach(({ id, archivo, clave }) => { %>
-      <details aria-label="<%= t[`python.theory.${clave}`] %>">
-        <summary tabindex="0"><%= t[`python.theory.${clave}`] %></summary>
-        <pre><code class="language-python" id="<%= id %>" data-src="/public/assets/programacion/python/teoria/conceptos_basicos/<%= archivo %>"></code></pre>
+      <details aria-label="<%= (t.python && t.python.theory && t.python.theory[clave]) || clave %>">
+        <summary tabindex="0"><%= (t.python && t.python.theory && t.python.theory[clave]) || clave %></summary>
+        <% if (id === "codigo_caracteristicas") { %>
+          <!-- Código incluido directamente para prueba -->
+          <pre><code class="language-python" id="<%= id %>">
+# Características básicas de Python
+print("Hola Mundo")
+
+# Variables
+numero = 1
+texto = "Python"
+booleano = True
+
+# Listas
+mi_lista = [1, 2, 3, 4, 5]
+print(mi_lista[0])  # Primer elemento
+
+# Diccionarios
+mi_dict = {"nombre": "Python", "version": 3.9}
+print(mi_dict["nombre"])
+
+# Funciones
+def saludar(nombre):
+    return f"Hola {nombre}"
+
+print(saludar("Mundo"))
+          </code></pre>
+        <% } else { %>
+          <pre><code class="language-python" id="<%= id %>" data-src="/assets/programacion/python/teoria/conceptos_basicos/<%= archivo %>"></code></pre>
+        <% } %>
       </details>
     <% }) %>
 
     <!-- Objetos (bloque doble) -->
-    <details aria-label="<%= t['python.theory.objects'] %>">
-      <summary tabindex="0"><%= t["python.theory.objects"] %></summary>
-      <pre><code class="language-python" id="codigo_objetos-1" data-src="/public/assets/programacion/python/teoria/conceptos_basicos/clases.py"></code></pre>
-      <pre><code class="language-python" id="codigo_objetos" data-src="/public/assets/programacion/python/teoria/conceptos_basicos/animales.py"></code></pre>
+    <details aria-label="<%= (t.python && t.python.theory && t.python.theory.objects) || 'Objetos Python' %>">
+      <summary tabindex="0"><%= (t.python && t.python.theory && t.python.theory.objects) || 'Objetos' %></summary>
+      <pre><code class="language-python" id="codigo_objetos-1" data-src="/assets/programacion/python/teoria/conceptos_basicos/clases.py"></code></pre>
+      <pre><code class="language-python" id="codigo_objetos" data-src="/assets/programacion/python/teoria/conceptos_basicos/animales.py"></code></pre>
     </details>
   </div>
 </main>

@@ -1,8 +1,8 @@
 <main class="container">
     <section class="topic-section php-content">
-        <h1 class="page-title"><%= t["education.php.sql.practices.title"] %></h1>
+        <h1 class="page-title"><%= (t.education && t.education.php_sql && t.education.php_sql.practices && t.education.php_sql.practices.title) || 'Prácticas PHP/SQL' %></h1>
         <div class="topic-content-container php-layout">
-            <h2 class="topic-title"> <%= t["education.php.sql.sql.title"] %></h2>
+            <h2 class="topic-title"> <%= (t.education && t.education.php_sql && t.education.php_sql.sql && t.education.php_sql.sql.title) || 'SQL' %></h2>
             <div class="topic-content">
                 <div class="topic-item">
                     <div id="content">
@@ -25,14 +25,14 @@
                         <% }) %>
                     </div>
                 </div>
-            </section>            <h2 class="topic-title"><%= t["education.php.sql.php.title"] %></h2>
+            </section>            <h2 class="topic-title"><%= (t.education && t.education.php_sql && t.education.php_sql.php && t.education.php_sql.php.title) || 'PHP' %></h2>
             <div class="topic-content">
                 <div class="topic-item">
-                    <h3 class="topic-title-1"><%= t["education.practice.01"] %></h3>
+                    <h3 class="topic-title-1"><%= (t.education && t.education.practice && t.education.practice['01']) || 'Práctica 1' %></h3>
                     <ul>
                         <li><a href="/assets/programacion/web/php_sql/colores/index" class="topic-link" target="_blank">Colores</a></li>
                     </ul>
-                    <h3 class="topic-title-1"><%= t["education.practice.02"] %></h3>
+                    <h3 class="topic-title-1"><%= (t.education && t.education.practice && t.education.practice['02']) || 'Práctica 2' %></h3>
                     <ul>
                         <li><a href="/assets/programacion/web/php_sql/gestor_tareas/index" class="topic-link" target="_blank">Gestor de Tareas</a></li>
                     </ul>

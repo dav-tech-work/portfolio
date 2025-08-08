@@ -1,0 +1,157 @@
+<main class="container" role="main" aria-label="Contenido principal del sitio">
+  <div id="content">
+    <section id="presentacion">
+      <h2><%= typeof t !== 'undefined' && t.about && t.about.presentacion && t.about.presentacion.title ? t.about.presentacion.title : 'Daniel Arribas Velázquez' %></h2>
+      <h3><%= typeof t !== 'undefined' && t.about && t.about.presentacion && t.about.presentacion.subtitle ? t.about.presentacion.subtitle : 'Administrador de Sistemas • Especialista en Seguridad' %></h3>
+      <p>
+        <strong><%= typeof t !== 'undefined' && t.about && t.about.presentacion && t.about.presentacion.description1 ? t.about.presentacion.description1.split('5+ años')[0] + '5+ años' : '5+ años de experiencia enterprise' %></strong> <%= typeof t !== 'undefined' && t.about && t.about.presentacion && t.about.presentacion.description1 ? t.about.presentacion.description1.split('5+ años')[1] : 'con SentinelOne EDR, SonicWall Firewall y Veeam Backup. Especialista en seguridad de sistemas, infraestructura de red y continuidad del negocio con track record verificable: 70% reducción en tiempos de respuesta y 0 incidentes críticos de seguridad.' %>
+      </p>
+      <p>
+        <%= typeof t !== 'undefined' && t.about && t.about.presentacion && t.about.presentacion.description2 ? t.about.presentacion.description2 : 'Portfolio técnico verificado con auditorías A+ de seguridad e infraestructura enterprise documentada completamente. Experiencia en entornos empresariales con herramientas valoradas en 50k€+/año.' %>
+      </p>
+
+      <div class="credenciales-verificadas">
+        <span class="badge-verde"><%= typeof t !== 'undefined' && t.about && t.about.credenciales && t.about.credenciales.ssl ? t.about.credenciales.ssl : 'A+ SSL Rating' %></span>
+        <span class="badge-azul"><%= typeof t !== 'undefined' && t.about && t.about.credenciales && t.about.credenciales.incidentes ? t.about.credenciales.incidentes : '0 Incidentes Seguridad' %></span>
+        <span class="badge-oro"><%= typeof t !== 'undefined' && t.about && t.about.credenciales && t.about.credenciales.experiencia ? t.about.credenciales.experiencia : '5 Años Enterprise' %></span>
+        <span class="badge-gris"><%= typeof t !== 'undefined' && t.about && t.about.credenciales && t.about.credenciales.eficiencia ? t.about.credenciales.eficiencia : '70% Mejora Eficiencia' %></span>
+      </div>
+    </section>
+
+    <section id="sobre-mi">
+      <h2><%= typeof t !== 'undefined' && t.about && t.about.sobre_mi && t.about.sobre_mi.title ? t.about.sobre_mi.title : 'Sobre Mí' %></h2>
+      <div class="sobre-mi-content">
+        <div class="sobre-mi-texto">
+          <p>
+            <strong><%= typeof t !== 'undefined' && t.about && t.about.sobre_mi && t.about.sobre_mi.description1 ? t.about.sobre_mi.description1.split('Apasionado')[0] + 'Apasionado' : 'Apasionado por la tecnología y la seguridad informática' %></strong> <%= typeof t !== 'undefined' && t.about && t.about.sobre_mi && t.about.sobre_mi.description1 ? t.about.sobre_mi.description1.split('Apasionado')[1] : 'desde una edad temprana. Mi trayectoria profesional se ha centrado en la administración de sistemas y la protección de infraestructuras críticas en entornos empresariales.' %>
+          </p>
+          <p>
+            <strong><%= typeof t !== 'undefined' && t.about && t.about.sobre_mi && t.about.sobre_mi.description2 ? t.about.sobre_mi.description2.split('Enfoque')[0] + 'Enfoque' : 'Enfoque práctico y resultados medibles' %></strong> <%= typeof t !== 'undefined' && t.about && t.about.sobre_mi && t.about.sobre_mi.description2 ? t.about.sobre_mi.description2.split('Enfoque')[1] : ': No solo estudio la teoría, sino que implemento soluciones reales que generan valor tangible. Mi homelab replica infraestructura enterprise con servicios en producción 24/7, permitiéndome experimentar y perfeccionar técnicas de seguridad en un entorno controlado pero realista.' %>
+          </p>
+          <p>
+            <strong><%= typeof t !== 'undefined' && t.about && t.about.sobre_mi && t.about.sobre_mi.description3 ? t.about.sobre_mi.description3.split('Compromiso')[0] + 'Compromiso' : 'Compromiso con la excelencia' %></strong> <%= typeof t !== 'undefined' && t.about && t.about.sobre_mi && t.about.sobre_mi.description3 ? t.about.sobre_mi.description3.split('Compromiso')[1] : ': Cada proyecto que emprendo está completamente documentado y auditado externamente. Creo firmemente en la transparencia y la verificación como pilares fundamentales de la confianza profesional.' %>
+          </p>
+        </div>
+
+        <div class="sobre-mi-valores">
+          <h3><%= typeof t !== 'undefined' && t.about && t.about.valores && t.about.valores.title ? t.about.valores.title : 'Mis Valores' %></h3>
+          <div class="valores-grid">
+            <div class="valor-item">
+              <span class="valor-icon">🛡️</span>
+              <div>
+                <strong><%= typeof t !== 'undefined' && t.about && t.about.valores && t.about.valores.seguridad && t.about.valores.seguridad.title ? t.about.valores.seguridad.title : 'Seguridad Proactiva' %></strong>
+                <p><%= typeof t !== 'undefined' && t.about && t.about.valores && t.about.valores.seguridad && t.about.valores.seguridad.description ? t.about.valores.seguridad.description : 'Prevenir antes que curar, implementando medidas de protección robustas' %></p>
+              </div>
+            </div>
+            <div class="valor-item">
+              <span class="valor-icon">📚</span>
+              <div>
+                <strong><%= typeof t !== 'undefined' && t.about && t.about.valores && t.about.valores.aprendizaje && t.about.valores.aprendizaje.title ? t.about.valores.aprendizaje.title : 'Aprendizaje Continuo' %></strong>
+                <p><%= typeof t !== 'undefined' && t.about && t.about.valores && t.about.valores.aprendizaje && t.about.valores.aprendizaje.description ? t.about.valores.aprendizaje.description : 'Mantener actualizadas las habilidades técnicas y conocimientos' %></p>
+              </div>
+            </div>
+            <div class="valor-item">
+              <span class="valor-icon">🎯</span>
+              <div>
+                <strong><%= typeof t !== 'undefined' && t.about && t.about.valores && t.about.valores.resultados && t.about.valores.resultados.title ? t.about.valores.resultados.title : 'Resultados Medibles' %></strong>
+                <p><%= typeof t !== 'undefined' && t.about && t.about.valores && t.about.valores.resultados && t.about.valores.resultados.description ? t.about.valores.resultados.description : 'Enfocarse en métricas y KPIs que demuestren el valor aportado' %></p>
+              </div>
+            </div>
+            <div class="valor-item">
+              <span class="valor-icon">🤝</span>
+              <div>
+                <strong><%= typeof t !== 'undefined' && t.about && t.about.valores && t.about.valores.colaboracion && t.about.valores.colaboracion.title ? t.about.valores.colaboracion.title : 'Colaboración' %></strong>
+                <p><%= typeof t !== 'undefined' && t.about && t.about.valores && t.about.valores.colaboracion && t.about.valores.colaboracion.description ? t.about.valores.colaboracion.description : 'Trabajar en equipo para lograr objetivos comunes' %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia-enterprise">
+      <h2><%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.title ? t.about.experiencia.title : 'Stack de Seguridad Enterprise' %></h2>
+      <div class="stack-categories">
+        <div class="stack-category">
+          <h3><%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.endpoint && t.about.experiencia.endpoint.title ? t.about.experiencia.endpoint.title : '🛡️ Seguridad Endpoint' %></h3>
+          <ul>
+            <li><strong>SentinelOne EDR</strong> - <%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.endpoint && t.about.experiencia.endpoint.sentinelone ? t.about.experiencia.endpoint.sentinelone.split(' - ')[1] : '5 años experiencia' %></li>
+            <li><strong>Datto Endpoint Protection</strong> - <%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.endpoint && t.about.experiencia.endpoint.datto ? t.about.experiencia.endpoint.datto.split(' - ')[1] : 'Implementación y gestión' %></li>
+          </ul>
+        </div>
+
+        <div class="stack-category">
+          <h3><%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.firewall && t.about.experiencia.firewall.title ? t.about.experiencia.firewall.title : '🔥 Firewall & Red' %></h3>
+          <ul>
+            <li><strong>SonicWall Firewall</strong> - <%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.firewall && t.about.experiencia.firewall.sonicwall ? t.about.experiencia.firewall.sonicwall.split(' - ')[1] : 'Configuración y mantenimiento' %></li>
+            <li><strong>Parallel RAS</strong> - <%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.firewall && t.about.experiencia.firewall.parallel ? t.about.experiencia.firewall.parallel.split(' - ')[1] : 'Acceso remoto seguro' %></li>
+            <li><strong>VLANs, VPN, pfSense</strong> - <%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.firewall && t.about.experiencia.firewall.vlan ? t.about.experiencia.firewall.vlan.split(' - ')[1] : 'Segmentación de red' %></li>
+          </ul>
+        </div>
+
+        <div class="stack-category">
+          <h3><%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.backup && t.about.experiencia.backup.title ? t.about.experiencia.backup.title : '💾 Backup & Continuidad' %></h3>
+          <ul>
+            <li><strong>Veeam Backup & Replication</strong> - <%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.backup && t.about.experiencia.backup.veeam ? t.about.experiencia.backup.veeam.split(' - ')[1] : '5 años experiencia' %></li>
+            <li><strong>Acronis Backup</strong> - <%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.backup && t.about.experiencia.backup.acronis ? t.about.experiencia.backup.acronis.split(' - ')[1] : 'Soluciones de recuperación' %></li>
+          </ul>
+        </div>
+
+        <div class="stack-category">
+          <h3><%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.infraestructura && t.about.experiencia.infraestructura.title ? t.about.experiencia.infraestructura.title : '🖥️ Infraestructura' %></h3>
+          <ul>
+            <li><strong><%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.infraestructura && t.about.experiencia.infraestructura.windows ? t.about.experiencia.infraestructura.windows : 'Windows Server & Active Directory' %></strong></li>
+            <li><strong>Hyper-V & Proxmox</strong> - <%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.infraestructura && t.about.experiencia.infraestructura.virtualizacion ? t.about.experiencia.infraestructura.virtualizacion.split(' - ')[1] : 'Virtualización enterprise' %></li>
+            <li><strong>Docker & Kubernetes</strong> - <%= typeof t !== 'undefined' && t.about && t.about.experiencia && t.about.experiencia.infraestructura && t.about.experiencia.infraestructura.containerizacion ? t.about.experiencia.infraestructura.containerizacion.split(' - ')[1] : 'Containerización' %></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="logros-verificables">
+      <h2><%= typeof t !== 'undefined' && t.about && t.about.logros && t.about.logros.title ? t.about.logros.title : 'Logros Verificables' %></h2>
+      <div class="logros-grid">
+        <div class="logro-card">
+          <span class="logro-numero"><%= typeof t !== 'undefined' && t.about && t.about.logros && t.about.logros.respuesta && t.about.logros.respuesta.numero ? t.about.logros.respuesta.numero : '70%' %></span>
+          <span class="logro-descripcion"><%= typeof t !== 'undefined' && t.about && t.about.logros && t.about.logros.respuesta && t.about.logros.respuesta.descripcion ? t.about.logros.respuesta.descripcion : 'Reducción en tiempos de respuesta ante incidencias' %></span>
+        </div>
+        <div class="logro-card">
+          <span class="logro-numero"><%= typeof t !== 'undefined' && t.about && t.about.logros && t.about.logros.incidentes && t.about.logros.incidentes.numero ? t.about.logros.incidentes.numero : '0' %></span>
+          <span class="logro-descripcion"><%= typeof t !== 'undefined' && t.about && t.about.logros && t.about.logros.incidentes && t.about.logros.incidentes.descripcion ? t.about.logros.incidentes.descripcion : 'Incidentes críticos de seguridad en 5 años' %></span>
+        </div>
+        <div class="logro-card">
+          <span class="logro-numero"><%= typeof t !== 'undefined' && t.about && t.about.logros && t.about.logros.rating && t.about.logros.rating.numero ? t.about.logros.rating.numero : 'A+' %></span>
+          <span class="logro-descripcion"><%= typeof t !== 'undefined' && t.about && t.about.logros && t.about.logros.rating && t.about.logros.rating.descripcion ? t.about.logros.rating.descripcion : 'Rating de seguridad (SecurityHeaders.com)' %></span>
+        </div>
+        <div class="logro-card">
+          <span class="logro-numero"><%= typeof t !== 'undefined' && t.about && t.about.logros && t.about.logros.disponibilidad && t.about.logros.disponibilidad.numero ? t.about.logros.disponibilidad.numero : '24/7' %></span>
+          <span class="logro-descripcion"><%= typeof t !== 'undefined' && t.about && t.about.logros && t.about.logros.disponibilidad && t.about.logros.disponibilidad.descripcion ? t.about.logros.disponibilidad.descripcion : 'Disponibilidad de servicios críticos' %></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="enfoque-profesional">
+      <h2><%= typeof t !== 'undefined' && t.about && t.about.enfoque && t.about.enfoque.title ? t.about.enfoque.title : 'Enfoque Profesional' %></h2>
+      <p>
+        <strong><%= typeof t !== 'undefined' && t.about && t.about.enfoque && t.about.enfoque.description1 ? t.about.enfoque.description1.split('Seguridad')[0] + 'Seguridad' : 'Seguridad proactiva con resultados medibles' %></strong> <%= typeof t !== 'undefined' && t.about && t.about.enfoque && t.about.enfoque.description1 ? t.about.enfoque.description1.split('Seguridad')[1] : '. Mi experiencia enterprise se basa en implementaciones reales con herramientas de nivel empresarial, no demos o laboratorios académicos. Cada proyecto está completamente documentado y auditado externamente.' %>
+      </p>
+      <p>
+        <strong><%= typeof t !== 'undefined' && t.about && t.about.enfoque && t.about.enfoque.description2 ? t.about.enfoque.description2.split('Especialización')[0] + 'Especialización' : 'Especialización en continuidad del negocio' %></strong> <%= typeof t !== 'undefined' && t.about && t.about.enfoque && t.about.enfoque.description2 ? t.about.enfoque.description2.split('Especialización')[1] : ': Desde la protección endpoint hasta la recuperación ante desastres, mi enfoque garantiza que los sistemas críticos funcionen sin interrupciones y con la máxima seguridad.' %>
+      </p>
+    </section>
+
+    <section id="portfolio-verificado">
+      <h2><%= typeof t !== 'undefined' && t.about && t.about.portfolio && t.about.portfolio.title ? t.about.portfolio.title : 'Portfolio Técnico Verificado' %></h2>
+      <p>
+        <strong><%= typeof t !== 'undefined' && t.about && t.about.portfolio && t.about.portfolio.description ? t.about.portfolio.description.split('No solo')[0] + 'No solo' : 'No solo hablo de tecnología, la implemento y documento' %></strong> <%= typeof t !== 'undefined' && t.about && t.about.portfolio && t.about.portfolio.description ? t.about.portfolio.description.split('No solo')[1] : '. Mi homelab replica infraestructura enterprise con servicios en producción 24/7, documentación completa y auditorías de seguridad A+ verificables externamente.' %>
+      </p>
+      <div class="portfolio-links">
+        <a href="/proyectos" class="btn-portfolio"><%= typeof t !== 'undefined' && t.about && t.about.portfolio && t.about.portfolio.buttons && t.about.portfolio.buttons.portfolio ? t.about.portfolio.buttons.portfolio : '🛡️ Ver Portfolio Verificado' %></a>
+        <a href="/homelab" class="btn-portfolio"><%= typeof t !== 'undefined' && t.about && t.about.portfolio && t.about.portfolio.buttons && t.about.portfolio.buttons.arquitectura ? t.about.portfolio.buttons.arquitectura : '🏗️ Arquitectura Enterprise' %></a>
+        <a href="https://cv.dav-tech.work" class="btn-portfolio" target="_blank"><%= typeof t !== 'undefined' && t.about && t.about.portfolio && t.about.portfolio.buttons && t.about.portfolio.buttons.cv ? t.about.portfolio.buttons.cv : '📋 CV Completo' %></a>
+      </div>
+    </section>
+  </div>
+</main>
+
+

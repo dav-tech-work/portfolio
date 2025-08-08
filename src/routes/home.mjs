@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
   ];
 
   res.render('pages/index', {
-    titulo: req.traducciones?.home || 'Inicio',
+    titulo: req.traducciones?.home?.title || 'Inicio',
     tipo: 'home',
     idioma: req.idioma,
     t: req.traducciones,
@@ -36,21 +36,21 @@ router.get('/', (req, res) => {
 });
 
 // Ruta: /curriculum
-router.get('/curriculum', (req, res) => {
-  res.render('pages/curriculum', {
-    titulo: req.traducciones?.curriculum || 'Currículum',
-    tipo: 'curriculum',
-    idioma: req.idioma,
-    t: req.traducciones,
-    csrfToken: res.locals.csrfToken,
-    scripts: [],
-  });
-});
+// router.get('/curriculum', (req, res) => {
+//   res.render('pages/curriculum', {
+//     titulo: req.traducciones?.cv?.title || 'Currículum',
+//     tipo: 'curriculum',
+//     idioma: req.idioma,
+//     t: req.traducciones,
+//     csrfToken: res.locals.csrfToken,
+//     scripts: [],
+//   });
+// });
 
 // Ruta: /proyectos
 router.get('/proyectos', (req, res) => {
   res.render('pages/proyectos', {
-    titulo: req.traducciones?.proyectos || 'Proyectos',
+    titulo: req.traducciones?.projects?.title || 'Proyectos',
     tipo: 'proyectos',
     idioma: req.idioma,
     t: req.traducciones,

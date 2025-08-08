@@ -6,19 +6,19 @@
 import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import logger from '../utils/logger-production.mjs';
-import { sanitizeInput } from '../middleware/sanitizer-advanced.mjs';
+import { sanitizeRequest } from '../middleware/sanitizer-advanced.mjs';
 
 const router = Router();
 
 // Sistema básico de usuarios en memoria (solo para desarrollo)
 const users = new Map();
 
-// Usuario por defecto para desarrollo
+// Usuario por defecto configurable por entorno (sin secretos en código)
 users.set('admin', {
   id: '1',
   username: 'admin',
   email: 'admin@example.com',
-  password: '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LeUEfVjUKs2n7E.5e', // "admin123"
+  passwordHash: process.env.DEFAULT_ADMIN_PASSWORD_HASH || '',
   isActive: true,
   role: 'admin',
 });
@@ -36,7 +36,7 @@ router.get('/login', (req, res) => {
 /**
  * POST /auth/login - Procesar login
  */
-router.post('/login', sanitizeInput, async (req, res) => {
+router.post('/login', sanitizeRequest, async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -49,7 +49,7 @@ router.post('/login', sanitizeInput, async (req, res) => {
     // Buscar usuario por email
     const user = Array.from(users.values()).find((u) => u.email === email);
 
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+    if (!user || !user.passwordHash || !(await bcrypt.compare(password, user.passwordHash))) {
       req.flash('error', 'Credenciales inválidas');
       return res.redirect('/auth/login');
     }
@@ -90,7 +90,7 @@ router.get('/register', (req, res) => {
 /**
  * POST /auth/register - Procesar registro
  */
-router.post('/register', sanitizeInput, async (req, res) => {
+router.post('/register', sanitizeRequest, async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -115,7 +115,7 @@ router.post('/register', sanitizeInput, async (req, res) => {
       id: Date.now().toString(),
       username,
       email,
-      password: hashedPassword,
+      passwordHash: hashedPassword,
       isActive: true,
       role: 'user',
     };

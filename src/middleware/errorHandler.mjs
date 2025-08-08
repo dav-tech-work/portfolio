@@ -16,7 +16,7 @@ const errorResponseCache = new Map();
  * @param {Object} res - Response object
  * @param {Function} next - Next middleware function
  */
-export const notFoundHandler = (req, res, next) => {
+export function notFoundHandler(req, res, next) {
   const startTime = process.hrtime();
 
   // Log de intento de acceso a ruta no encontrada
@@ -36,7 +36,7 @@ export const notFoundHandler = (req, res, next) => {
   error.processingTime = (endTime[0] * 1000 + endTime[1] / 1000000).toFixed(2);
 
   next(error);
-};
+}
 
 /**
  * Middleware principal de manejo de errores
@@ -45,7 +45,7 @@ export const notFoundHandler = (req, res, next) => {
  * @param {Object} res - Response object
  * @param {Function} next - Next middleware function
  */
-export const errorHandler = (err, req, res, next) => {
+export function errorHandler(err, req, res, next) {
   const startTime = process.hrtime();
 
   // Evitar procesar errores ya enviados
@@ -75,7 +75,7 @@ export const errorHandler = (err, req, res, next) => {
 
   // Enviar respuesta
   res.status(normalizedError.status).json(errorResponse);
-};
+}
 
 /**
  * Normaliza errores para procesamiento consistente

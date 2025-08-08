@@ -25,6 +25,11 @@
     "ruta": "/"
   },
   {
+    "titulo": "Sobre Mí",
+    "slug": "about",
+    "ruta": "/about"
+  },
+  {
     "titulo": "Proyectos",
     "slug": "proyectos",
     "ruta": "/pagina/proyectos"

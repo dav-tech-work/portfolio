@@ -1,25 +1,24 @@
 import validator from 'validator';
 
-export const sanitizeInput = (req, res, next) => {
-  // Sanitizar todos los campos de entrada
+/**
+ * Middleware de sanitización avanzada para requests
+ */
+export const sanitizeRequest = (req, res, next) => {
   const sanitizeObject = (obj) => {
     for (const key in obj) {
-      if (typeof obj[key] === 'string') {
-        // Escapar caracteres HTML y limpiar
-        obj[key] = validator.escape(obj[key].trim());
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        if (typeof obj[key] === 'string') {
+          // Remover caracteres de control
+          // eslint-disable-next-line no-control-regex
+          obj[key] = obj[key].replace(/[\x00-\x1F\x7F]/g, '');
 
-        // Normalizar espacios en blanco
-        obj[key] = obj[key].replace(/\s+/g, ' ');
-
-        // eslint-disable-next-line no-control-regex
-        obj[key] = obj[key].replace(/[\x00-\x1F\x7F]/g, '');
-
-        // Limitar longitud máxima
-        if (obj[key].length > 1000) {
-          obj[key] = obj[key].substring(0, 1000);
+          // Limitar longitud máxima
+          if (obj[key].length > 1000) {
+            obj[key] = obj[key].substring(0, 1000);
+          }
+        } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+          sanitizeObject(obj[key]);
         }
-      } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-        sanitizeObject(obj[key]);
       }
     }
   };

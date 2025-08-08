@@ -1,0 +1,233 @@
+# Configuración de características de seguridad de GitHub
+
+# Configuración de Dependabot Security Updates
+dependabot_security_updates:
+  # Habilitar actualizaciones automáticas de seguridad
+  enabled: true
+  # Configurar horario para actualizaciones
+  schedule:
+    interval: 'daily'
+    time: '06:00'
+    timezone: 'UTC'
+  # Configurar ramas objetivo
+  target_branch: 'main'
+  # Configurar límite de PRs abiertos
+  open_pull_requests_limit: 10
+  # Configurar asignación automática
+  assignees:
+    - 'username' # Reemplazar con tu username
+  # Configurar revisores automáticos
+  reviewers:
+    - 'username' # Reemplazar con tu username
+  # Configurar etiquetas automáticas
+  labels:
+    - 'security'
+    - 'dependencies'
+    - 'automated'
+
+# Configuración de Secret Scanning
+secret_scanning:
+  # Habilitar escaneo de secretos
+  enabled: true
+  # Configurar patrones personalizados
+  custom_patterns:
+    - name: 'API Key Pattern'
+      pattern: 'api[_-]?key[_-]?[a-zA-Z0-9]{32,}'
+      is_regex: true
+    - name: 'JWT Token Pattern'
+      pattern: "eyJ[a-zA-Z0-9_-]{10,}\\.[a-zA-Z0-9_-]{10,}\\.[a-zA-Z0-9_-]{10,}"
+      is_regex: true
+    - name: 'Database URL Pattern'
+      pattern: '(mysql|postgresql)://[a-zA-Z0-9_-]+:[a-zA-Z0-9_-]+@[a-zA-Z0-9.-]+:[0-9]+/[a-zA-Z0-9_-]+'
+      is_regex: true
+
+# Configuración de Code Scanning
+code_scanning:
+  # Habilitar escaneo de código
+  enabled: true
+  # Configurar herramientas de escaneo
+  tools:
+    - name: 'CodeQL'
+      enabled: true
+      language: 'javascript'
+      queries: ['security-extended', 'security-and-quality']
+    - name: 'ESLint Security'
+      enabled: true
+      config_file: '.eslintrc.json'
+  # Configurar alertas
+  alerts:
+    # Habilitar alertas automáticas
+    enabled: true
+    # Configurar severidad mínima
+    minimum_severity: 'medium'
+    # Configurar notificaciones
+    notifications:
+      email: true
+      slack: false
+      teams: false
+
+# Configuración de Branch Protection
+branch_protection:
+  # Configurar protección para rama main
+  main:
+    # Requerir revisión de PR
+    required_pull_request_reviews:
+      required_approving_review_count: 1
+      dismiss_stale_reviews: true
+      require_code_owner_reviews: false
+    # Requerir verificaciones de estado
+    required_status_checks:
+      strict: true
+      contexts:
+        - 'security-checks'
+        - 'code-quality'
+        - 'testing'
+        - 'build'
+    # Restringir pushes directos
+    enforce_admins: true
+    # Requerir conversación lineal
+    require_linear_history: true
+    # Permitir force push
+    allow_force_pushes: false
+    # Permitir eliminación
+    allow_deletions: false
+    # Configurar bloqueo de rama
+    lock_branch: false
+
+# Configuración de Repository Security
+repository_security:
+  # Habilitar análisis de vulnerabilidades
+  vulnerability_alerts: true
+  # Habilitar gráfico de dependencias
+  dependency_graph: true
+  # Configurar políticas de seguridad
+  security_policy:
+    enabled: true
+    file: 'SECURITY.md'
+  # Configurar reportes de seguridad
+  security_reports:
+    enabled: true
+    contact_email: 'security@example.com'
+    pgp_key: ''
+
+# Configuración de Actions Security
+actions_security:
+  # Restringir acciones a las permitidas
+  allowed_actions: 'selected'
+  # Lista de acciones permitidas
+  allowed_actions_list:
+    - 'actions/checkout@*'
+    - 'actions/setup-node@*'
+    - 'actions/cache@*'
+    - 'codecov/codecov-action@*'
+    - 'snyk/actions/node@*'
+    - 'trufflesecurity/trufflehog@*'
+    - 'github/codeql-action@*'
+  # Requerir aprobación para acciones de terceros
+  require_approval: true
+  # Configurar timeout para workflows
+  workflow_timeout_minutes: 60
+  # Habilitar logs detallados
+  detailed_logging: true
+
+# Configuración de Issue Templates
+issue_templates:
+  # Template para reportes de seguridad
+  security_report:
+    name: 'Security Report'
+    description: 'Report a security vulnerability'
+    title: '[SECURITY] '
+    labels: ['security', 'bug']
+    body: |
+      ## Security Vulnerability Report
+
+      **Type of Issue:**
+      - [ ] SQL Injection
+      - [ ] XSS
+      - [ ] CSRF
+      - [ ] Authentication Bypass
+      - [ ] Authorization Bypass
+      - [ ] Information Disclosure
+      - [ ] Other
+
+      **Severity:**
+      - [ ] Critical
+      - [ ] High
+      - [ ] Medium
+      - [ ] Low
+
+      **Description:**
+      Please provide a detailed description of the security issue.
+
+      **Steps to Reproduce:**
+      1. Step 1
+      2. Step 2
+      3. Step 3
+
+      **Expected Behavior:**
+      What should happen?
+
+      **Actual Behavior:**
+      What actually happens?
+
+      **Environment:**
+      - OS: [e.g., Windows, macOS, Linux]
+      - Browser: [e.g., Chrome, Firefox, Safari]
+      - Version: [e.g., 1.0.0]
+
+      **Additional Information:**
+      Any other context about the issue.
+
+# Configuración de Pull Request Templates
+pull_request_template:
+  # Template para PRs
+  body: |
+    ## Description
+    Brief description of changes made.
+
+    ## Type of Change
+    - [ ] Bug fix
+    - [ ] New feature
+    - [ ] Breaking change
+    - [ ] Documentation update
+    - [ ] Security fix
+
+    ## Testing
+    - [ ] Unit tests pass
+    - [ ] Integration tests pass
+    - [ ] Security tests pass
+    - [ ] Performance tests pass
+
+    ## Security Checklist
+    - [ ] No sensitive data in logs
+    - [ ] Input validation implemented
+    - [ ] Output encoding applied
+    - [ ] Authentication checks added
+    - [ ] Authorization checks added
+
+    ## Checklist
+    - [ ] Code follows style guidelines
+    - [ ] Self-review completed
+    - [ ] Documentation updated
+    - [ ] No console.log statements
+    - [ ] No hardcoded secrets
+
+    ## Related Issues
+    Closes #[issue number]
+
+# Configuración de Release Security
+release_security:
+  # Habilitar firmado de releases
+  signed_releases: true
+  # Configurar GPG key para firmado
+  gpg_key: ''
+  # Requerir verificación de seguridad antes del release
+  require_security_checks: true
+  # Configurar escaneo automático de releases
+  auto_scan_releases: true
+  # Configurar notificaciones de seguridad
+  security_notifications:
+    enabled: true
+    channels:
+      - email: 'security@example.com'
+      - slack: '#security-alerts'

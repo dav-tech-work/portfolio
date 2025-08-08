@@ -1,77 +1,177 @@
 <main class="container" role="main" aria-labelledby="proyectos-titulo">
-  <section class="projects-section" data-searchable aria-label="Introducción a los proyectos">
-    <h2 id="proyectos-titulo"><%= t["projects.title"] %></h2>
-    <p><%= t["projects.description"] %></p>
+  <!-- Hero Section -->
+  <section class="hero-section" aria-label="Sección de bienvenida a proyectos">
+    <h1 id="proyectos-titulo"><%= (t.projects && t.projects.title) || 'Proyectos Enterprise' %></h1>
+    <h2 class="hero-subtitle"><%= (t.projects && t.projects.subtitle) || 'Implementaciones de Seguridad y Sistemas - Production Grade' %></h2>
+    <p class="subtitle"><%= (t.projects && t.projects.subtitle_verified) || 'Portfolio técnico con auditorías A+ y arquitectura enterprise verificada' %></p>
   </section>
 
-  <section class="projects-section" data-searchable aria-label="Lista de proyectos">
-    <div class="projects-grid">
 
-      <!-- Proyecto: Sistemas -->
-      <div class="project-card">
-        <h3><%= t["projects.system"] %></h3>
-        <div class="project-content">
-          <div class="project-text">
-            <p><%= t["projects.system.description"] %></p>
-            <p><%= t["projects.system.status"] %></p>
-          </div>
-          <div class="project-image-container">
-            <figure>
-              <img
-                src="/assets/img/proxmox.png"
-                alt="Proxmox"
-                class="project-image modal-img-activable"
-                width="1915"
-                height="803"
-              />
-              <figcaption><%- t["projects.system.figcaption"] %></figcaption>
-            </figure>
-          </div>
+  <!-- Proyectos Enterprise -->
+  <section class="proyectos-enterprise" aria-label="Proyectos enterprise">
+    <h2><%= (t.projects && t.projects.enterprise && t.projects.enterprise.title) || 'Implementaciones Enterprise - Production Grade' %></h2>
+
+    <!-- Proyecto Principal: Portfolio -->
+    <div class="proyecto-card featured">
+      <div class="proyecto-header">
+        <h3><%= (t.projects && t.projects.enterprise && t.projects.enterprise.portfolio && t.projects.enterprise.portfolio.title) || 'Portfolio Técnico con Seguridad A+' %></h3>
+        <div class="proyecto-badges">
+          <span class="badge-live">🟢 <%= (t.projects && t.projects.enterprise && t.projects.enterprise.portfolio && t.projects.enterprise.portfolio.badge_live) || 'En Producción' %></span>
+          <span class="badge-verified">🛡️ <%= (t.projects && t.projects.enterprise && t.projects.enterprise.portfolio && t.projects.enterprise.portfolio.badge_verified) || 'A+ Security' %></span>
         </div>
       </div>
 
-      <!-- Proyecto: Programación -->
-      <div class="project-card">
-        <h3><%= t["projects.programming"] %></h3>
-        <p><%= t["projects.programming.description"] %></p>
-        <p><%= t["projects.programming.status"] %></p>
-
-        <a href="https://github.com/dav-tech-work/portfolio" target="_blank" class="project-link" rel="noopener noreferrer" aria-label="Repositorio Porfolio en GitHub">
-          <i class="fab fa-github" aria-hidden="true"></i>
-          <span><%= t["projects.programming.github.porfolio"] %></span>
-        </a>
-        <a href="https://app-tiempo.dav-tech.work/" target="_blank" class="project-link" rel="noopener noreferrer" aria-label="Aplicación del tiempo desarrollada">
-          <i class="fa-regular fa-sun" aria-hidden="true"></i>
-          <span><%= t["projects.programming.app-tiempo"] %></span>
-        </a>
-
-        <a href="https://cv.dav-tech.work/" target="_blank" class="project-link" rel="noopener noreferrer" aria-label="Currículum Vitae">
-          <i class="fa-light fa-file" aria-hidden="true"></i>
-          <span><%= t["projects.programming.cv"] %></span>
-        </a>
-
-        <a href="https://github.com/dav-tech-work/mail_notification" target="_blank" class="project-link" rel="noopener noreferrer" aria-label="Repositorio Mail Notification en GitHub">
-          <i class="fab fa-github" aria-hidden="true"></i>
-          <span><%= t["projects.programming.github.mail_notification"] %></span>
-        </a>
-
-        <a href="https://github.com/dav-tech-work/multiherramienta" target="_blank" class="project-link" rel="noopener noreferrer" aria-label="Repositorio MultiHerramienta en GitHub">
-          <i class="fab fa-github" aria-hidden="true"></i>
-          <span><%= t["projects.programming.github.multi"] %></span>
-        </a>
-
-        <a href="https://github.com/dav-tech-work/proyecto_node_base" target="_blank" class="project-link" rel="noopener noreferrer" aria-label="Repositorio Proyecto Node Base en GitHub">
-          <i class="fab fa-github" aria-hidden="true"></i>
-          <span><%= t["projects.programming.github.proyectos"] %></span>
-        </a>
-
-
+      <div class="proyecto-metrics">
+        <div class="metric">
+          <span class="value">A+</span>
+          <span class="label"><%= (t.projects && t.projects.enterprise && t.projects.enterprise.portfolio && t.projects.enterprise.portfolio.metrics && t.projects.enterprise.portfolio.metrics.ssl) || 'SSL Rating' %></span>
+        </div>
+        <div class="metric">
+          <span class="value">A+</span>
+          <span class="label"><%= (t.projects && t.projects.enterprise && t.projects.enterprise.portfolio && t.projects.enterprise.portfolio.metrics && t.projects.enterprise.portfolio.metrics.headers) || 'Security Headers' %></span>
+        </div>
+        <div class="metric">
+          <span class="value">0</span>
+          <span class="label"><%= (t.projects && t.projects.enterprise && t.projects.enterprise.portfolio && t.projects.enterprise.portfolio.metrics && t.projects.enterprise.portfolio.metrics.vulnerabilities) || 'Vulnerabilidades' %></span>
+        </div>
       </div>
 
+      <div class="security-features">
+        <strong><%= (t.projects && t.projects.enterprise && t.projects.enterprise.portfolio && t.projects.enterprise.portfolio.features && t.projects.enterprise.portfolio.features.title) || 'Implementaciones de Seguridad:' %></strong>
+        <ul>
+          <li><%= (t.projects && t.projects.enterprise && t.projects.enterprise.portfolio && t.projects.enterprise.portfolio.features && t.projects.enterprise.portfolio.features.ssl) || 'SSL/TLS con Perfect Forward Secrecy' %></li>
+          <li><%= (t.projects && t.projects.enterprise && t.projects.enterprise.portfolio && t.projects.enterprise.portfolio.features && t.projects.enterprise.portfolio.features.headers) || 'Security Headers completos (HSTS, CSP, etc.)' %></li>
+          <li><%= (t.projects && t.projects.enterprise && t.projects.enterprise.portfolio && t.projects.enterprise.portfolio.features && t.projects.enterprise.portfolio.features.mfa) || 'Autenticación multifactor' %></li>
+          <li><%= (t.projects && t.projects.enterprise && t.projects.enterprise.portfolio && t.projects.enterprise.portfolio.features && t.projects.enterprise.portfolio.features.logs) || 'Logs de auditoría centralizados' %></li>
+        </ul>
+      </div>
+
+      <div class="proyecto-links">
+        <a href="https://github.com/dav-tech-work/portfolio" class="btn-primary" target="_blank"><%= (t.projects && t.projects.enterprise && t.projects.enterprise.portfolio && t.projects.enterprise.portfolio.links && t.projects.enterprise.portfolio.links.ver) || 'Ver Código' %></a>
+        <a href="https://github.com/dav-tech-work/portfolio/tree/main/reports" class="btn-secondary" target="_blank"><%= (t.projects && t.projects.enterprise && t.projects.enterprise.portfolio && t.projects.enterprise.portfolio.links && t.projects.enterprise.portfolio.links.auditoria) || 'Auditoría de Seguridad' %></a>
+      </div>
+    </div>
+
+    <!-- Proyecto: Homelab -->
+    <div class="proyecto-card">
+      <div class="proyecto-header">
+        <h3><%= (t.projects && t.projects.enterprise && t.projects.enterprise.homelab && t.projects.enterprise.homelab.title) || 'Homelab de Administración de Sistemas' %></h3>
+        <div class="proyecto-badges">
+          <span class="badge-live">🟢 <%= (t.projects && t.projects.enterprise && t.projects.enterprise.homelab && t.projects.enterprise.homelab.badge_live) || 'Entorno Activo' %></span>
+          <span class="badge-professional">🏠 <%= (t.projects && t.projects.enterprise && t.projects.enterprise.homelab && t.projects.enterprise.homelab.badge_professional) || 'Lab Personal' %></span>
+        </div>
+      </div>
+
+      <div class="proyecto-description">
+        <p><strong><%= (t.projects && t.projects.enterprise && t.projects.enterprise.homelab && t.projects.enterprise.homelab.description) || 'Entorno de laboratorio personal con Proxmox para virtualización, servicios containerizados, y práctica de tecnologías enterprise.' %></strong></p>
+      </div>
+
+      <div class="project-image-container">
+        <figure>
+          <img
+            src="/assets/img/proxmox.png"
+            alt="Proxmox VE"
+            class="project-image modal-img-activable"
+            width="1915"
+            height="803"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption><%= (t.projects && t.projects.enterprise && t.projects.enterprise.homelab && t.projects.enterprise.homelab.figcaption) || 'Arquitectura del Homelab con Proxmox VE' %></figcaption>
+        </figure>
+      </div>
+
+      <div class="security-services">
+        <strong><%= (t.projects && t.projects.enterprise && t.projects.enterprise.homelab && t.projects.enterprise.homelab.services && t.projects.enterprise.homelab.services.title) || 'Servicios Implementados en Lab:' %></strong>
+        <ul>
+          <li><%= (t.projects && t.projects.enterprise && t.projects.enterprise.homelab && t.projects.enterprise.homelab.services && t.projects.enterprise.homelab.services.virtualizacion) || 'Virtualización con Proxmox VE' %></li>
+          <li><%= (t.projects && t.projects.enterprise && t.projects.enterprise.homelab && t.projects.enterprise.homelab.services && t.projects.enterprise.homelab.services.contenedores) || 'Contenedores en clúster Kubernetes para servicios' %></li>
+          <li><%= (t.projects && t.projects.enterprise && t.projects.enterprise.homelab && t.projects.enterprise.homelab.services && t.projects.enterprise.homelab.services.proxy) || 'Reverse proxy con SSL automatizado' %></li>
+          <li><%= (t.projects && t.projects.enterprise && t.projects.enterprise.homelab && t.projects.enterprise.homelab.services && t.projects.enterprise.homelab.services.backup) || 'Backup automatizado de configuraciones' %></li>
+          <li><%= (t.projects && t.projects.enterprise && t.projects.enterprise.homelab && t.projects.enterprise.homelab.services && t.projects.enterprise.homelab.services.monitoreo) || 'Monitoreo de servicios' %></li>
+          <li><%= (t.projects && t.projects.enterprise && t.projects.enterprise.homelab && t.projects.enterprise.homelab.services && t.projects.enterprise.homelab.services.documentacion) || 'Documentación técnica completa (1000+ líneas)' %></li>
+        </ul>
+      </div>
+
+      <div class="proyecto-links">
+        <a href="/homelab" class="btn-primary"><%= (t.projects && t.projects.enterprise && t.projects.enterprise.homelab && t.projects.enterprise.homelab.links && t.projects.enterprise.homelab.links.arquitectura) || 'Ver Arquitectura' %></a>
+      </div>
     </div>
   </section>
-  <div id="modal" class="modal" onclick="cerrarModal()">
-    <img id="modal-img" class="modal-content">
-</div>
 
+  <!-- Proyectos de Desarrollo -->
+  <section class="proyectos-desarrollo" aria-label="Proyectos de desarrollo">
+    <h2><%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.title) || 'Proyectos de Desarrollo' %></h2>
+
+    <div class="proyectos-grid">
+      <!-- App Tiempo -->
+      <div class="proyecto-dev-card">
+        <div class="proyecto-dev-header">
+          <h3><%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.app_tiempo && t.projects.desarrollo.app_tiempo.title) || 'App Tiempo' %></h3>
+          <div class="proyecto-dev-badges">
+            <span class="badge-live">🟢 <%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.app_tiempo && t.projects.desarrollo.app_tiempo.badge_live) || 'En Producción' %></span>
+            <span class="badge-tech">🌤️ <%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.app_tiempo && t.projects.desarrollo.app_tiempo.badge_tech) || 'Weather API' %></span>
+          </div>
+        </div>
+        <p><%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.app_tiempo && t.projects.desarrollo.app_tiempo.description) || 'Aplicación web para consulta de información meteorológica en tiempo real.' %></p>
+        <a href="https://app-tiempo.dav-tech.work/" target="_blank" class="btn-secondary" rel="noopener noreferrer">
+          <i class="fa-regular fa-sun" aria-hidden="true"></i>
+          <span><%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.app_tiempo && t.projects.desarrollo.app_tiempo.link) || 'Ver Aplicación' %></span>
+        </a>
+      </div>
+
+      <!-- Mail Notification -->
+      <div class="proyecto-dev-card">
+        <div class="proyecto-dev-header">
+          <h3><%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.mail_notification && t.projects.desarrollo.mail_notification.title) || 'Mail Notification' %></h3>
+          <div class="proyecto-dev-badges">
+            <span class="badge-tech">📧 <%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.mail_notification && t.projects.desarrollo.mail_notification.badge_tech) || 'Email System' %></span>
+            <span class="badge-security">🛡️ <%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.mail_notification && t.projects.desarrollo.mail_notification.badge_security) || 'Secure' %></span>
+          </div>
+        </div>
+        <p><%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.mail_notification && t.projects.desarrollo.mail_notification.description) || 'Sistema de notificaciones por email con validación de seguridad.' %></p>
+        <a href="https://github.com/dav-tech-work/mail_notification" target="_blank" class="btn-secondary" rel="noopener noreferrer">
+          <i class="fab fa-github" aria-hidden="true"></i>
+          <span><%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.mail_notification && t.projects.desarrollo.mail_notification.link) || 'Ver Código' %></span>
+        </a>
+      </div>
+
+      <!-- Multi-tool -->
+      <div class="proyecto-dev-card">
+        <div class="proyecto-dev-header">
+          <h3><%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.multi && t.projects.desarrollo.multi.title) || 'Multi-tool' %></h3>
+          <div class="proyecto-dev-badges">
+            <span class="badge-tech">🛠️ <%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.multi && t.projects.desarrollo.multi.badge_tech) || 'Multi-tool' %></span>
+            <span class="badge-utility">⚡ <%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.multi && t.projects.desarrollo.multi.badge_utility) || 'Utility' %></span>
+          </div>
+        </div>
+        <p><%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.multi && t.projects.desarrollo.multi.description) || 'Herramienta multipropósito para administración de sistemas.' %></p>
+        <a href="https://github.com/dav-tech-work/multiherramienta" target="_blank" class="btn-secondary" rel="noopener noreferrer">
+          <i class="fab fa-github" aria-hidden="true"></i>
+          <span><%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.multi && t.projects.desarrollo.multi.link) || 'Ver Código' %></span>
+        </a>
+      </div>
+
+      <!-- CV -->
+      <div class="proyecto-dev-card">
+        <div class="proyecto-dev-header">
+          <h3><%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.cv && t.projects.desarrollo.cv.title) || 'CV Digital' %></h3>
+          <div class="proyecto-dev-badges">
+            <span class="badge-live">🟢 <%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.cv && t.projects.desarrollo.cv.badge_live) || 'En Producción' %></span>
+            <span class="badge-professional">📄 <%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.cv && t.projects.desarrollo.cv.badge_professional) || 'Professional' %></span>
+          </div>
+        </div>
+        <p><%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.cv && t.projects.desarrollo.cv.description) || 'Currículum vitae digital con diseño responsive y optimizado.' %></p>
+        <a href="https://cv.dav-tech.work/" target="_blank" class="btn-secondary" rel="noopener noreferrer">
+          <i class="fa-light fa-file" aria-hidden="true"></i>
+          <span><%= (t.projects && t.projects.desarrollo && t.projects.desarrollo.cv && t.projects.desarrollo.cv.link) || 'Ver CV' %></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal para imágenes -->
+  <div id="modal" class="modal" onclick="cerrarModal()">
+    <img id="modal-img" class="modal-content" alt="Imagen ampliada del proyecto">
+  </div>
 </main>

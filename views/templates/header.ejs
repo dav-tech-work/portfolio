@@ -5,7 +5,12 @@
       <div class="nav-left">
         <!-- Logo accesible -->
         <a href="/" class="logo-link" aria-label="Inicio">
-          <img src="/assets/img/dav_logo_editado.svg" alt="Logo DAV" class="logo-img" />
+          <img src="/assets/img/dav_logo_editado.svg"
+               alt="Logo DAV"
+               class="logo-img"
+               width="120"
+               height="40"
+               decoding="async" />
         </a>
 
         <!-- Botón de menú para móviles -->
@@ -16,30 +21,63 @@
         <!-- Menú principal -->
         <ul class="menu-items">
           <li>
-            <a href="/" data-i18n="nav.home">
-              <%= typeof t !== 'undefined' && t['nav.home'] ? t['nav.home'] : 'Inicio' %>
+            <a href="/?lang=<%= typeof idioma !== 'undefined' ? idioma : 'es' %>" data-i18n="nav.home">
+              <%= typeof t !== 'undefined' && t.navigation && t.navigation.home ? t.navigation.home : 'Inicio' %>
             </a>
           </li>
           <li>
-            <a href="/proyectos" data-i18n="nav.projects">
-              <%= typeof t !== 'undefined' && t['nav.projects'] ? t['nav.projects'] : 'Proyectos' %>
+            <a href="/?lang=<%= typeof idioma !== 'undefined' ? idioma : 'es' %>#about" data-i18n="nav.about">
+              <%= typeof t !== 'undefined' && t.navigation && t.navigation.about ? t.navigation.about : 'Sobre Mí' %>
             </a>
           </li>
           <li>
+            <a href="/?lang=<%= typeof idioma !== 'undefined' ? idioma : 'es' %>#formacion" data-i18n="nav.education">
+              <%= typeof t !== 'undefined' && t.navigation && t.navigation.education ? t.navigation.education : 'Formación' %>
+            </a>
+          </li>
+          <li>
+            <a href="/?lang=<%= typeof idioma !== 'undefined' ? idioma : 'es' %>#proyectos" data-i18n="nav.projects">
+              <%= typeof t !== 'undefined' && t.navigation && t.navigation.projects ? t.navigation.projects : 'Proyectos' %>
+            </a>
+          </li>
+          <li>
+            <a href="/?lang=<%= typeof idioma !== 'undefined' ? idioma : 'es' %>#homelab" data-i18n="nav.homelab">
+              <%= typeof t !== 'undefined' && t.navigation && t.navigation.homelab ? t.navigation.homelab : 'Homelab' %>
+            </a>
+          </li>
+          <li>
+            <a href="/?lang=<%= typeof idioma !== 'undefined' ? idioma : 'es' %>#contacto" data-i18n="nav.contact">
+              <%= typeof t !== 'undefined' && t.navigation && t.navigation.contact ? t.navigation.contact : 'Contacto' %>
+            </a>
+          </li>
+          <!-- <li>
             <a href="/curriculum" data-i18n="nav.cv">
-              <%= typeof t !== 'undefined' && t['nav.cv'] ? t['nav.cv'] : 'Currículum' %>
+              <%= typeof t !== 'undefined' && t.navigation && t.navigation.cv ? t.navigation.cv : 'Currículum' %>
             </a>
-          </li>
-          <li>
-            <a href="/formacion" data-i18n="nav.education">
-              <%= typeof t !== 'undefined' && t['nav.education'] ? t['nav.education'] : 'Formación' %>
-            </a>
-          </li>
+          </li> -->
+
         </ul>
       </div>
 
       <div class="nav-right">
         <!-- Búsqueda -->
+        <div class="cv-download">
+          <a href="<% if (idioma === 'es') { %>
+            https://cv.dav-tech.work/download/cv.pdf?lang=es
+          <% } else if (idioma === 'en') { %>
+            https://cv.dav-tech.work/download/cv.pdf?lang=en
+          <% } else { %>
+            https://cv.dav-tech.work/download/cv.pdf?lang=ca
+          <% } %>"
+             class="cv-download-btn"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="<%= (t && t.cv && t.cv.download) ? t.cv.download : 'Descargar currículum en PDF' %>">
+            <i class="fas fa-download" aria-hidden="true"></i>
+            <%= (t && t.cv && t.cv.download) ? t.cv.download : 'Descargar CV' %>
+
+          </a>
+        </div>
         <div class="search-container">
           <button class="search-toggle" aria-label="Abrir campo de búsqueda">
             <i class="fas fa-search" aria-hidden="true"></i>

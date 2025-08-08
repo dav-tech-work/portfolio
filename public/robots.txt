@@ -1,39 +1,44 @@
 # Robots.txt - Portfolio Web Seguro
-# Configuración optimizada para SEO y seguridad
-# Última actualización: 2025-01-27
+# Configuración optimizada para SEO, rendimiento y seguridad
+# Última actualización: 2025-08-08
 
 User-agent: *
 
 # === DIRECTORIOS PROTEGIDOS - SEGURIDAD ===
-# Backend y configuración
 Disallow: /src/
 Disallow: /config/
-Disallow: /middlewares/
+Disallow: /middleware/
 Disallow: /routes/
 Disallow: /utils/
 Disallow: /scripts/
 Disallow: /tools/
-
-# Contenido sensible y privado
+Disallow: /checks/
 Disallow: /admin/
 Disallow: /private/
 Disallow: /protected/
 Disallow: /backend/
 Disallow: /contenido_protegido/
 Disallow: /uploads/
-
-# Archivos de sistema y desarrollo
+Disallow: /sessions/
 Disallow: /node_modules/
 Disallow: /logs/
-Disallow: /MD/
+Disallow: /docs/
+Disallow: /test/
+Disallow: /coverage/
+Disallow: /reports/
+Disallow: /test-results/
+Disallow: /.nyc_output/
 Disallow: /.env
+Disallow: /config.env
 Disallow: /.git/
 Disallow: /package.json
 Disallow: /package-lock.json
 Disallow: /docker-compose.yml
 Disallow: /Dockerfile
-
-# Archivos temporales y de desarrollo
+Disallow: /eslint.config.mjs
+Disallow: /.eslintrc.json
+Disallow: /.dockerignore
+Disallow: /.gitignore
 Disallow: /tmp/
 Disallow: /temp/
 Disallow: /cache/
@@ -41,67 +46,21 @@ Disallow: /*.log
 Disallow: /*.bak
 Disallow: /*.tmp
 
-# === DIRECTORIOS PERMITIDOS - SEO ===
-# Contenido público y páginas
-Allow: /public/
-Allow: /pages/
+# === RUTAS DE APLICACIÓN A NO INDEXAR ===
+Disallow: /auth/
+Disallow: /api/
+Disallow: /metrics
+Disallow: /health
+Disallow: /test
+Disallow: /protegidas
+Disallow: /construccion
+Disallow: /curriculum
+
+# === RECURSOS PERMITIDOS ===
 Allow: /assets/
-Allow: /css/
-Allow: /js/
-Allow: /img/
-Allow: /images/
-
-# Archivos específicos permitidos
-Allow: /favicon.ico
-Allow: /manifest.json
-Allow: /service-worker.js
-Allow: /robots.txt
-Allow: /sitemap.xml
-
-# === CONFIGURACIÓN PARA BOTS ESPECÍFICOS ===
-
-# Google Bot - Acceso completo a contenido público
-User-agent: Googlebot
-Allow: /public/
-Allow: /pages/
-Allow: /assets/
-Disallow: /src/
-Disallow: /admin/
-Disallow: /logs/
-
-# Bing Bot - Configuración similar a Google
-User-agent: Bingbot
-Allow: /public/
-Allow: /pages/
-Allow: /assets/
-Disallow: /src/
-Disallow: /admin/
-Disallow: /logs/
-
-# Bloquear bots maliciosos conocidos
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-User-agent: DotBot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
 
 # === CONFIGURACIÓN DE CRAWL DELAY ===
-# Evitar sobrecarga del servidor
 Crawl-delay: 1
 
 # === SITEMAP ===
-# Ubicación del mapa del sitio
 Sitemap: https://daniel-arribas-velazquez.dav-tech.work/sitemap.xml
-
-# === INFORMACIÓN ADICIONAL ===
-# Este robots.txt está optimizado para:
-# - Seguridad: Protege directorios sensibles
-# - SEO: Permite indexación de contenido público
-# - Rendimiento: Controla la frecuencia de crawling
-# - Compatibilidad: Funciona con todos los motores de búsqueda principales

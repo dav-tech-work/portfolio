@@ -6,6 +6,46 @@
 
 > "Si tu backend no protege, entonces no sirve. Este sí lo hace."
 
+---
+
+## ⚡ Inicio Rápido (Local)
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/dav-tech-work/porfolio.git
+cd porfolio
+
+# Instalar dependencias
+npm install
+
+# Configurar entorno
+cp config.env.example config.env
+# Edita SESSION_SECRET y JWT_SECRET (32+ chars)
+
+# Ejecutar en desarrollo
+npm run dev
+# http://localhost:3000
+```
+
+## 🐳 Inicio Rápido (Docker)
+
+```bash
+# Desarrollo (sin BD)
+docker compose -f docker/docker-compose.yml --profile dev up -d
+# App: http://localhost:30002 (mapea 30002 -> 3001)
+
+# Producción con BD opcional
+docker compose -f docker/docker-compose.yml --profile database up -d
+# App: http://localhost:30001 (mapea 30001 -> 3001)
+
+# Logs
+docker compose -f docker/docker-compose.yml logs -f
+```
+
+> Para detalles ver la sección "🐳 DESPLIEGUE CON DOCKER" más abajo.
+
+---
+
 > **🛡️ Auditorías externas superadas:**
 >
 > - 🟢 [SecurityHeaders.com](https://securityheaders.com): **A+**
@@ -105,7 +145,7 @@ Este proyecto demuestra **competencias técnicas excepcionales** que superan sig
 
 **APROBAR** el proyecto para producción sin restricciones. Este proyecto está listo para producción y representa un excelente ejemplo de buenas prácticas en desarrollo web moderno con seguridad de nivel empresarial.
 
-> 📄 **Reporte Completo:** [AUDITORIA_COMPLETA_2025.md](./AUDITORIA_COMPLETA_2025.md)
+> 📄 **Reporte Completo:** [docs/auditoria-20-07-2025](./docs/auditoria-20-07-2025)
 
 ---
 
@@ -459,7 +499,7 @@ Este proyecto demuestra **competencias técnicas excepcionales** que superan sig
 ## 🏗️ **ARQUITECTURA DEL PROYECTO**
 
 ```
-porfolio_produccion/
+porfolio/
 ├── app.mjs                 # Entrada principal del servidor
 ├── package.json            # Dependencias y scripts
 ├── config.env.example      # Configuración de ejemplo
@@ -551,31 +591,32 @@ El sistema aplica múltiples capas de protección con una arquitectura orientada
 
 ```bash
 # Clonar el repositorio
-git clone <repository-url>
-cd porfolio_produccion
+git clone https://github.com/dav-tech-work/porfolio.git
+cd porfolio
 
 # Configurar variables de entorno
 cp config.env.example config.env
 # Editar config.env con tus valores
 
 # Ejecutar con Docker Compose
-docker compose up -d
+docker compose -f docker/docker-compose.yml up -d
 
 # O usar el script de automatización
-npm run docker:setup
+node scripts/docker-setup.mjs
 ```
 
 ### **Verificación:**
 
 ```bash
 # Verificar configuración Docker
-npm run verify:docker
+node scripts/verify-docker.mjs
 
 # Ver logs del contenedor
-docker compose logs -f
+docker compose -f docker/docker-compose.yml logs -f
 
 # Acceder a la aplicación
-open http://localhost:30001
+# Desarrollo (perfil dev): http://localhost:30002
+# Producción+BD (perfil database): http://localhost:30001
 ```
 
 ### **Docker Compose (actualizado):**
@@ -586,7 +627,7 @@ services:
     build: .
     container_name: portfolio-web-seguro
     ports:
-      - '3001:3001' # Puerto estandarizado
+      - '30001:3001' # Puerto externo -> interno
     environment:
       NODE_ENV: production
       PORT: 3001
@@ -629,7 +670,7 @@ cp config.env.example config.env
 # Editar config.env
 
 # Verificar configuración
-npm run verificar
+npm run verificacion
 ```
 
 ### **Desarrollo:**
@@ -645,14 +686,14 @@ npm test
 npm run lint
 
 # Verificar calidad del código
-npm run security:check
+npm run seguridad
 ```
 
 ### **Verificaciones de Calidad:**
 
 ```bash
 # Verificación completa del proyecto
-npm run verificar
+npm run verificacion
 
 # Tests de seguridad
 npm run test:security
@@ -737,10 +778,10 @@ Esto **no es una SPA con fuegos artificiales**. Es una prueba de que se puede ha
 
 ### **📚 Documentación de Kubernetes:**
 
-- [🚀 Comandos Kubernetes](docs/comandos-kubernetes.md) - Comandos completos para gestión
-- [⚡ Comandos Rápidos](docs/comandos-rapidos.md) - Comandos más usados para uso diario
-- [🛡️ Configuración de Seguridad](kubernetes/porfolio-security.yaml) - Políticas de seguridad
-- [🔍 Auditoría](kubernetes/audit-config.yaml) - Configuración de auditoría y escaneo
+- [🚀 Despliegue en Kubernetes](docs/Despliegue_Kubernetes.md)
+- [🧰 Comandos](docs/comandos.md)
+- [🛡️ Configuración de Seguridad](kubernetes/porfolio-security.yaml)
+- [🔍 Auditoría](kubernetes/audit-config.yaml)
 
 ### **🔧 Gestión de Recursos:**
 
@@ -877,4 +918,4 @@ Este repositorio **no incluye contenido personal, educativo ni privado**.
 
 **📈 Puntuación Final: 9.8/10 (Profesional Excepcional)**
 
-_Actualizado en Julio 2025 (20/07/2025) - Análisis completo del proyecto_
+_Actualizado en Agosto 2025 (8/08/2025) - Análisis completo del proyecto_

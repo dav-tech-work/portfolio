@@ -1,0 +1,147 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: porfolio
+  namespace: default
+  labels:
+    app: porfolio
+    version: v
+    environment: production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: porfolio
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: porfolio
+        version: v
+        environment: production
+    spec:
+      imagePullSecrets:
+        - name: docker-registry-secret
+      initContainers:
+        - name: redis-check
+          image: busybox:1.35
+          command: ['sh', '-c', 'until nc -z portfolio-redis-service 6379; do echo waiting for redis; sleep 2; done;']
+      containers:
+        - name: porfolio
+          image: davtechw/porfolio:v3 #Modificar version
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+              name: http
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PORT
+              value: '3000'
+            # Configuración Redis para Kubernetes - AUTOSUFICIENCIA
+            - name: REDIS_ENABLED
+              value: 'true'
+            - name: REDIS_HOST
+              value: 'portfolio-redis-service'
+            - name: REDIS_PORT
+              value: '6379'
+            - name: REDIS_DB
+              value: '0'
+            - name: REDIS_AUTH_DB
+              value: '1'
+            - name: REDIS_RATE_LIMIT_DB
+              value: '2'
+            - name: REDIS_SESSION_DB
+              value: '3'
+            # Configuración adicional para mejorar la conectividad
+            - name: REDIS_CONNECT_TIMEOUT
+              value: '10000'
+            - name: REDIS_COMMAND_TIMEOUT
+              value: '5000'
+            - name: REDIS_RETRY_DELAY
+              value: '1000'
+            - name: REDIS_MAX_RETRIES
+              value: '3'
+            - name: TRUST_PROXY
+              value: 'true'
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: porfolio-secrets
+                  key: JWT_SECRET
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: porfolio-secrets
+                  key: SESSION_SECRET
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: porfolio-secrets
+                  key: API_KEY
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 2001
+            runAsGroup: 2001
+            runAsNonRoot: true
+            readOnlyRootFilesystem: false
+            capabilities:
+              drop:
+                - ALL
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+              httpHeaders:
+                - name: User-Agent
+                  value: kube-probe/1.0
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+              httpHeaders:
+                - name: User-Agent
+                  value: kube-probe/1.0
+            initialDelaySeconds: 3
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: porfolio-service
+  namespace: default
+  labels:
+    app: porfolio
+    environment: production
+  annotations:
+    # Anotaciones para Cloudflare Zero Trust
+    cloudflare.com/zero-trust: 'true'
+    cloudflare.com/proxy-mode: 'http'
+spec:
+  type: NodePort # NodePort para acceso directo
+  selector:
+    app: porfolio
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30001
+      name: http

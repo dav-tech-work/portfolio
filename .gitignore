@@ -23,6 +23,8 @@ pnpm-lock.yaml
 .env.example
 config.env
 config.local.env
+secrets.json
+
 config.*.env
 secrets/
 *.secret
@@ -53,6 +55,7 @@ test-reports/
 *.spec.js.map
 performance-report.json
 security-report.json
+results/
 
 # ========================================
 # ARCHIVOS TEMPORALES DEL SISTEMA
@@ -208,3 +211,8 @@ sessions/
 
 
 
+
+# Archivos de configuración con secretos
+config.env.backup.*
+# Archivos de entorno
+.env.*

@@ -7,6 +7,48 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /**
+ * Función helper para acceder a traducciones de manera segura.
+ * Soporta tanto notación de punto como notación de corchetes.
+ * @param {Object} traducciones - Objeto de traducciones
+ * @param {string} clave - Clave de traducción (ej: 'nav.home' o 'navigation.home')
+ * @param {string} fallback - Valor por defecto si no se encuentra
+ * @returns {string} Traducción o fallback
+ */
+export function obtenerTraduccion(traducciones, clave, fallback = '') {
+  if (!traducciones || typeof traducciones !== 'object') {
+    return fallback;
+  }
+
+  // Intentar acceso directo con la nueva estructura
+  const partes = clave.split('.');
+  let valor = traducciones;
+
+  for (const parte of partes) {
+    if (valor && typeof valor === 'object' && valor[parte] !== undefined) {
+      valor = valor[parte];
+    } else {
+      return fallback;
+    }
+  }
+
+  return typeof valor === 'string' ? valor : fallback;
+}
+
+/**
+ * Función para obtener traducciones de una sección específica.
+ * @param {Object} traducciones - Objeto de traducciones
+ * @param {string} seccion - Sección (ej: 'home', 'cv', 'projects')
+ * @returns {Object} Objeto con las traducciones de la sección
+ */
+export function obtenerSeccion(traducciones, seccion) {
+  if (!traducciones || typeof traducciones !== 'object') {
+    return {};
+  }
+
+  return traducciones[seccion] || {};
+}
+
+/**
  * Carga el archivo de idioma correspondiente al código recibido.
  * Hace fallback a "es" si el idioma no existe o es inválido.
  * @param {string} idioma - Código del idioma, por ejemplo "es", "en", "pt-br".

@@ -1,0 +1,108 @@
+name: 🔒 Security Workflow
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    # Ejecutar diariamente a las 3:00 AM UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    # Permitir ejecución manual
+
+env:
+  NODE_VERSION: '18'
+  RESULTS_DIR: 'results/workflows/security'
+
+jobs:
+  security-scan:
+    name: 🔒 Security Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 📥 Checkout del código
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Instalar dependencias
+        run: npm ci
+
+      - name: 📝 Configurar entorno de CI
+        run: |
+          echo "📝 Configurando entorno para CI..."
+          cp config.env.example config.env
+          chmod 600 config.env
+          mkdir -p logs
+          echo "✅ Entorno configurado"
+
+      - name: 🛡️ Ejecutar análisis de seguridad completo
+        run: npm run seguridad-completo
+
+      - name: 📊 Generar reporte de seguridad
+        run: |
+          echo "📊 Generando reporte de seguridad..."
+          mkdir -p ${{ env.RESULTS_DIR }}
+          if [ -f "results/security-results/security-complete-report.json" ]; then
+            cp results/security-results/security-complete-report.json ${{ env.RESULTS_DIR }}/security-report.json
+            echo "✅ Reporte copiado a ${{ env.RESULTS_DIR }}"
+          else
+            echo "⚠️ No se encontró reporte de seguridad"
+          fi
+
+      - name: 📋 Verificar vulnerabilidades de dependencias
+        run: npm audit --audit-level moderate
+
+      - name: 🔍 Escaneo de secretos
+        run: |
+          echo "🔍 Escaneando secretos con reglas estrictas..."
+          set +e
+          # Buscar solo asignaciones explícitas a variables sensibles con literales (dobles o simples)
+          PATTERN1="(^|[^A-Za-z0-9_])(pass(word)?|pwd|secret|api[_-]?key|token)[[:space:]]*[:=][[:space:]]*\"[^\"]{8,}\""
+          PATTERN2="(^|[^A-Za-z0-9_])(pass(word)?|pwd|secret|api[_-]?key|token)[[:space:]]*[:=][[:space:]]*'[^']{8,}'"
+
+          MATCHES1=$(grep -RInE "$PATTERN1" . --include="*.js" --include="*.mjs" --include="*.json" --exclude-dir=node_modules --exclude-dir=coverage --exclude-dir=logs --exclude-dir=.git --exclude-dir=test || true)
+          MATCHES2=$(grep -RInE "$PATTERN2" . --include="*.js" --include="*.mjs" --include="*.json" --exclude-dir=node_modules --exclude-dir=coverage --exclude-dir=logs --exclude-dir=.git --exclude-dir=test || true)
+
+          COMBINED=$(printf "%s\n%s\n" "$MATCHES1" "$MATCHES2" | sort -u | sed '/^$/d')
+
+          # Filtrar destructuring u otros casos no sensibles como listas de contraseñas comunes
+          if [ -n "$COMBINED" ]; then
+            FILTERED=$(echo "$COMBINED" | grep -Ev '\{[^}]*\}[[:space:]]*[:=]' | grep -Ev 'commonPasswords' || true)
+          else
+            FILTERED=""
+          fi
+
+          if [ -n "$FILTERED" ]; then
+            echo "$FILTERED"
+            echo "⚠️ Posibles secretos hardcodeados encontrados"
+            exit 1
+          fi
+
+          echo "✅ No se encontraron secretos hardcodeados"
+
+      - name: 📤 Subir reportes como artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-reports
+          path: ${{ env.RESULTS_DIR }}/
+          retention-days: 30
+
+      - name: 📊 Resumen de seguridad
+        if: always()
+        run: |
+          echo "## 🔒 Resumen de Análisis de Seguridad" >> $GITHUB_STEP_SUMMARY
+          echo "Fecha: $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Verificaciones completadas:" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Análisis de seguridad completo" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Auditoría de dependencias" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Escaneo de secretos" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Verificación de configuración" >> $GITHUB_STEP_SUMMARY

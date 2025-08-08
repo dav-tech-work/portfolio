@@ -1,0 +1,286 @@
+---
+# Configuración de auditoría para el cluster
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: audit-config
+  namespace: default
+  labels:
+    app: porfolio
+data:
+  audit-policy.yaml: |
+    apiVersion: audit.k8s.io/v1
+    kind: Policy
+    rules:
+      # Log pod changes at RequestResponse level
+      - level: RequestResponse
+        resources:
+        - group: ""
+          resources: ["pods"]
+
+      # Log pod log access at Metadata level
+      - level: Metadata
+        resources:
+        - group: ""
+          resources: ["pods/log"]
+
+      # Log configmap and secret changes at RequestResponse level
+      - level: RequestResponse
+        resources:
+        - group: ""
+          resources: ["configmaps", "secrets"]
+
+      # Log all other resources in the core API group at Metadata level
+      - level: Metadata
+        resources:
+        - group: ""
+          resources: ["*"]
+
+      # Log all other resources at Metadata level
+      - level: Metadata
+        resources:
+        - group: "*"
+          resources: ["*"]
+
+      # A catch-all rule to log all other requests at the Metadata level
+      - level: Metadata
+        omitStages:
+          - "RequestReceived"
+---
+# Configuración de monitoreo de seguridad
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: security-monitoring
+  namespace: default
+  labels:
+    app: porfolio
+data:
+  security-rules.yaml: |
+    # Reglas de monitoreo de seguridad
+    security:
+      # Detección de pods privilegiados
+      privileged_pods:
+        enabled: true
+        severity: high
+
+      # Detección de escalación de privilegios
+      privilege_escalation:
+        enabled: true
+        severity: critical
+
+      # Detección de contenedores que se ejecutan como root
+      root_containers:
+        enabled: true
+        severity: high
+
+      # Detección de mounts de host
+      host_mounts:
+        enabled: true
+        severity: medium
+
+      # Detección de capacidades peligrosas
+      dangerous_capabilities:
+        enabled: true
+        severity: high
+        capabilities:
+          - SYS_ADMIN
+          - NET_ADMIN
+          - SYS_MODULE
+---
+# Configuración de alertas de seguridad
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: security-alerts
+  namespace: default
+  labels:
+    app: porfolio
+data:
+  alert-rules.yaml: |
+    groups:
+    - name: security.alerts
+      rules:
+      - alert: PrivilegedContainer
+        expr: kube_pod_container_security_context_privileged == 1
+        for: 0m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Privileged container detected"
+          description: "Pod {{ $labels.pod }} has a privileged container"
+
+      - alert: RootContainer
+        expr: kube_pod_container_security_context_run_as_user == 0
+        for: 0m
+        labels:
+          severity: high
+        annotations:
+          summary: "Container running as root"
+          description: "Pod {{ $labels.pod }} has a container running as root"
+
+      - alert: HostPathMount
+        expr: kube_pod_container_volume_mounts_readonly == 0
+        for: 0m
+        labels:
+          severity: medium
+        annotations:
+          summary: "Host path mount detected"
+          description: "Pod {{ $labels.pod }} has a host path mount"
+---
+# Configuración de escaneo de vulnerabilidades
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vulnerability-scanning
+  namespace: default
+  labels:
+    app: porfolio
+data:
+  trivy-config.yaml: |
+    # Configuración de Trivy para escaneo de vulnerabilidades
+    trivy:
+      # Configuración del servidor
+      server:
+        host: "0.0.0.0"
+        port: 8080
+
+      # Configuración de la base de datos
+      db:
+        repository: "ghcr.io/aquasecurity/trivy-db"
+        skip_update: false
+
+      # Configuración de escaneo
+      scan:
+        timeout: 300s
+        severity: "CRITICAL,HIGH"
+        vuln_type: "os,library"
+
+      # Configuración de reportes
+      report:
+        format: "json"
+        output: "/tmp/trivy-report.json"
+---
+# Job para escaneo periódico de vulnerabilidades
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: vulnerability-scan
+  namespace: default
+  labels:
+    app: porfolio
+spec:
+  schedule: '0 2 * * *' # Diario a las 2 AM
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: porfolio-sa
+          containers:
+            - name: trivy-scanner
+              image: aquasec/trivy:latest
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  # Verificar que trivy está disponible
+                  echo "🔍 Verificando instalación de Trivy..."
+                  which trivy || find / -name trivy 2>/dev/null || echo "❌ Trivy no encontrado"
+
+                  # Intentar diferentes rutas para trivy
+                  TRIVY_CMD=""
+                  for path in "/usr/local/bin/trivy" "/usr/bin/trivy" "/opt/trivy" "trivy"; do
+                    if command -v $path >/dev/null 2>&1; then
+                      TRIVY_CMD=$path
+                      echo "✅ Trivy encontrado en: $TRIVY_CMD"
+                      break
+                    fi
+                  done
+
+                  if [ -z "$TRIVY_CMD" ]; then
+                    echo "❌ Error: Trivy no encontrado en ninguna ubicación"
+                    echo "📋 Contenido del directorio /usr/local/bin:"
+                    ls -la /usr/local/bin/ || echo "Directorio no existe"
+                    echo "📋 Contenido del directorio /usr/bin:"
+                    ls -la /usr/bin/ | grep trivy || echo "No se encontró trivy"
+                    exit 1
+                  fi
+
+                  # Ejecutar escaneo de vulnerabilidades
+                  echo "🔍 Iniciando escaneo de vulnerabilidades..."
+                  $TRIVY_CMD image --format json --output /tmp/trivy-report.json davtechw/porfolio:v4
+
+                  # Verificar que el reporte se generó
+                  if [ -f "/tmp/trivy-report.json" ]; then
+                    echo "✅ Reporte generado exitosamente"
+                    echo "📊 Tamaño del reporte: $(wc -c < /tmp/trivy-report.json) bytes"
+
+                    # Mostrar resumen del reporte
+                    echo "📋 Resumen de vulnerabilidades:"
+                    cat /tmp/trivy-report.json | jq -r '.Results[]?.Vulnerabilities[]? | "\(.VulnerabilityID): \(.Severity) - \(.Title)"' 2>/dev/null || echo "No se pudo parsear el JSON"
+
+                    # Intentar enviar reporte (opcional)
+                    if command -v curl >/dev/null 2>&1; then
+                      echo "📤 Enviando reporte a sistema de monitoreo..."
+                      curl -X POST -H "Content-Type: application/json" \
+                        -d @/tmp/trivy-report.json \
+                        http://security-monitoring:8080/api/vulnerabilities 2>/dev/null || echo "⚠️ No se pudo enviar reporte (servicio no disponible)"
+                    fi
+                  else
+                    echo "❌ Error: No se pudo generar el reporte"
+                    exit 1
+                  fi
+
+                  echo "🎉 Escaneo completado exitosamente"
+              resources:
+                limits:
+                  cpu: 500m
+                  memory: 512Mi
+                requests:
+                  cpu: 100m
+                  memory: 128Mi
+              volumeMounts:
+                - name: trivy-cache
+                  mountPath: /root/.cache/trivy
+                - name: trivy-reports
+                  mountPath: /tmp
+          volumes:
+            - name: trivy-cache
+              emptyDir: {}
+            - name: trivy-reports
+              emptyDir: {}
+          restartPolicy: OnFailure
+---
+# Configuración de políticas de seguridad de red
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: security-monitoring-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: security-monitoring
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: default
+      ports:
+        - protocol: TCP
+          port: 8080
+  egress:
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 53
+        - protocol: UDP
+          port: 53
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 443

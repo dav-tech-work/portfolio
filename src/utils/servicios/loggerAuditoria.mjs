@@ -4,8 +4,8 @@ import path from 'path';
 
 import config from '../../config/index.mjs';
 
-// const __filename = fileURLToPath(import.meta.url); // Currently unused
-// const _dirname = path.dirname(__filename); // Currently unused
+// // Currently unused
+// // Currently unused
 
 // Crear carpeta de logs de auditoría si no existe
 const auditLogsPath = path.join(config.PATHS.LOGS, 'audit');
@@ -34,7 +34,7 @@ export function auditar(evento) {
     const fecha = timestamp.split('T')[0];
     const logPath = path.join(auditLogsPath, `audit-${fecha}.log`);
 
-    const logLine = JSON.stringify(logEntry) + '\n';
+    const logLine = JSON.stringify(logEntry) + 'n';
 
     fs.appendFileSync(logPath, logLine);
   } catch (error) {
@@ -69,7 +69,7 @@ export function buscarAuditoria(criterios = {}) {
       const logPath = path.join(auditLogsPath, archivo);
       const contenido = fs.readFileSync(logPath, 'utf-8');
 
-      const lineas = contenido.trim().split('\n');
+      const lineas = contenido.trim().split('n');
 
       for (const linea of lineas) {
         if (!linea.trim()) continue;

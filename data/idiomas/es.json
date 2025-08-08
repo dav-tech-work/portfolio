@@ -1,136 +1,864 @@
 {
-  "nav.home": "Inicio",
-  "nav.projects": "Proyectos",
-  "nav.cv": "Curriculum",
-  "nav.education": "Formación",
-  "error.title": "Página no encontrada",
-  "error.description": "Lo sentimos, la página que estás buscando no existe o ha sido movida.",
-  "error.backHome": "Volver al inicio",
-  "home.title": "Daniel Arribas Velázquez",
-  "home.subtitle": "Administrador de Sistemas Informáticos, redes y seguridad",
-  "about.desc": "Soy un profesional en administración de sistemas informáticos, redes y programación, con una amplia experiencia en soporte técnico y tecnología. Me caracterizo por un enfoque práctico y directo, resolviendo problemas con eficiencia e innovación.",
-  "about.desc2": "Siempre mantengo una mentalidad curiosa y escéptica, buscando soluciones efectivas sin rodeos. Valoro la claridad, la originalidad y la eficiencia en cada proyecto en el que trabajo.",
-  "about.desc3": "Además, disfruto de un buen humor inteligente y ágil, siempre en un ambiente de respeto y profesionalismo.",
-  "about.desc4": "Si buscas a alguien con convicción, creatividad y enfoque técnico, ¡estoy listo para el desafío!",
-  "home.featured": "Destacados",
-  "home.development": "Desarrollo",
-  "home.development.desc": "Desarrollo de aplicaciones web modernas y escalables",
-  "home.responsive": "Diseño Responsive",
-  "home.responsive.desc": "Interfaces adaptativas para todos los dispositivos",
-  "home.systems": "Sistemas",
-  "home.systems.desc": "Administración de sistemas Windows y Linux, virtualización y gestión de backups",
-  "home.networks": "Redes",
-  "home.networks.desc": "Configuración y mantenimiento de infraestructura de red empresarial",
-  "home.security": "Seguridad",
-  "home.security.desc": "Implementación de medidas de seguridad avanzadas",
-  "home.technologies": "Tecnologías",
-  "cv.subtitle": "Administrador de Sistemas y Seguridad Informática",
-  "cv.contact.location": "Barcelona, España",
-  "cv.profile.title": "Perfil Profesional",
-  "cv.profile.description": "Cuento con más de cinco años de experiencia como <strong>Administrador de Sistemas Informáticos</strong>, especializándome en seguridad IT y gestión de infraestructuras tecnológicas. Mi enfoque se centra en garantizar la integridad y resiliencia de redes y sistemas, implementando soluciones proactivas para la protección de datos y la optimización del rendimiento. A lo largo de mi trayectoria, he mejorado mis habilidades en herramientas y aplicativos avanzados como <strong>Nmap</strong>, <strong>Sonicwall</strong> y <strong>Metasploit</strong>, fortaleciendo la seguridad informática y la capacidad de respuesta ante amenazas. Actualmente, me encuentro en formación en <strong>programación</strong>, ampliando mis competencias para desarrollar soluciones más eficientes y versátiles en entornos IT.",
-  "cv.experience.title": "Experiencia Laboral",
-  "cv.experience.role": "Administrador de Sistemas y Seguridad Informática",
-  "cv.experience.date": "Enero 2019 - Mayo 2024",
-  "cv.experience.duties.1": "Administración de sistemas Windows y Linux",
-  "cv.experience.duties.2": "Soporte técnico y solución de problemas",
-  "cv.experience.duties.3": "Configuración y mantenimiento de redes y servidores",
-  "cv.experience.duties.4": "Implementación de políticas de seguridad",
-  "cv.experience.duties.5": "Monitorización y análisis de seguridad",
-  "cv.experience.duties.6": "Manejo de herramientas: Sonicwall, Acronis, Veeam, etc.",
-  "cv.education.title": "Educación",
-  "cv.education.programming.title": "Certificación Profesionalidad en Programación y Bases de Datos",
-  "cv.education.programming.school": "STUCOM Centre d'Estudis | En formación",
-  "cv.education.programming.description": "Python, SQL, HTML, CSS, JavaScript",
-  "cv.education.security.title": "Certificación Profesionalidad en Seguridad Informática",
-  "cv.education.security.school": "Grup CIEF | Diciembre 2024",
-  "cv.education.security.description": "Auditoría y ciberseguridad",
-  "cv.education.systems.title": "Certificación Profesionalidad en Operador de sistemas",
-  "cv.education.systems.school": "CIFO la Violeta | Diciembre 2018",
-  "cv.education.systems.description": "Formación en sistemas operativos",
-  "cv.education.forestry.title": "Grado Medio en Trabajos forestales y conservación del medio Natural",
-  "cv.education.forestry.school": "IES Pont de Suert | Julio 2011",
-  "cv.education.forestry.description": "Formación en trabajos forestales y conservación del medio natural",
-  "cv.certifications.title": "Certificaciones",
-  "cv.certifications.1": "Parallels y Awingu",
-  "cv.certifications.2": "Lexmark - Save4print",
-  "cv.certifications.3": "SNSA Sonicwall",
-  "cv.skills.title": "Habilidades",
-  "cv.skills.selftaught": "Autodidacta",
-  "cv.languages.title": "Idiomas",
-  "cv.languages.spanish": "Español - Nativo",
-  "cv.languages.catalan": "Catalán - Nativo",
-  "cv.languages.english": "Inglés - Técnico",
-  "projects.title": "Proyectos",
-  "projects.description": "Estos son los proyectos que he realizado y estoy trabajando en este momento.",
-  "projects.system": "Sistema operativo",
-  "projects.system.description": "El proyecto consiste en un servidor de proxmox, con diferenes sistemas que dan servicio. Un ejemplo es este servidor que estás visitando.",
-  "projects.system.status": "El proyecto está en desarrollo continuo de mejora y de securización.",
-  "projects.system.figcaption": "<cite class='project-text'> Captura del proyecto de virtualización con Proxmox</cite>",
-  "projects.programming": "Programación",
-  "projects.programming.description": "En este proyecto hay diferentes proyectos, como por ejemplo el que estás visitando.",
-  "projects.programming.status": "También estoy trabajando en una web multi herramienta, para realizar tareas repetitivas a la hora de revisar una red. El proyecto es un proyecto en desarrollo muy temprano.",
-  "projects.programming.github": "Ver en GitHub",
-  "projects.programming.github.multi": "Ver en GitHub (Multi-tool)",
-  "projects.programming.github.porfolio": "Ver en GitHub (Porfolio)",
-  "projects.programming.github.proyectos": "Ver en GitHub (Proyecto Node Base)",
-  "projects.programming.app-tiempo": "App Tiempo",
-  "projects.programming.cv": "Currículum Vitae",
-  "projects.programming.github.mail_notification": "Ver en GitHub (Mail Notification)",
-  "python.practices.title": "Prácticas Python",
-  "python.practices.label": "Práctica",
-  "python.theory.title": "Teoría Python",
-  "python.theory.basics": "Características Básicas",
-  "python.theory.numbers": "Números",
-  "python.theory.booleans": "Booleanos",
-  "python.theory.strings": "Strings",
-  "python.theory.conditionals": "if / elif / else",
-  "python.theory.logic": "Operadores Lógicos",
-  "python.theory.exceptions": "Excepciones",
-  "python.theory.libraries": "Librerías",
-  "python.theory.match": "Match",
-  "python.theory.lists": "Listas",
-  "python.theory.loops": "Bucles",
-  "python.theory.dicts": "Diccionarios",
-  "python.theory.tuples": "Tuplas",
-  "python.theory.set": "Set",
-  "python.theory.functions": "Funciones",
-  "python.theory.objects": "Objetos",
-  "education.title": "Formación",
-  "education.description": "Bienvenido a la apartado de formación, aquí encontrarás todo el contenido del curso de Programación Orientada a Objetos y Bases de Datos que he realizado.<br> En él se incluye teoría, ejercicios y trabajos. <br><br> Incluye ejercicios y proyectos desarrollados en Python, HTML, CSS, JavaScript, PHP y MySQL, así como en sistemas operativos Linux y Windows.",
+  "meta": {
+    "title": "Daniel Arribas Velázquez | Administrador de Sistemas Informáticos, redes y seguridad",
+    "about": "Sobre Mí | Daniel Arribas Velázquez",
+    "curriculum": "Currículum | Daniel Arribas Velázquez",
+    "projects": "Proyectos | Daniel Arribas Velázquez",
+    "education": "Formación | Daniel Arribas Velázquez",
+    "contact": "Contacto | Daniel Arribas Velázquez",
+    "homelab": "Homelab | Daniel Arribas Velázquez",
+    "javascript": {
+      "theory": "JavaScript - Teoría | Daniel Arribas Velázquez",
+      "practices": "JavaScript - Prácticas | Daniel Arribas Velázquez"
+    },
+    "python": {
+      "theory": "Python - Teoría | Daniel Arribas Velázquez",
+      "practices": "Python - Prácticas | Daniel Arribas Velázquez"
+    },
+    "html": "HTML/CSS | Daniel Arribas Velázquez",
+    "php": "PHP/SQL | Daniel Arribas Velázquez"
+  },
 
-  "education.python.title": "Python",
-  "education.python.basics.title": "Conceptos Básicos",
-  "education.python.basics.description": "Python es un lenguaje de programación de alto nivel, interpretado y orientado a objetos. Es conocido por su sintaxis clara y legible, lo que facilita su aprendizaje y uso. Python es versátil y se utiliza en una amplia variedad de aplicaciones, desde desarrollo web hasta análisis de datos y aprendizaje automático.<br> En este apartado se explican los conceptos básicos de programación.",
-  "education.python.practices.title": "Prácticas",
-  "education.python.practices.description": "En esta sección se presentan ejercicios prácticos para aplicar los conceptos aprendidos en la teoría. Los ejercicios están diseñados para reforzar el conocimiento y mejorar las habilidades de programación en Python.",
+  "navigation": {
+    "home": "Inicio",
+    "about": "Sobre Mí",
+    "projects": "Proyectos",
+    "cv": "Curriculum",
+    "education": "Formación",
+    "homelab": "Homelab",
+    "contact": "Contacto"
+  },
 
-  "education.web.title": "Desarrollo Web",
-  "education.web.html.title": "Conceptos y ejercicios sobre HTML y CSS",
-  "education.web.html.description": "HTML (HyperText Markup Language) es el lenguaje de marcado estándar para crear páginas web, mientras que CSS (Cascading Style Sheets) se utiliza para aplicar estilos y diseño a las páginas web.",
-  "education.web.html.teoria.title": "Teoria HTML y CSS",
-  "education.web.html.practices.title": "Prácticas HTML y CSS",
+  "error": {
+    "title": "Página no encontrada",
+    "description": "Lo sentimos, la página que estás buscando no existe o ha sido movida.",
+    "backHome": "Volver al inicio"
+  },
 
-  "education.php.sql.title": "PHP y MySQL",
-  "education.php.sql.description": "PHP es un lenguaje de programación del lado del servidor, ampliamente utilizado para el desarrollo web. Permite crear aplicaciones dinámicas y gestionar bases de datos. MySQL es un sistema de gestión de bases de datos relacional que se integra fácilmente con PHP, permitiendo almacenar y recuperar datos de manera eficiente.",
-  "education.php.sql.practices.title": "Conceptos y ejercicios sobre PHP y MySQL",
-  "education.php.sql.sql.title": "Teoria y ejercicios sobre SQL",
-  "education.php.sql.php.title": "Practicas PHP",
+  "home": {
+    "title": "Daniel Arribas Velázquez",
+    "subtitle": "Administrador de Sistemas • Especialista en Seguridad",
+    "subtitle_verified": "Porfolio técnico con auditorías A+ de seguridad y infraestructura empresarial",
+    "credenciales": {
+      "title": "Porfolio Técnico",
+      "security": {
+        "title": "A+ Security Rating",
+        "subtitle": "SecurityHeaders.com verified"
+      },
+      "testing": {
+        "title": "61 Tests Automatizados",
+        "subtitle": "CI/CD pipeline activo"
+      },
+      "architecture": {
+        "title": "Arquitectura Eficiente",
+        "subtitle": "5,638+ líneas documentadas"
+      },
+      "production": {
+        "title": "Production Ready",
+        "subtitle": "Kubernetes + Docker"
+      }
+    },
+    "experiencia_enterprise": {
+      "title": "Experiencia en Seguridad",
+      "stats": {
+        "years": "Años en Administración",
+        "rating": "Rating de Seguridad",
+        "incidents": "Incidentes de Seguridad",
+        "uptime": "Uptime de Servicios"
+      },
+      "herramientas": {
+        "title": "Stack de Seguridad",
+        "endpoint": {
+          "title": "Seguridad Endpoint",
+          "sentinelone": "SentinelOne EDR",
+          "datto": "Datto RMM",
+          "endpoint": "Endpoint Protection",
+          "antivirus": "Antivirus Kaspersky"
+        },
+        "firewall": {
+          "title": "Firewall & Red",
+          "sonicwall": "SonicWall Firewall",
+          "parallel": "Parallel RAS (Acceso Remoto)",
+          "pfSense": "pfSense Firewall"
+        },
+        "backup": {
+          "title": "Backup & Continuidad",
+          "veeam": "Veeam Backup & Replication",
+          "acronis": "Acronis Backup",
+          "proxmox": "Proxmox VE Backups"
+        },
+        "infraestructura": {
+          "title": "Infraestructura",
+          "windows": "Windows Server",
+          "ad": "Active Directory",
+          "linux": "Linux Servers",
+          "hyperv": "Hyper-V",
+          "vmware": "VMware ESXI",
+          "proxmox": "Proxmox VE"
+        }
+      }
+    },
+    "proyectos": {
+      "title": "Implementaciones de Seguridad - Production Grade",
+      "sistema_gestion": {
+        "title": "Sistema de Gestión con Seguridad A+",
+        "badge_live": "En Producción",
+        "badge_verified": "A+ Security",
+        "metrics": {
+          "ssl": "SSL Rating",
+          "headers": "Security Headers",
+          "vulnerabilities": "Vulnerabilidades"
+        },
+        "features": {
+          "title": "Implementaciones de Seguridad:",
+          "ssl": "SSL/TLS con Perfect Forward Secrecy",
+          "headers": "Security Headers completos (HSTS, CSP, etc.)",
+          "mfa": "Autenticación multifactor",
+          "logs": "Logs de auditoría centralizados"
+        },
+        "links": {
+          "ver": "Ver Sistema",
+          "auditoria": "Auditoría de Seguridad"
+        }
+      },
+      "laboratorio": {
+        "title": "Homelab de Administración de Sistemas",
+        "badge_live": "Entorno Activo",
+        "badge_professional": "Lab Personal",
+        "description": "Entorno de laboratorio personal con Proxmox para virtualización, servicios containerizados, y práctica de tecnologías enterprise.",
+        "services": {
+          "title": "Servicios Implementados en Lab:",
+          "virtualizacion": "Virtualización con Proxmox VE",
+          "contenedores": "Contenedores en clúster Kubernetes para servicios",
+          "proxy": "Reverse proxy con SSL automatizado",
+          "backup": "Backup automatizado de configuraciones",
+          "monitoreo": "Monitoreo de servicios",
+          "documentacion": "Documentación técnica completa (1000+ líneas)",
+          "firewall": "Firewall con pfSense",
+          "scanning": "Escaneo de vulnerabilidades",
+          "segmentation": "Segmentación de red"
+        },
+        "links": {
+          "arquitectura": "Ver Arquitectura"
+        }
+      }
+    },
+    "cta": {
+      "title": "¿Necesitas un Administrador de Sistemas con Expertise en Seguridad?",
+      "description": "Especialista en seguridad enterprise con auditorías A+, infraestructura hardened y 0 incidentes de seguridad en producción.",
+      "buttons": {
+        "cv": "Ver Experiencia Completa",
+        "contacto": "Consulta de Seguridad"
+      },
+      "links": {
+        "documentacion": "Documentación Técnica",
+        "perfil": "Perfil Profesional"
+      }
+        }
+  },
 
-  "education.javascript.title": "JavaScript",
-  "education.web.js.title": "JavaScript",
-  "education.web.js.description": "JavaScript es un lenguaje de programación interpretado y orientado a objetos, ampliamente utilizado en el desarrollo web. Permite la creación de interactividad y dinamismo en las páginas web, mejorando la experiencia del usuario. JavaScript se ejecuta en el navegador del cliente y puede interactuar con HTML y CSS para modificar el contenido y el estilo de una página en tiempo real.",
-  "js.theory.subtitle": "Teoría JavaScript",
-  "education.web.js.practices.title": "Prácticas JavaScript",
-  "education.web.js.practices.description": "En esta sección se presentan ejercicios prácticos para aplicar los conceptos aprendidos en la teoría de JavaScript. Los ejercicios están diseñados para reforzar el conocimiento y mejorar las habilidades de programación en JavaScript.",
-  "js.practices.subtitle": "Prácticas JavaScript",
+  "cv": {
+    "subtitle": "Administrador de Sistemas y Seguridad Informática",
+    "contact": {
+      "location": "Barcelona, España"
+    },
+    "profile": {
+      "title": "Perfil Profesional",
+      "description": "Cuento con más de cinco años de experiencia como <strong>Administrador de Sistemas Informáticos</strong>, especializándome en seguridad IT y gestión de infraestructuras tecnológicas. Mi enfoque se centra en garantizar la integridad y resiliencia de redes y sistemas, implementando soluciones proactivas para la protección de datos y la optimización del rendimiento. A lo largo de mi trayectoria, he mejorado mis habilidades en herramientas y aplicativos avanzados como <strong>Nmap</strong>, <strong>Sonicwall</strong> y <strong>Metasploit</strong>, fortaleciendo la seguridad informática y la capacidad de respuesta ante amenazas. Actualmente, me encuentro en formación en <strong>programación</strong>, ampliando mis competencias para desarrollar soluciones más eficientes y versátiles en entornos IT."
+    },
+    "experience": {
+      "title": "Experiencia Laboral",
+      "role": "Administrador de Sistemas y Seguridad Informática",
+      "date": "Enero 2019 - Mayo 2024",
+      "duties": {
+        "1": "Administración de sistemas Windows y Linux",
+        "2": "Soporte técnico y solución de problemas",
+        "3": "Configuración y mantenimiento de redes y servidores",
+        "4": "Implementación de políticas de seguridad",
+        "5": "Monitorización y análisis de seguridad",
+        "6": "Manejo de herramientas: Sonicwall, Acronis, Veeam, etc."
+      }
+    },
+    "education": {
+      "title": "Educación",
+      "programming": {
+        "title": "Certificación Profesionalidad en Programación y Bases de Datos",
+        "school": "STUCOM Centre d'Estudis | En formación",
+        "description": "Python, SQL, HTML, CSS, JavaScript"
+      },
+      "security": {
+        "title": "Certificación Profesionalidad en Seguridad Informática",
+        "school": "Grup CIEF | Diciembre 2024",
+        "description": "Auditoría y ciberseguridad"
+      },
+      "systems": {
+        "title": "Certificación Profesionalidad en Operador de sistemas",
+        "school": "CIFO la Violeta | Diciembre 2018",
+        "description": "Formación en sistemas operativos"
+      },
+      "forestry": {
+        "title": "Grado Medio en Trabajos forestales y conservación del medio Natural",
+        "school": "IES Pont de Suert | Julio 2011",
+        "description": "Formación en trabajos forestales y conservación del medio natural"
+      }
+    },
+    "certifications": {
+      "title": "Certificaciones",
+      "1": "Parallels y Awingu",
+      "2": "Lexmark - Save4print",
+      "3": "SNSA Sonicwall"
+    },
+    "skills": {
+      "title": "Habilidades",
+      "selftaught": "Autodidacta"
+    },
+    "languages": {
+      "title": "Idiomas",
+      "spanish": "Español - Nativo",
+      "catalan": "Catalán - Nativo",
+      "english": "Inglés - Técnico"
+    },
+    "download": "Descargar CV"
+  },
 
-  "education.systems.title": "Sistemas Operativos",
-  "education.systems.practice1.title": "Práctica 1",
-  "education.systems.practice1.description": "Explicación y análisis del sistema operativo Arch Linux.",
-  "education.practice": "Práctica",
-  "education.practice.01": "Práctica 1",
-  "education.practice.02": "Práctica 2",
-  "education.practice.03": "Práctica 3",
-  "education.theory": "Teoría",
-  "education.practices": "Prácticas"
+  "projects": {
+    "title": "Proyectos Enterprise",
+    "subtitle": "Implementaciones de Seguridad y Sistemas - Production Grade",
+    "subtitle_verified": "Porfolio técnico con auditorías A+ y arquitectura enterprise verificada",
+    "enterprise": {
+      "title": "Implementaciones Enterprise - Production Grade",
+      "portfolio": {
+        "title": "Porfolio Técnico con Seguridad A+",
+        "badge_live": "En Producción",
+        "badge_verified": "A+ Security",
+        "metrics": {
+          "ssl": "SSL Rating",
+          "headers": "Security Headers",
+          "vulnerabilities": "Vulnerabilidades"
+        },
+        "features": {
+          "title": "Implementaciones de Seguridad:",
+          "ssl": "SSL/TLS con Perfect Forward Secrecy",
+          "headers": "Security Headers completos (HSTS, CSP, etc.)",
+          "mfa": "Autenticación multifactor",
+          "logs": "Logs de auditoría centralizados"
+        },
+        "links": {
+          "ver": "Ver Código",
+          "auditoria": "Auditoría de Seguridad"
+        }
+      },
+      "homelab": {
+        "title": "Homelab de Administración de Sistemas",
+        "badge_live": "Entorno Activo",
+        "badge_professional": "Lab Personal",
+        "description": "Entorno de laboratorio personal con Proxmox para virtualización, servicios containerizados, y práctica de tecnologías enterprise.",
+        "figcaption": "Arquitectura del Homelab con Proxmox VE",
+        "services": {
+          "title": "Servicios Implementados en Lab:",
+          "virtualizacion": "Virtualización con Proxmox VE",
+          "contenedores": "Contenedores en clúster Kubernetes para servicios",
+          "proxy": "Reverse proxy con SSL automatizado",
+          "backup": "Backup automatizado de configuraciones",
+          "monitoreo": "Monitoreo de servicios",
+          "documentacion": "Documentación técnica completa (1000+ líneas)"
+        },
+        "links": {
+          "arquitectura": "Ver Arquitectura"
+        }
+      }
+    },
+    "desarrollo": {
+      "title": "Proyectos de Desarrollo",
+      "app_tiempo": {
+        "title": "App Tiempo",
+        "badge_live": "En Producción",
+        "badge_tech": "Weather API",
+        "description": "Aplicación web para consulta de información meteorológica en tiempo real.",
+        "link": "Ver Aplicación"
+      },
+      "mail_notification": {
+        "title": "Mail Notification",
+        "badge_tech": "Email System",
+        "badge_security": "Secure",
+        "description": "Sistema de notificaciones por email con validación de seguridad.",
+        "link": "Ver Código"
+      },
+      "multi": {
+        "title": "Multi-tool",
+        "badge_tech": "Multi-tool",
+        "badge_utility": "Utility",
+        "description": "Herramienta multipropósito para administración de sistemas.",
+        "link": "Ver Código"
+      },
+      "cv": {
+        "title": "CV Digital",
+        "badge_live": "En Producción",
+        "badge_professional": "Professional",
+        "description": "Currículum vitae digital con diseño responsive y optimizado.",
+        "link": "Ver CV"
+      }
+    },
+    "cta": {
+      "title": "¿Interesado en Colaborar en Proyectos de Seguridad?",
+      "description": "Especialista en implementaciones de seguridad enterprise con experiencia verificada en producción.",
+      "buttons": {
+        "contacto": "Contactar",
+        "github": "Ver Porfolio en GitHub"
+      }
+    }
+  },
+
+  "education": {
+    "title": "Formación Profesional",
+    "subtitle": "Programas de Formación en Seguridad informática y Programación orientada a objetos y bases de datos",
+    "subtitle_verified": "Contenido de las certificaciones de Profesionalidad Nivel 3 / Técnico Superior",
+    "practice": "Práctica",
+    "practice_01": "Práctica 1",
+    "practice_02": "Práctica 2",
+    "practice_03": "Práctica 3",
+    "theory": "Teoría",
+    "practices": "Prácticas",
+    "programs": {
+      "title": "Programas de Formación Enterprise",
+      "security_title": "Certificado profesionalidad Seguridad Informática",
+      "programming_title": "Certificado profesionalidad Programación orientada a objetos y bases de datos"
+    },
+    "security": {
+      "title": "Seguridad Informática",
+      "badge": "A+ Security",
+      "badge_enterprise": "Enterprise",
+      "description": "Programa completo de seguridad enterprise con auditorías, implementaciones y mejores prácticas.",
+      "metrics": {
+        "rating": "Security Rating",
+        "practical": "Práctico"
+      }
+    },
+    "python": {
+      "title": "Python Enterprise",
+      "badge": "Python",
+      "badge_backend": "Backend",
+      "basics": {
+        "description": "Desarrollo backend con Python, APIs, bases de datos y arquitecturas escalables."
+      }
+    },
+    "javascript": {
+      "title": "JavaScript Moderno",
+      "badge": "ES6+",
+      "badge_frontend": "Frontend"
+    },
+    "web": {
+      "html": {
+        "title": "HTML5 & CSS3",
+        "badge": "Web",
+        "badge_responsive": "Responsive",
+        "description": "Desarrollo web moderno con HTML5, CSS3, responsive design y mejores prácticas."
+      },
+      "js": {
+        "description": "JavaScript moderno, frameworks, APIs y desarrollo frontend enterprise."
+      }
+    },
+    "php_sql": {
+      "title": "PHP & MySQL",
+      "badge": "PHP",
+      "badge_database": "MySQL",
+      "description": "Desarrollo web con PHP, bases de datos MySQL y arquitecturas MVC."
+    },
+    "systems": {
+      "title": "Sistemas Enterprise",
+      "badge": "Linux",
+      "badge_infrastructure": "Infraestructura",
+      "practice1": {
+        "description": "Administración de sistemas Linux, virtualización, contenedores y infraestructura enterprise."
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Aprender Seguridad Enterprise?",
+      "description": "Formación práctica con enfoque en implementaciones reales y mejores prácticas de seguridad.",
+      "buttons": {
+        "contacto": "Consultar Formación",
+        "portfolio": "Ver Proyectos"
+      }
+    },
+    "python": {
+      "title": "Python",
+      "basics": {
+        "title": "Conceptos Básicos",
+        "description": "Python es un lenguaje de programación de alto nivel, interpretado y orientado a objetos. Es conocido por su sintaxis clara y legible, lo que facilita su aprendizaje y uso. Python es versátil y se utiliza en una amplia variedad de aplicaciones, desde desarrollo web hasta análisis de datos y aprendizaje automático.<br> En este apartado se explican los conceptos básicos de programación."
+      },
+      "practices": {
+        "title": "Prácticas",
+        "description": "En esta sección se presentan ejercicios prácticos para aplicar los conceptos aprendidos en la teoría. Los ejercicios están diseñados para reforzar el conocimiento y mejorar las habilidades de programación en Python."
+      },
+      "theory": {
+        "title": "Teoría Python",
+        "basics": "Características Básicas",
+        "numbers": "Números",
+        "booleans": "Booleanos",
+        "strings": "Strings",
+        "conditionals": "if / elif / else",
+        "logic": "Operadores Lógicos",
+        "exceptions": "Excepciones",
+        "libraries": "Librerías",
+        "match": "Match",
+        "lists": "Listas",
+        "loops": "Bucles",
+        "dicts": "Diccionarios",
+        "tuples": "Tuplas",
+        "set": "Set",
+        "functions": "Funciones",
+        "objects": "Objetos"
+      },
+      "practices_label": "Práctica"
+    },
+    "web": {
+      "title": "Desarrollo Web",
+      "html": {
+        "title": "Conceptos y ejercicios sobre HTML y CSS",
+        "description": "HTML (HyperText Markup Language) es el lenguaje de marcado estándar para crear páginas web, mientras que CSS (Cascading Style Sheets) se utiliza para aplicar estilos y diseño a las páginas web.",
+        "theory": "Teoria HTML y CSS",
+        "practices": "Prácticas HTML y CSS"
+      },
+      "js": {
+        "title": "JavaScript",
+        "description": "JavaScript es un lenguaje de programación interpretado y orientado a objetos, ampliamente utilizado en el desarrollo web. Permite la creación de interactividad y dinamismo en las páginas web, mejorando la experiencia del usuario. JavaScript se ejecuta en el navegador del cliente y puede interactuar con HTML y CSS para modificar el contenido y el estilo de una página en tiempo real.",
+        "practices": {
+          "title": "Prácticas JavaScript",
+          "description": "En esta sección se presentan ejercicios prácticos para aplicar los conceptos aprendidos en la teoría de JavaScript. Los ejercicios están diseñados para reforzar el conocimiento y mejorar las habilidades de programación en JavaScript."
+        }
+      }
+    },
+    "php_sql": {
+      "title": "PHP y MySQL",
+      "description": "PHP es un lenguaje de programación del lado del servidor, ampliamente utilizado para el desarrollo web. Permite crear aplicaciones dinámicas y gestionar bases de datos. MySQL es un sistema de gestión de bases de datos relacional que se integra fácilmente con PHP, permitiendo almacenar y recuperar datos de manera eficiente.",
+      "practices": "Conceptos y ejercicios sobre PHP y MySQL",
+      "sql": "Teoria y ejercicios sobre SQL",
+      "php": "Practicas PHP"
+    },
+    "javascript": {
+      "title": "JavaScript",
+      "theory_subtitle": "Teoría JavaScript",
+      "practices_subtitle": "Prácticas JavaScript"
+    },
+    "systems": {
+      "title": "Sistemas Operativos",
+      "practice1": {
+        "title": "Práctica 1",
+        "description": "Explicación y análisis del sistema operativo Arch Linux."
+      }
+    },
+    "security": {
+      "title": "Seguridad Informática",
+      "description": "En esta sección se presentan ejercicios prácticos para aplicar los conceptos aprendidos en la teoría de Seguridad Informática. Los ejercicios están diseñados para reforzar el conocimiento y mejorar las habilidades de seguridad informática."
+    }
+  },
+
+  "contact": {
+    "title": "Contacto | Daniel Arribas Velázquez",
+    "info": {
+      "title": "Información de Contacto"
+    },
+    "form": {
+      "title": "Envíame un mensaje",
+      "name": "Nombre completo",
+      "email": "Email",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "privacy": "Acepto la ",
+      "privacy_link": "política de privacidad",
+      "submit": "Enviar mensaje",
+      "name_placeholder": "Tu nombre completo",
+      "email_placeholder": "tu.email@ejemplo.com",
+      "subject_placeholder": "¿En qué puedo ayudarte?",
+      "message_placeholder": "Describe tu consulta o propuesta..."
+    },
+    "location": "Ubicación: Barcelona, España"
+  },
+
+  "construction": {
+    "title": "En Construcción | Daniel Arribas Velázquez",
+    "description": "Estamos trabajando en esta sección. Vuelve más adelante."
+  },
+  "homelab": {
+    "title": "Homelab Enterprise",
+    "subtitle": "Infraestructura de Pruebas y Desarrollo",
+    "description": "Entorno de pruebas realista y escalable centrado en virtualización, redes segmentadas, automatización de servicios y acceso seguro.",
+    "credenciales": {
+      "title": "Infraestructura Verificada",
+      "security": {
+        "title": "Zero Trust",
+        "subtitle": "Cloudflare Zero Trust"
+      },
+      "virtualization": {
+        "title": "Virtualización",
+        "subtitle": "Proxmox VE + Kubernetes"
+      },
+      "automation": {
+        "title": "Automatización",
+        "subtitle": "CI/CD + Scripts"
+      },
+      "backup": {
+        "title": "Backup Strategy",
+        "subtitle": "Rotación 3 copias"
+      }
+    },
+    "infraestructura": {
+      "title": "Infraestructura Enterprise",
+      "server": {
+        "title": "Servidor Principal",
+        "description": "Beelink SER5 Mini PC con AMD Ryzen 5 5500U y 64 GB RAM para virtualización enterprise.",
+        "badge_enterprise": "Enterprise",
+        "badge_performance": "High Performance",
+        "metrics": {
+          "ram": "RAM",
+          "cpu": "CPU Cores",
+          "storage": "Storage"
+        }
+      },
+      "network": {
+        "title": "Red y Equipamiento",
+        "badge_network": "Network",
+        "badge_security": "Security",
+        "ont": "ONT: Ubiquiti UFiber Nano Loco",
+        "router": "Router/Mesh: ASUS ZenWiFi AX Mini (XD4)",
+        "switch": "Switch: TP-Link TL-SG608E (8 puertos Gigabit, gestionable)"
+      },
+      "nas": {
+        "title": "NAS QNAP TS-231K",
+        "badge_storage": "Storage",
+        "badge_backup": "Backup",
+        "hdd_internal": "1× HDD interno de 1 TB",
+        "ssd_nas": "1× SSD SATA de 4 TB",
+        "hdd_external": "2× HDD externos extraíbles de 5 TB",
+        "multiuser": "Multiusuario con permisos personalizados por carpeta"
+      }
+    },
+    "virtualizacion": {
+      "title": "Virtualización & Servicios Enterprise",
+      "proxmox": {
+        "title": "Proxmox VE",
+        "description": "Gestión de VMs y CTs para diversos entornos enterprise.",
+        "badge_virtualization": "Virtualization",
+        "badge_enterprise": "Enterprise",
+        "metrics": {
+          "vms": "VMs",
+          "clusters": "K8s Clusters"
+        },
+        "services": {
+          "title": "Servicios Activos:"
+        }
+      },
+      "kubernetes": {
+        "title": "Kubernetes",
+        "badge_container": "Containers",
+        "badge_orchestration": "Orchestration",
+        "cluster1": {
+          "title": "Clúster 1 (Red hogar): Ubuntu + Alpine"
+        },
+        "cluster2": {
+          "title": "Clúster 2 (tras pfSense): Ubuntu"
+        }
+      }
+    },
+    "automatizacion": {
+      "title": "Automatización y Proyectos Enterprise",
+      "bot": {
+        "title": "Bot de correo y Telegram",
+        "description": "Contenedor Ubuntu que clasifica correos importantes y envía notificaciones y resúmenes semanales por Telegram.",
+        "badge_automation": "Automation",
+        "badge_notification": "Notifications"
+      },
+      "minecraft": {
+        "title": "Servidor Minecraft",
+        "description": "Ubuntu Server aislado, accesible solo con túnel Cloudflare, dedicado a uso familiar.",
+        "badge_gaming": "Gaming",
+        "badge_isolated": "Isolated"
+      },
+      "windows_server": {
+        "title": "Windows Server 2019",
+        "description": "Entorno de laboratorio para pruebas de Active Directory, DNS y servicios de red empresarial.",
+        "badge_windows": "Windows",
+        "badge_lab": "Lab"
+      },
+      "kali": {
+        "title": "Kali Linux",
+        "description": "Máquina dual-homed para análisis de vulnerabilidades con OpenVAS y Nmap en ambas redes.",
+        "badge_security": "Security",
+        "badge_pentest": "Pentest"
+      }
+    },
+    "seguridad": {
+      "title": "Seguridad y Backups Enterprise",
+      "network": {
+        "title": "Seguridad de Red",
+        "segmentation": "Segmentación de redes con pfSense",
+        "iot": "Red IoT totalmente aislada",
+        "cloudflare": "Cloudflare Zero Trust como capa de acceso externo"
+      },
+      "backup": {
+        "title": "Estrategia de Backup",
+        "daily": "Backups diarios de todas las máquinas (rotación de 3 copias)",
+        "distributed": "Copias distribuidas entre los discos USB de 1 TB"
+      }
+    },
+    "cta": {
+      "title": "¿Interesado en Infraestructura Enterprise?",
+      "description": "Consulta sobre implementaciones de virtualización, seguridad y automatización para tu entorno.",
+      "buttons": {
+        "contacto": "Consultar Infraestructura",
+        "portfolio": "Ver Proyectos"
+      }
+    },
+    "sections": {
+      "diagram": {
+        "title": "🏗️ Esquema de Arquitectura",
+        "description": "Diagrama visual de la infraestructura y conexiones del homelab",
+        "internet": " Internet",
+        "cloudflare": " Cloudflare Zero Trust",
+        "proxmox": " Proxmox VE",
+        "qnap": " QNAP NAS",
+        "pfsense": "pfSense (Firewall)",
+        "home_network": " Red Hogar",
+        "iot_network": " Red IoT",
+        "kubernetes_cluster1": " K3s Clúster 1",
+        "kubernetes_cluster2": " K3s Clúster 2",
+        "services": " Servicios",
+        "backups": " Backups"
+      }
+    }
+  },
+
+  "contact": {
+    "title": "Contacto Enterprise",
+    "subtitle": "Consultoría de Seguridad y Sistemas",
+    "subtitle_verified": "Especialista en implementaciones de seguridad enterprise con auditorías A+ verificadas",
+    "location": "Barcelona, España",
+
+    "info": {
+      "title": "Información de Contacto Enterprise",
+      "email": {
+        "title": "Email Profesional",
+        "subtitle": "Respuesta garantizada en 24h"
+      },
+      "location": {
+        "title": "Ubicación",
+        "subtitle": "Servicios remotos disponibles"
+      },
+      "linkedin": {
+        "title": "LinkedIn",
+        "subtitle": "Perfil profesional verificado"
+      },
+      "github": {
+        "title": "GitHub",
+        "subtitle": "Porfolio técnico público"
+      }
+    },
+    "form": {
+      "title": "Consulta de Seguridad Enterprise",
+      "name": "Nombre completo",
+      "name_placeholder": "Tu nombre completo",
+      "email": "Email",
+      "email_placeholder": "tu.email@empresa.com",
+      "subject": "Tipo de Consulta",
+      "subject_placeholder": "Selecciona el tipo de consulta",
+      "message": "Descripción del Proyecto",
+      "message_placeholder": "Describe tu proyecto, requerimientos de seguridad, timeline, presupuesto...",
+      "privacy": "Acepto la ",
+      "privacy_link": "política de privacidad",
+      "security_note": "Todos los datos se transmiten de forma segura con encriptación SSL/TLS",
+      "submit": "Enviar Consulta Enterprise",
+      "options": {
+        "auditoria": "Auditoría de Seguridad",
+        "implementacion": "Implementación Enterprise",
+        "consultoria": "Consultoría Técnica",
+        "colaboracion": "Colaboración en Proyecto",
+        "otro": "Otros"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Implementar Seguridad Enterprise?",
+      "description": "Especialista en seguridad enterprise con auditorías A+, infraestructura hardened y 0 incidentes de seguridad en producción.",
+      "buttons": {
+        "cv": "Ver Experiencia Completa",
+        "portfolio": "Ver Porfolio Técnico"
+      },
+      "links": {
+        "documentacion": "Documentación Técnica",
+        "perfil": "Perfil Profesional"
+      }
+    }
+  },
+
+  "about": {
+    "title": "Sobre Mí",
+    "presentacion": {
+      "title": "Daniel Arribas Velázquez",
+      "subtitle": "Administrador de Sistemas • Especialista en Seguridad",
+      "description1": "5+ años de experiencia enterprise con SentinelOne EDR, SonicWall Firewall y Veeam Backup. Especialista en seguridad de sistemas, infraestructura de red y continuidad del negocio con track record verificable: 70% reducción en tiempos de respuesta y 0 incidentes críticos de seguridad.",
+      "description2": "Porfolio técnico verificado con auditorías A+ de seguridad e infraestructura enterprise documentada completamente. Experiencia en entornos empresariales con herramientas valoradas en 50k€+/año."
+    },
+    "credenciales": {
+      "ssl": "A+ SSL Rating",
+      "incidentes": "0 Incidentes Seguridad",
+      "experiencia": "5 Años Enterprise",
+      "eficiencia": "70% Mejora Eficiencia"
+    },
+    "sobre_mi": {
+      "title": "Sobre Mí",
+      "description1": "Apasionado por la tecnología y la seguridad informática desde una edad temprana. Mi trayectoria profesional se ha centrado en la administración de sistemas y la protección de infraestructuras críticas en entornos empresariales.",
+      "description2": "Enfoque práctico y resultados medibles: No solo estudio la teoría, sino que implemento soluciones reales que generan valor tangible. Mi homelab replica infraestructura enterprise con servicios en producción 24/7, permitiéndome experimentar y perfeccionar técnicas de seguridad en un entorno controlado pero realista.",
+      "description3": "Compromiso con la excelencia: Cada proyecto que emprendo está completamente documentado y auditado externamente. Creo firmemente en la transparencia y la verificación como pilares fundamentales de la confianza profesional."
+    },
+    "valores": {
+      "title": "Mis Valores",
+      "seguridad": {
+        "title": "Seguridad Proactiva",
+        "description": "Prevenir antes que curar, implementando medidas de protección robustas"
+      },
+      "aprendizaje": {
+        "title": "Aprendizaje Continuo",
+        "description": "Mantener actualizadas las habilidades técnicas y conocimientos"
+      },
+      "resultados": {
+        "title": "Resultados Medibles",
+        "description": "Enfocarse en métricas y KPIs que demuestren el valor aportado"
+      },
+      "colaboracion": {
+        "title": "Colaboración",
+        "description": "Trabajar en equipo para lograr objetivos comunes"
+      }
+    },
+    "experiencia": {
+      "title": "Stack de Seguridad Enterprise",
+      "endpoint": {
+        "title": "🛡️ Seguridad Endpoint",
+        "sentinelone": "SentinelOne EDR - 5 años experiencia",
+        "datto": "Datto Endpoint Protection - Implementación y gestión"
+      },
+      "firewall": {
+        "title": "🔥 Firewall & Red",
+        "sonicwall": "SonicWall Firewall - Configuración y mantenimiento",
+        "parallel": "Parallel RAS - Acceso remoto seguro",
+        "vlan": "VLANs, VPN, pfSense - Segmentación de red"
+      },
+      "backup": {
+        "title": "💾 Backup & Continuidad",
+        "veeam": "Veeam Backup & Replication - 5 años experiencia",
+        "acronis": "Acronis Backup - Soluciones de recuperación"
+      },
+      "infraestructura": {
+        "title": "🖥️ Infraestructura",
+        "windows": "Windows Server & Active Directory",
+        "virtualizacion": "Hyper-V & Proxmox - Virtualización enterprise",
+        "containerizacion": "Docker & Kubernetes - Containerización"
+      }
+    },
+    "logros": {
+      "title": "Logros Verificables",
+      "respuesta": {
+        "numero": "70%",
+        "descripcion": "Reducción en tiempos de respuesta ante incidencias"
+      },
+      "incidentes": {
+        "numero": "0",
+        "descripcion": "Incidentes críticos de seguridad en 5 años"
+      },
+      "rating": {
+        "numero": "A+",
+        "descripcion": "Rating de seguridad (SecurityHeaders.com)"
+      },
+      "disponibilidad": {
+        "numero": "24/7",
+        "descripcion": "Disponibilidad de servicios críticos"
+      }
+    },
+    "enfoque": {
+      "title": "Enfoque Profesional",
+      "description1": "Seguridad proactiva con resultados medibles. Mi experiencia enterprise se basa en implementaciones reales con herramientas de nivel empresarial, no demos o laboratorios académicos. Cada proyecto está completamente documentado y auditado externamente.",
+      "description2": "Especialización en continuidad del negocio: Desde la protección endpoint hasta la recuperación ante desastres, mi enfoque garantiza que los sistemas críticos funcionen sin interrupciones y con la máxima seguridad."
+    },
+    "portfolio": {
+      "title": "Porfolio Técnico Verificado",
+      "description": "No solo hablo de tecnología, la implemento y documento. Mi homelab replica infraestructura enterprise con servicios en producción 24/7, documentación completa y auditorías de seguridad A+ verificables externamente.",
+      "buttons": {
+        "portfolio": "🛡️ Ver Porfolio Verificado",
+        "arquitectura": "🏗️ Arquitectura Enterprise",
+        "cv": "📋 CV Completo"
+      }
+    },
+    "contacto": {
+      "title": "Consulta Profesional",
+      "description": "¿Necesitas un especialista en seguridad con experiencia enterprise verificable? Porfolio completo con 5+ años de experiencia, track record de 0 incidentes críticos y auditorías A+ de seguridad.",
+      "buttons": {
+        "contacto": "Contacto Profesional",
+        "linkedin": "LinkedIn"
+      }
+    }
+  },
+
+  "privacy": {
+    "title": "Política de Privacidad",
+    "responsible": {
+      "title": "Responsable del Tratamiento",
+      "name": "Nombre:",
+      "email": "Correo electrónico:",
+      "website": "Sitio web:",
+      "purpose": "Finalidad:"
+    },
+    "data_processing": {
+      "title": "Tratamiento de Datos Personales",
+      "description": "De acuerdo con el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), le informamos que los datos personales que usted proporcione serán tratados conforme a las siguientes condiciones:",
+      "purpose": {
+        "title": "Finalidad del tratamiento",
+        "items": [
+          "Atender consultas o solicitudes de información.",
+          "Comunicar novedades relacionadas con el Porfolio, proyectos o colaboraciones (en caso de suscripción voluntaria).",
+          "Mantener contacto profesional."
+        ]
+      },
+      "legitimation": {
+        "title": "Legitimación",
+        "description": "Su consentimiento expreso al enviar voluntariamente sus datos a través del formulario de contacto o correo electrónico."
+      },
+      "retention": {
+        "title": "Conservación",
+        "description": "Los datos se conservarán mientras sean necesarios para cumplir con la finalidad del tratamiento o hasta que usted solicite su supresión."
+      }
+    },
+    "data_sharing": {
+      "title": "Cesión de Datos",
+      "description": "No se cederán datos a terceros salvo obligación legal o consentimiento expreso."
+    },
+    "rights": {
+      "title": "Derechos",
+      "description": "Usted tiene derecho a:",
+      "items": [
+        "Acceder a sus datos personales.",
+        "Rectificar datos inexactos.",
+        "Solicitar la supresión de sus datos.",
+        "Oponerse al tratamiento.",
+        "Solicitar la limitación del tratamiento.",
+        "Portar sus datos a otro responsable."
+      ],
+      "contact_info": "Para ejercer estos derechos, puede escribir a <strong>danielarribasvelazquez@dav-tech.work</strong> con el asunto \"Protección de Datos\", incluyendo copia de su DNI o documento equivalente."
+    },
+    "security": {
+      "title": "Seguridad de la Información",
+      "description": "Se han implementado medidas técnicas y organizativas adecuadas para garantizar la seguridad e integridad de sus datos."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "description": "Este sitio puede utilizar cookies técnicas necesarias para su funcionamiento. No se utilizarán cookies con fines publicitarios sin consentimiento previo. Consulte la Política de Cookies para más información (si aplica)."
+    },
+    "changes": {
+      "title": "Cambios en la Política",
+      "description": "Esta política podrá ser modificada para adaptarse a cambios legales o técnicos. Se notificará cualquier cambio en esta misma página."
+    },
+    "contact": {
+      "title": "Contacto",
+      "description": "Si tiene alguna duda sobre esta Política de Privacidad, puede contactar a:"
+    }
+  }
 }
+
+

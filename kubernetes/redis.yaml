@@ -1,0 +1,294 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio-redis
+  namespace: default
+  labels:
+    app: portfolio-redis
+    version: v1
+    environment: production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portfolio-redis
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: portfolio-redis
+        version: v1
+        environment: production
+    spec:
+      containers:
+        - name: redis
+          image: redis:7.2-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6379
+              protocol: TCP
+              name: redis
+          command:
+            - redis-server
+            - --appendonly
+            - 'yes'
+            - --maxmemory
+            - '256mb'
+            - --maxmemory-policy
+            - 'allkeys-lru'
+            - --save
+            - '900 1'
+            - --loglevel
+            - 'notice'
+            - --bind
+            - '0.0.0.0'
+            - --protected-mode
+            - 'no'
+            - --tcp-backlog
+            - '511'
+            - --timeout
+            - '300'
+            - --tcp-keepalive
+            - '300'
+          resources:
+            limits:
+              cpu: 250m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 999
+            runAsGroup: 999
+            runAsNonRoot: true
+            readOnlyRootFilesystem: false
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+            - name: redis-config
+              mountPath: /usr/local/etc/redis/redis.conf
+              subPath: redis.conf
+          livenessProbe:
+            exec:
+              command:
+                - redis-cli
+                - ping
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            exec:
+              command:
+                - redis-cli
+                - ping
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-pvc
+        - name: redis-config
+          configMap:
+            name: redis-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: portfolio-redis-service
+  namespace: default
+  labels:
+    app: portfolio-redis
+spec:
+  type: ClusterIP
+  selector:
+    app: portfolio-redis
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+      name: redis
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-pvc
+  namespace: default
+  labels:
+    app: portfolio-redis
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: local-path
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-config
+  namespace: default
+  labels:
+    app: portfolio-redis
+data:
+  redis.conf: |
+    # ===================================================================
+    # 🔴 CONFIGURACIÓN REDIS PARA KUBERNETES - PORTFOLIO AUTOSUFICIENTE
+    # ===================================================================
+    # Configuración optimizada para el proyecto portfolio
+    # Última actualización: 2025-01-27
+    # ===================================================================
+
+    # ===================================================================
+    # 🌐 CONFIGURACIÓN DE RED
+    # ===================================================================
+    port 6379
+    bind 0.0.0.0
+    timeout 300
+    tcp-keepalive 300
+
+    # ===================================================================
+    # 💾 CONFIGURACIÓN DE MEMORIA
+    # ===================================================================
+    maxmemory 256mb
+    maxmemory-policy allkeys-lru
+    maxmemory-samples 5
+
+    # ===================================================================
+    # 💾 CONFIGURACIÓN DE PERSISTENCIA
+    # ===================================================================
+    save 900 1
+    appendonly yes
+    appendfilename "appendonly.aof"
+    appendfsync everysec
+
+    # ===================================================================
+    # 🔒 CONFIGURACIÓN DE SEGURIDAD
+    # ===================================================================
+    protected-mode no
+    tcp-backlog 511
+    databases 16
+
+    # ===================================================================
+    # 📝 CONFIGURACIÓN DE LOGS
+    # ===================================================================
+    loglevel notice
+    logfile ""
+    syslog-enabled no
+
+    # ===================================================================
+    # ⚡ CONFIGURACIÓN DE RENDIMIENTO
+    # ===================================================================
+    stop-writes-on-bgsave-error yes
+    rdbcompression yes
+    rdbchecksum yes
+    dbfilename dump.rdb
+    dir /data
+
+    # ===================================================================
+    # 🔄 CONFIGURACIÓN DE REPLICACIÓN
+    # ===================================================================
+    replica-serve-stale-data yes
+    replica-read-only yes
+
+    # ===================================================================
+    # 🧹 CONFIGURACIÓN DE LIMPIEZA
+    # ===================================================================
+    lazyfree-lazy-eviction no
+    lazyfree-lazy-expire no
+    lazyfree-lazy-server-del no
+    replica-lazy-flush no
+
+    # ===================================================================
+    # 🔧 CONFIGURACIÓN AVANZADA
+    # ===================================================================
+    hash-max-ziplist-entries 512
+    hash-max-ziplist-value 64
+    list-max-ziplist-size -2
+    list-compress-depth 0
+    set-max-intset-entries 512
+    zset-max-ziplist-entries 128
+    zset-max-ziplist-value 64
+    hll-sparse-max-bytes 3000
+    stream-node-max-bytes 4096
+    stream-node-max-entries 100
+    activerehashing yes
+    client-output-buffer-limit normal 0 0 0
+    client-output-buffer-limit replica 256mb 64mb 60
+    client-output-buffer-limit pubsub 32mb 8mb 60
+    hz 10
+    dynamic-hz yes
+    aof-rewrite-incremental-fsync yes
+    rdb-save-incremental-fsync yes
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: redis-network-policy
+  namespace: default
+  labels:
+    app: portfolio-redis
+spec:
+  podSelector:
+    matchLabels:
+      app: portfolio-redis
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector: {}
+      ports:
+        - protocol: TCP
+          port: 6379
+  egress:
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 53
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 443
+        - protocol: TCP
+          port: 80
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: portfolio-redis-hpa
+  namespace: default
+  labels:
+    app: portfolio-redis
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: portfolio-redis
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80

@@ -3,6 +3,7 @@ import { validarEmail } from '../seguridad/validate.mjs';
 import { registrar } from './logger.mjs';
 import { auditar } from './loggerAuditoria.mjs';
 import { prepararCorreo } from './mail.mjs';
+import config from '../../config/index.mjs';
 
 /**
  * Procesa un formulario de contacto
@@ -54,8 +55,8 @@ export async function procesarFormularioContacto(datos, ip, userAgent) {
 
     // Preparar datos del correo
     const correoData = {
-      to: process.env.ADMIN_EMAIL || 'admin@example.com',
-      subject: `Nuevo mensaje de contacto: ${asunto}`,
+      to: config.EMAIL.ADMIN,
+      subject: `📬 Nuevo mensaje de contacto: ${asunto}`,
       template: 'contacto',
       data: {
         nombre,
@@ -69,7 +70,7 @@ export async function procesarFormularioContacto(datos, ip, userAgent) {
     };
 
     // Enviar correo
-    const resultadoCorreo = await prepararCorreo(correoData);
+    const resultadoCorreo = await prepararCorreo(correoData, ip);
 
     if (!resultadoCorreo.success) {
       registrar(`Error al enviar correo de contacto: ${resultadoCorreo.error}`, 'error');

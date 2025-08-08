@@ -1,85 +1,170 @@
-<main class="container" role="main" aria-labelledby="titulo-formacion">
-  <div id="content">
-    <section class="formacion-hero-section" aria-label="Sección de cabecera de formación">
-      <h1 id="titulo-formacion" class="formacion-title"><%= t["education.title"] %></h1>
-    </section>
+<main class="container" role="main" aria-labelledby="formacion-titulo">
+  <!-- Hero Section -->
+  <section class="hero-section" aria-label="Sección de bienvenida a formación">
+    <h1 id="formacion-titulo"><%= (t.education && t.education.title) || 'Formación Profesional' %></h1>
+    <h2 class="hero-subtitle"><%= (t.education && t.education.subtitle) || 'Programas de Formación en Seguridad informatica y Programacion orientada a objetos y bases de datos' %></h2>
+    <p class="subtitle"><%= (t.education && t.education.subtitle_verified) || 'Contenido de las certificaciones de Profesionalidad Nivel 3 / Tecnico Superior' %></p>
+  </section>
 
-    <section class="formacion-section">
-      <!-- Categoría: Python -->
-      <div class="formacion-category" aria-label="Formación en Python">
-        <p class="category-description"><%- t["education.description"] %></p>
+  <!-- Programas de Formación -->
+  <section class="formacion-programs" aria-label="Programas de formación">
 
-        <div class="topic-section">
-          <h3 class="topic-title"><%= t["education.python.title"] %></h3>
-          <div class="topic-content">
-            <div class="topic-item">
-              <h4><%= t["education.python.basics.title"] %></h4>
-              <p><%- t["education.python.basics.description"] %></p>
-              <a href="/formacion/python/teoria" class="topic-link"><%= t["education.theory"] %></a>
-            </div>
-            <div class="topic-item">
-              <h4><%= t["education.python.practices.title"] %></h4>
-              <p><%= t["education.python.practices.description"] %></p>
-              <a href="/formacion/python/practicas" class="topic-link"><%= t["education.practices"] %></a>
-            </div>
+    <!-- Certificado de Seguridad Informática -->
+    <div class="certificado-section">
+      <h2 class="certificado-title"><%= (t.education && t.education.programs && t.education.programs.security_title) || 'Certificado profesionalidad Seguridad Informática' %></h2>
+
+      <div class="formacion-card featured">
+        <div class="formacion-card-header">
+          <div class="formacion-icon">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          </div>
+          <h3><%= (t.education && t.education.security && t.education.security.title) || 'Seguridad Informática' %></h3>
+          <div class="formacion-badges">
+            <span class="badge-security">🛡️ <%= (t.education && t.education.security && t.education.security.badge) || 'A+ Security' %></span>
+            <span class="badge-enterprise">🏢 <%= (t.education && t.education.security && t.education.security.badge_enterprise) || 'Enterprise' %></span>
+          </div>
+        </div>
+        <div class="formacion-card-content">
+          <p><%= (t.education && t.education.security && t.education.security.description) || 'Programa completo de seguridad enterprise con auditorías, implementaciones y mejores prácticas.' %></p>
+          <div class="formacion-links">
+            <a href="/formacion/seguridad" class="btn-primary" >
+              <i class="fas fa-book" aria-hidden="true"></i>
+              <span><%= (t.education && t.education.security && t.education.security.title) || 'Ver Programa' %></span>
+            </a>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Categoría: Programación javascript -->
-       <div class="formacion-category" aria-label="Formación en desarrollo web">
-        <div class="topic-section">
-          <h3 class="topic-title"><%= t["education.javascript.title"] %></h3>
-          <div class="topic-content">
-            <div class="topic-item">
-              <h4><%= t["education.web.js.title"] %></h4>
-              <p><%= t["education.web.js.description"] %></p>
-              <a href="/formacion/javascript/teoria" class="topic-link"><%= t["education.theory"] %></a>
+    <!-- Certificado de Programación -->
+    <div class="certificado-section">
+      <h2 class="certificado-title"><%= (t.education && t.education.programs && t.education.programs.programming_title) || 'Certificado profesionalidad Programación orientada a objetos y bases de datos' %></h2>
+
+      <div class="formacion-grid">
+        <!-- Python -->
+        <div class="formacion-card">
+          <div class="formacion-card-header">
+            <div class="formacion-icon">
+              <i class="fab fa-python" aria-hidden="true"></i>
             </div>
-            <div class="topic-item">
-              <h4><%= t["education.web.js.practices.title"] %></h4>
-              <p><%= t["education.web.js.practices.description"] %></p>
-              <a href="/formacion/javascript/practicas" class="topic-link"><%= t["education.practices"] %></a>
+            <h3><%= (t.education && t.education.python && t.education.python.title) || 'Python Enterprise' %></h3>
+            <div class="formacion-badges">
+              <span class="badge-tech">🐍 <%= (t.education && t.education.python && t.education.python.badge) || 'Python' %></span>
+              <span class="badge-backend">⚙️ <%= (t.education && t.education.python && t.education.python.badge_backend) || 'Backend' %></span>
+            </div>
+          </div>
+          <div class="formacion-card-content">
+            <p><%= (t.education && t.education.python && t.education.python.basics && t.education.python.basics.description) || 'Desarrollo backend con Python, APIs, bases de datos y arquitecturas escalables.' %></p>
+            <div class="formacion-links">
+              <a href="/formacion/python/teoria" class="btn-primary" >
+                <i class="fas fa-book" aria-hidden="true"></i>
+                <span><%= (t.education && t.education.theory) || 'Teoría' %></span>
+              </a>
+              <a href="/formacion/python/practicas" class="btn-secondary" >
+                <i class="fas fa-code" aria-hidden="true"></i>
+                <span><%= (t.education && t.education.practices) || 'Prácticas' %></span>
+              </a>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Categoría: Web -->
-      <div class="formacion-category" aria-label="Formación en desarrollo web">
-        <div class="topic-section">
-          <h3 class="topic-title"><%= t["education.web.title"] %></h3>
-          <div class="topic-content">
-            <div class="topic-item">
-              <h4><%= t["education.web.html.title"] %></h4>
-              <p><%= t["education.web.html.description"] %></p>
-              <a href="/formacion/html" class="topic-link"><%= t["education.theory"] %></a>
+        <!-- JavaScript -->
+        <div class="formacion-card">
+          <div class="formacion-card-header">
+            <div class="formacion-icon">
+              <i class="fab fa-js-square" aria-hidden="true"></i>
             </div>
-            <div class="topic-item">
-              <h4><%= t["education.php.sql.title"] %></h4>
-              <p><%= t["education.php.sql.description"] %></p>
-              <a href="/formacion/php" class="topic-link"><%= t["education.theory"] %></a>
+            <h3><%= (t.education && t.education.javascript && t.education.javascript.title) || 'JavaScript Moderno' %></h3>
+            <div class="formacion-badges">
+              <span class="badge-tech">⚡ <%= (t.education && t.education.javascript && t.education.javascript.badge) || 'ES6+' %></span>
+              <span class="badge-frontend">🎨 <%= (t.education && t.education.javascript && t.education.javascript.badge_frontend) || 'Frontend' %></span>
+            </div>
+          </div>
+          <div class="formacion-card-content">
+            <p><%= (t.education && t.education.web && t.education.web.js && t.education.web.js.description) || 'JavaScript moderno, frameworks, APIs y desarrollo frontend enterprise.' %></p>
+            <div class="formacion-links">
+              <a href="/formacion/javascript/teoria" class="btn-primary" >
+                <i class="fas fa-book" aria-hidden="true"></i>
+                <span><%= (t.education && t.education.theory) || 'Teoría' %></span>
+              </a>
+              <a href="/formacion/javascript/practicas" class="btn-secondary" >
+                <i class="fas fa-code" aria-hidden="true"></i>
+                <span><%= (t.education && t.education.practices) || 'Prácticas' %></span>
+              </a>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Categoría: Sistemas -->
-      <div class="formacion-category" aria-label="Formación en sistemas">
-        <div class="topic-section">
-          <h3 class="topic-title"><%= t["education.systems.title"] %></h3>
-          <div class="topic-content">
-            <div class="topic-item">
-              <h4><%= t["education.systems.practice1.title"] %></h4>
-              <p><%= t["education.systems.practice1.description"] %></p>
-              <a href="/pages/sistemas/practica_01_sistemas.html" class="topic-link">
-                <%= t["education.practice.01"] %>
+        <!-- HTML y CSS -->
+        <div class="formacion-card">
+          <div class="formacion-card-header">
+            <div class="formacion-icon">
+              <i class="fab fa-html5" aria-hidden="true"></i>
+            </div>
+            <h3><%= (t.education && t.education.web && t.education.web.html && t.education.web.html.title) || 'HTML5 & CSS3' %></h3>
+            <div class="formacion-badges">
+              <span class="badge-tech">🌐 <%= (t.education && t.education.web && t.education.web.html && t.education.web.html.badge) || 'Web' %></span>
+              <span class="badge-responsive">📱 <%= (t.education && t.education.web && t.education.web.html && t.education.web.html.badge_responsive) || 'Responsive' %></span>
+            </div>
+          </div>
+          <div class="formacion-card-content">
+            <p><%= (t.education && t.education.web && t.education.web.html && t.education.web.html.description) || 'Desarrollo web moderno con HTML5, CSS3, responsive design y mejores prácticas.' %></p>
+            <div class="formacion-links">
+              <a href="/formacion/html" class="btn-primary" >
+                <i class="fas fa-code" aria-hidden="true"></i>
+                <span><%= (t.education && t.education.theory) || 'Teoría' %></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PHP y MySQL -->
+        <div class="formacion-card">
+          <div class="formacion-card-header">
+            <div class="formacion-icon">
+              <i class="fab fa-php" aria-hidden="true"></i>
+            </div>
+            <h3><%= (t.education && t.education.php_sql && t.education.php_sql.title) || 'PHP & MySQL' %></h3>
+            <div class="formacion-badges">
+              <span class="badge-tech">🐘 <%= (t.education && t.education.php_sql && t.education.php_sql.badge) || 'PHP' %></span>
+              <span class="badge-database">🗄️ <%= (t.education && t.education.php_sql && t.education.php_sql.badge_database) || 'MySQL' %></span>
+            </div>
+          </div>
+          <div class="formacion-card-content">
+            <p><%= (t.education && t.education.php_sql && t.education.php_sql.description) || 'Desarrollo web con PHP, bases de datos MySQL y arquitecturas MVC.' %></p>
+            <div class="formacion-links">
+              <a href="/formacion/php" class="btn-primary" >
+                <i class="fas fa-code" aria-hidden="true"></i>
+                <span><%= (t.education && t.education.theory) || 'Teoría' %></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sistemas Operativos -->
+        <div class="formacion-card">
+          <div class="formacion-card-header">
+            <div class="formacion-icon">
+              <i class="fab fa-linux" aria-hidden="true"></i>
+            </div>
+            <h3><%= (t.education && t.education.systems && t.education.systems.title) || 'Sistemas Enterprise' %></h3>
+            <div class="formacion-badges">
+              <span class="badge-tech">🐧 <%= (t.education && t.education.systems && t.education.systems.badge) || 'Linux' %></span>
+              <span class="badge-infrastructure">🖥️ <%= (t.education && t.education.systems && t.education.systems.badge_infrastructure) || 'Infraestructura' %></span>
+            </div>
+          </div>
+          <div class="formacion-card-content">
+            <p><%= (t.education && t.education.systems && t.education.systems.practice1 && t.education.systems.practice1.description) || 'Administración de sistemas Linux, virtualización, contenedores y infraestructura enterprise.' %></p>
+            <div class="formacion-links">
+              <a href="/formacion/sistemas" class="btn-primary" >
+                <i class="fas fa-code" aria-hidden="true"></i>
+                <span><%= (t.education && t.education.practices) || 'Prácticas' %></span>
               </a>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-    </section>
-  </div>
 </main>

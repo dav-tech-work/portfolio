@@ -34,15 +34,6 @@ export function getRelativePath(fromFile, toPath) {
 }
 
 // Imports predefinidos (rutas relativas desde src/)
-export const IMPORTS = {
-  CONFIG: '../../config/index.mjs',
-  MIDDLEWARE: '../middleware/index.mjs',
-  SANITIZER: '../middleware/sanitizer-advanced.mjs',
-  LOGGER: '../utils/servicios/logger.mjs',
-  VALIDATION: '../utils/validation/schemas.mjs',
-  SECURITY: '../utils/seguridad/sanitize.mjs',
-  ASYNC_HANDLER: '../utils/asyncHandler.mjs',
-};
 
 // Función para obtener la ruta correcta según el archivo que la solicita
 export function getImportPath(fromFile, importName) {

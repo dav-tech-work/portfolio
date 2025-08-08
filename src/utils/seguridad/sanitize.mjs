@@ -262,6 +262,23 @@ export const sanitize = {
 
   email: (input) => {
     if (typeof input !== 'string') return '';
+
+    // Si contiene comas, sanitizar múltiples emails
+    if (input.includes(',')) {
+      const emails = input
+        .split(',')
+        .map((e) => e.trim())
+        .filter((e) => e.length > 0);
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      const validEmails = emails
+        .filter((email) => emailRegex.test(email))
+        .map((email) => email.substring(0, 254));
+
+      return validEmails.join(', ');
+    }
+
+    // Sanitizar email único
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(input) ? input.substring(0, 254) : '';
   },

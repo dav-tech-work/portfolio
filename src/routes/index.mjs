@@ -1,7 +1,16 @@
 // Inicializamos el router
 import { Router } from 'express';
+import fs from 'fs';
+import path from 'path';
 
 const router = Router();
+
+const jsPath = path.join(process.cwd(), 'data', 'public', 'assets', 'js', 'index.js');
+const jsInline = fs.readFileSync(jsPath, 'utf8');
+
+// Script específico para contacto
+const contactoJsPath = path.join(process.cwd(), 'public', 'assets', 'js', 'contacto.min.js');
+const contactoJsInline = fs.readFileSync(contactoJsPath, 'utf8');
 
 // Definimos las rutas
 
@@ -11,6 +20,8 @@ router.get('/', (req, res) => {
     idioma: req.idioma || 'es',
     t: req.traducciones || {},
     tipo: 'home',
+    onepage: true,
+    jsInline,
   });
 });
 
@@ -20,16 +31,18 @@ router.get('/pagina1', (req, res) => {
     idioma: req.idioma || 'es',
     t: req.traducciones || {},
     tipo: 'pagina1',
+    jsInline,
   });
 });
 
-// Ruta de proyectos
-router.get('/proyectos', (req, res) => {
-  res.render('pages/proyectos', {
-    titulo: 'Proyectos - Daniel Arribas',
+// Ruta de about
+router.get('/about', (req, res) => {
+  res.render('pages/about', {
+    titulo: 'Sobre Mí - Daniel Arribas',
     idioma: req.idioma || 'es',
     t: req.traducciones || {},
-    tipo: 'proyectos',
+    tipo: 'about',
+    jsInline,
   });
 });
 
@@ -40,6 +53,47 @@ router.get('/formacion', (req, res) => {
     idioma: req.idioma || 'es',
     t: req.traducciones || {},
     tipo: 'formacion',
+    jsInline,
+  });
+});
+
+// Ruta de proyectos
+router.get('/proyectos', (req, res) => {
+  res.render('pages/proyectos', {
+    titulo: 'Proyectos - Daniel Arribas',
+    idioma: req.idioma || 'es',
+    t: req.traducciones || {},
+    tipo: 'proyectos',
+    jsInline,
+  });
+});
+
+// Ruta de homelab
+
+router.get('/homelab', (req, res) => {
+  res.render('pages/homelab', {
+    titulo: 'Homelab - Daniel Arribas',
+    idioma: req.idioma || 'es',
+    t: req.traducciones || {},
+    tipo: 'homelab',
+    jsInline,
+  });
+});
+
+// Ruta de contacto
+router.get('/contacto', (req, res) => {
+  // Obtener mensajes de la URL
+  const mensajeExito = req.query.success ? decodeURIComponent(req.query.success) : undefined;
+  const mensajeError = req.query.error ? decodeURIComponent(req.query.error) : undefined;
+
+  res.render('pages/contacto', {
+    titulo: 'Contacto - Daniel Arribas',
+    idioma: req.idioma || 'es',
+    t: req.traducciones || {},
+    tipo: 'contacto',
+    mensajeExito,
+    mensajeError,
+    jsInline: contactoJsInline, // Usar script específico de contacto minificado
   });
 });
 
@@ -50,6 +104,7 @@ router.get('/curriculum', (req, res) => {
     idioma: req.idioma || 'es',
     t: req.traducciones || {},
     tipo: 'curriculum',
+    jsInline,
   });
 });
 
@@ -60,27 +115,7 @@ router.get('/construccion', (req, res) => {
     idioma: req.idioma || 'es',
     t: req.traducciones || {},
     tipo: 'construccion',
-  });
-});
-
-// Ruta de API contacto (GET para mostrar formulario)
-router.get('/api/contacto', (req, res) => {
-  res.render('pages/contacto', {
-    titulo: 'Contacto - Daniel Arribas',
-    idioma: req.idioma || 'es',
-    t: req.traducciones || {},
-    tipo: 'contacto',
-    mensajeExito: undefined,
-    mensajeError: undefined,
-  });
-});
-
-// Ruta de API contacto (POST para procesar formulario)
-router.post('/api/contacto', (req, res) => {
-  // Aquí iría la lógica para procesar el formulario de contacto
-  res.json({
-    success: true,
-    message: 'Mensaje recibido correctamente',
+    jsInline,
   });
 });
 
@@ -91,6 +126,18 @@ router.get('/protegidas', (req, res) => {
     idioma: req.idioma || 'es',
     t: req.traducciones || {},
     tipo: 'protegidas',
+    jsInline,
+  });
+});
+
+// Ruta de privacidad
+router.get('/privacidad', (req, res) => {
+  res.render('pages/privacidad', {
+    titulo: 'Política de Privacidad - Daniel Arribas',
+    idioma: req.idioma || 'es',
+    t: req.traducciones || {},
+    tipo: 'privacidad',
+    jsInline,
   });
 });
 
@@ -103,6 +150,7 @@ router.get('/test', (req, res) => {
     tipo: 'test',
     mensajeExito: undefined,
     mensajeError: undefined,
+    jsInline,
   });
 });
 

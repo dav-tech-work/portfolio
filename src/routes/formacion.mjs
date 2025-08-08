@@ -7,7 +7,7 @@ const router = express.Router();
 // Ruta principal: /
 router.get('/', (req, res) => {
   res.render('pages/formacion', {
-    titulo: req.traducciones?.formacion || 'Formación',
+    titulo: req.traducciones?.education?.title || 'Formación',
     tipo: 'formacion',
     idioma: req.idioma,
     t: req.traducciones,
@@ -24,7 +24,8 @@ const secciones = [
   'javascript/practicas',
   'html',
   'php',
-  'sistemas/practicas/practica_01_sistemas',
+  'sistemas',
+  'seguridad',
   'construccion',
 ].map((s) => s.replace(/^\/+|\/+$/g, ''));
 
@@ -57,10 +58,23 @@ secciones.forEach((slug) => {
     const slugParts = slug.split('/');
     const nombreVista = slugParts.join('_'); // Ejemplo: python_teoria
 
+    console.log(`🔍 Ruta solicitada: /${slug}, nombreVista: ${nombreVista}`);
+
+    // Caso especial para sistemas - servir archivo HTML estático
+    if (slug === 'sistemas') {
+      return res.sendFile(
+        path.join(process.cwd(), 'public', 'pages', 'sistemas', 'practica_01_sistemas.html')
+      );
+    }
+
     // Verifica si la vista existe
-    if (!existeVista(req.app, nombreVista)) {
+    const vistaExiste = existeVista(req.app, nombreVista);
+    console.log(`📁 Vista existe: ${vistaExiste} para ${nombreVista}`);
+
+    if (!vistaExiste) {
+      console.log(`❌ Vista no encontrada: ${nombreVista}, redirigiendo a construcción`);
       return res.render('pages/construccion', {
-        titulo: req.traducciones?.construccion || 'En construcción',
+        titulo: req.traducciones?.construction?.title || 'En construcción',
         tipo: 'construccion',
         idioma: req.idioma,
         t: req.traducciones,
@@ -69,14 +83,17 @@ secciones.forEach((slug) => {
       });
     }
 
+    console.log(`✅ Renderizando vista: pages/formacion/${nombreVista}`);
     // Renderiza la vista correspondiente
     res.render(`pages/formacion/${nombreVista}`, {
-      titulo: req.traducciones?.[nombreVista] || slug,
-      tipo: nombreVista,
+      titulo: req.traducciones?.education?.[nombreVista]?.title || slug,
+      tipo: nombreVista, // Usar el nombre de la vista como tipo para cargar CSS específico
       idioma: req.idioma,
       t: req.traducciones,
       csrfToken: res.locals.csrfToken || req.csrfToken,
       nonce: res.locals.nonce,
+      scriptAdicional: '/assets/js/muestra_contenido.min.js',
+      cssAdicional: nombreVista === 'seguridad' ? '/assets/css/secciones/seguridad.css' : undefined,
     });
   });
 });

@@ -8,9 +8,16 @@ metadata:
     app: porfolio
 data:
   NODE_ENV: 'production'
-  PORT: '3001'
+  PORT: '3000'
   LOG_LEVEL: 'info'
   SECURITY_HEADERS: 'true'
+  # Configuraciones de seguridad adicionales
+  CSP_HEADER: "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https:;"
+  HSTS_MAX_AGE: '31536000'
+  X_FRAME_OPTIONS: 'DENY'
+  X_CONTENT_TYPE_OPTIONS: 'nosniff'
+  X_XSS_PROTECTION: '1; mode=block'
+  REFERRER_POLICY: 'strict-origin-when-cross-origin'
 ---
 apiVersion: v1
 kind: Secret
@@ -21,69 +28,53 @@ metadata:
     app: porfolio
 type: Opaque
 data:
-  # Agregar secretos en base64 si es necesario
-  # ejemplo: api-key: <base64-encoded-value>
+  # Secretos en base64 (mínimo 32 caracteres para cumplir requisitos de seguridad)
+  SESSION_SECRET: c2Vzc2lvbi1zZWNyZXQtbXV5LWxhcmdvLWFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6MTIzNDU2Nzg5MA==
+  JWT_SECRET: anNvbi13ZWItdG9rZW4tc2VjcmV0by1tdXktbGFyZ28tYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnc=
+  DATABASE_URL: cG9zdGdyZXNxbDovL3VzZXI6cGFzc0BkYjozMzA2L3BvcmZvbGlv
+  API_KEY: YXBpLWtleS1kZW1vLW11eS1sYXJnby1hYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ejEyMzQ1Njc4OTBhYmNkZWY=
+  # Configuraciones de seguridad adicionales
+  ENCRYPTION_KEY: ZW5jcnlwdGlvbi1rZXktMzItY2hhcmFjdGVyZXM=
+  COOKIE_SECRET: Y29va2llLXNlY3JldC1wYXJhLXNlc2lvbmVz
 ---
-apiVersion: policy/v1beta1
-kind: PodSecurityPolicy
+apiVersion: v1
+kind: ServiceAccount
 metadata:
-  name: porfolio-psp
+  name: porfolio-sa
+  namespace: default
   labels:
     app: porfolio
-spec:
-  privileged: false
-  allowPrivilegeEscalation: false
-  requiredDropCapabilities:
-    - ALL
-  volumes:
-    - 'emptyDir'
-    - 'projected'
-    - 'secret'
-    - 'downwardAPI'
-    - 'configMap'
-  runAsUser:
-    rule: 'MustRunAs'
-    ranges:
-      - min: 2001
-        max: 2001
-  runAsGroup:
-    rule: 'MustRunAs'
-    ranges:
-      - min: 2001
-        max: 2001
-  seLinux:
-    rule: 'RunAsAny'
-  fsGroup:
-    rule: 'MustRunAs'
-    ranges:
-      - min: 2001
-        max: 2001
-  readOnlyRootFilesystem: true
+  annotations:
+    # Anotaciones de seguridad
+    seccomp.security.alpha.kubernetes.io/defaultProfileName: 'runtime/default'
+    apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   namespace: default
-  name: porfolio-psp-user
+  name: porfolio-role
 rules:
-  - apiGroups: ['policy']
-    resources: ['podsecuritypolicies']
-    verbs: ['use']
-    resourceNames:
-      - porfolio-psp
+  - apiGroups: ['']
+    resources: ['pods', 'services', 'endpoints']
+    verbs: ['get', 'list', 'watch']
+  - apiGroups: ['']
+    resources: ['configmaps', 'secrets']
+    verbs: ['get']
+    resourceNames: ['porfolio-config', 'porfolio-secrets']
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: porfolio-psp-binding
+  name: porfolio-role-binding
   namespace: default
 roleRef:
   kind: Role
-  name: porfolio-psp-user
+  name: porfolio-role
   apiGroup: rbac.authorization.k8s.io
 subjects:
   - kind: ServiceAccount
-    name: default
+    name: porfolio-sa
     namespace: default
 ---
 apiVersion: networking.k8s.io/v1
@@ -97,22 +88,50 @@ metadata:
     kubernetes.io/ingress.class: 'nginx'
     nginx.ingress.kubernetes.io/ssl-redirect: 'true'
     nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
-    nginx.ingress.kubernetes.io/secure-backends: 'true'
     nginx.ingress.kubernetes.io/backend-protocol: 'HTTP'
-    # Headers de seguridad adicionales
+    # Configuración SSL/TLS mejorada
+    nginx.ingress.kubernetes.io/ssl-protocols: 'TLSv1.3 TLSv1.2'
+    nginx.ingress.kubernetes.io/ssl-ciphers: 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384'
+    nginx.ingress.kubernetes.io/ssl-prefer-server-ciphers: 'true'
+    nginx.ingress.kubernetes.io/ssl-session-cache: 'shared:SSL:50m'
+    nginx.ingress.kubernetes.io/ssl-session-timeout: '1d'
+    nginx.ingress.kubernetes.io/ssl-session-tickets: 'false'
+
+    # OCSP Stapling (requerido por NIST)
+    nginx.ingress.kubernetes.io/ssl-stapling: 'true'
+    nginx.ingress.kubernetes.io/ssl-stapling-verify: 'true'
+
+    # Headers de seguridad mejorados
     nginx.ingress.kubernetes.io/configuration-snippet: |
+      # HSTS con preload (mejorado según informe)
+      more_set_headers "Strict-Transport-Security: max-age=63072000; includeSubDomains; preload";
+
+      # Headers de seguridad adicionales
       more_set_headers "X-Frame-Options: DENY";
       more_set_headers "X-Content-Type-Options: nosniff";
       more_set_headers "X-XSS-Protection: 1; mode=block";
       more_set_headers "Referrer-Policy: strict-origin-when-cross-origin";
-      more_set_headers "Permissions-Policy: geolocation=(), microphone=(), camera=()";
+      more_set_headers "Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()";
+      more_set_headers "Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; frame-ancestors 'none';";
+
+      # Configuración de seguridad adicional
+      more_set_headers "X-Permitted-Cross-Domain-Policies: none";
+      more_set_headers "Cross-Origin-Opener-Policy: same-origin";
+      more_set_headers "Cross-Origin-Embedder-Policy: require-corp";
+      more_set_headers "Cross-Origin-Resource-Policy: same-origin";
+      more_set_headers "Origin-Agent-Cluster: ?1";
+    # Configuración de rate limiting
+    nginx.ingress.kubernetes.io/rate-limit: '100'
+    nginx.ingress.kubernetes.io/rate-limit-window: '1m'
+    nginx.ingress.kubernetes.io/rate-limit-burst: '200'
 spec:
   tls:
     - hosts:
-        - porfolio.tu-dominio.com # Cambiar por tu dominio
+        - localhost
+        - '*.dav-tech.work'
       secretName: porfolio-tls
   rules:
-    - host: porfolio.tu-dominio.com # Cambiar por tu dominio
+    - host: localhost
       http:
         paths:
           - path: /
@@ -121,4 +140,98 @@ spec:
               service:
                 name: porfolio-service
                 port:
-                  number: 3001
+                  number: 3000
+---
+# Resource Quotas para limitar recursos
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: porfolio-quota
+  namespace: default
+spec:
+  hard:
+    requests.cpu: '1'
+    requests.memory: 1Gi
+    limits.cpu: '2'
+    limits.memory: 2Gi
+    requests.storage: 10Gi
+    persistentvolumeclaims: '5'
+    services: '10'
+    services.loadbalancers: '2'
+---
+# Limit Ranges para establecer límites por pod
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: porfolio-limits
+  namespace: default
+spec:
+  limits:
+    - type: Pod
+      min:
+        cpu: 100m
+        memory: 128Mi
+      max:
+        cpu: 500m
+        memory: 512Mi
+    - type: Container
+      default:
+        cpu: 200m
+        memory: 256Mi
+      defaultRequest:
+        cpu: 100m
+        memory: 128Mi
+      min:
+        cpu: 50m
+        memory: 64Mi
+      max:
+        cpu: 500m
+        memory: 512Mi
+---
+# Network Policy más restrictiva
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: porfolio-network-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: porfolio
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector: {}
+      ports:
+        - protocol: TCP
+          port: 3000
+  egress:
+    # DNS
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 53
+        - protocol: UDP
+          port: 53
+    # HTTPS para APIs externas
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 443
+    # HTTP para APIs externas (si es necesario)
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 80
+    # Permitir acceso a servicios internos específicos
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              name: monitoring
+      ports:
+        - protocol: TCP
+          port: 9090 # Prometheus
+        - protocol: TCP
+          port: 8080 # Otros servicios de monitoreo

@@ -1,32 +1,70 @@
-<main class="contenedor">
-  <section class="contacto">
-    <h1><%= titulo %></h1>
+<main class="container" role="main" aria-label="Contenido principal del sitio">
+  <div id="content">
+    <!-- Hero principal -->
+    <section class="hero-section" aria-label="Sección de bienvenida">
+      <h1 class="hero-title">
+        <%= (t.contact && t.contact.title) || 'Contacto Profesional' %>
+      </h1>
 
-    <div class="contacto-info">
-      <div class="info-personal">
-        <h2>📧 Información de Contacto</h2>
-        <div class="contacto-detalles">
-          <div class="contacto-item">
-            <span class="icono">📧</span>
-            <span>Email: <a href="mailto:daniel.arribas@example.com">daniel.arribas@example.com</a></span>
+    </section>
+    <!-- Información de contacto -->
+    <section class="contacto-info-section" aria-label="Información de contacto">
+      <h2><%= (t.contact && t.contact.info && t.contact.info.title) || 'Información de Contacto Profesional' %></h2>
+
+      <div class="contacto-cards">
+        <div class="contacto-card">
+          <div class="contacto-card-header">
+            <span class="contacto-icon">📧</span>
+            <h3><%= (t.contact && t.contact.info && t.contact.info.email && t.contact.info.email.title) || 'Email Profesional' %></h3>
           </div>
-          <div class="contacto-item">
-            <span class="icono">📱</span>
-            <span>Teléfono: +34 XXX XXX XXX</span>
+          <div class="contacto-card-content">
+            <span id="email" class="contacto-value"></span>
+            <small><%= (t.contact && t.contact.info && t.contact.info.email && t.contact.info.email.subtitle) || 'Respuesta garantizada en 24h' %></small>
           </div>
-          <div class="contacto-item">
-            <span class="icono">📍</span>
-            <span>Ubicación: Barcelona, España</span>
+        </div>
+
+        <div class="contacto-card">
+          <div class="contacto-card-header">
+            <span class="contacto-icon">📍</span>
+            <h3><%= (t.contact && t.contact.info && t.contact.info.location && t.contact.info.location.title) || 'Ubicación' %></h3>
           </div>
-          <div class="contacto-item">
-            <span class="icono">💼</span>
-            <span>LinkedIn: <a href="https://linkedin.com/in/danielarribas" target="_blank">Daniel Arribas</a></span>
+          <div class="contacto-card-content">
+            <span class="contacto-value"><%= (t.contact && t.contact.location) || 'Barcelona, España' %></span>
+            <small><%= (t.contact && t.contact.info && t.contact.info.location && t.contact.info.location.subtitle) || 'Servicios remotos disponibles' %></small>
+          </div>
+        </div>
+
+        <div class="contacto-card">
+          <div class="contacto-card-header">
+            <span class="contacto-icon">🔗</span>
+            <h3><%= (t.contact && t.contact.info && t.contact.info.linkedin && t.contact.info.linkedin.title) || 'LinkedIn' %></h3>
+          </div>
+          <div class="contacto-card-content">
+            <a href="https://www.linkedin.com/in/daniel-arribas-velazquez/" target="_blank" class="contacto-value">
+              Daniel Arribas Velázquez
+            </a>
+            <small><%= (t.contact && t.contact.info && t.contact.info.linkedin && t.contact.info.linkedin.subtitle) || 'Perfil profesional verificado' %></small>
+          </div>
+        </div>
+
+        <div class="contacto-card">
+          <div class="contacto-card-header">
+            <span class="contacto-icon">🐙</span>
+            <h3><%= (t.contact && t.contact.info && t.contact.info.github && t.contact.info.github.title) || 'GitHub' %></h3>
+          </div>
+          <div class="contacto-card-content">
+            <a href="https://github.com/dav-tech-work" target="_blank" class="contacto-value">
+              dav-tech-work
+            </a>
+            <small><%= (t.contact && t.contact.info && t.contact.info.github && t.contact.info.github.subtitle) || 'Portfolio técnico público' %></small>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="formulario-contacto">
-        <h2>💬 Envíame un mensaje</h2>
+    <!-- Formulario de contacto -->
+    <section class="formulario-section" aria-label="Formulario de contacto">
+      <h2><%= (t.contact && t.contact.form && t.contact.form.title) || 'Consulta de Seguridad Enterprise' %></h2>
 
         <!-- Mensajes de estado -->
         <% if (typeof mensajeExito !== 'undefined' && mensajeExito) { %>
@@ -43,274 +81,162 @@
           </div>
         <% } %>
 
-        <form method="POST" action="/api/contacto" class="formulario">
-          <!-- Token CSRF -->
-          <input type="hidden" name="csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
+        <div class="formulario-container">
+          <form class="formulario" id="formulario">
+            <!-- Token CSRF -->
+            <input type="hidden" name="csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">
 
-          <div class="form-grupo">
-            <label for="nombre">Nombre completo *</label>
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              required
-              placeholder="Tu nombre completo"
-              maxlength="100"
-            >
+            <div class="form-row">
+              <div class="form-grupo">
+                <label for="nombre"><%= (t.contact && t.contact.form && t.contact.form.name) || 'Nombre completo' %> *</label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  required
+                  placeholder="<%= (t.contact && t.contact.form && t.contact.form.name_placeholder) || 'Tu nombre completo' %>"
+                  maxlength="100"
+                  class="input-enterprise"
+                >
+              </div>
+
+              <div class="form-grupo">
+                <label for="email"><%= (t.contact && t.contact.form && t.contact.form.email) || 'Email' %> *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="<%= (t.contact && t.contact.form && t.contact.form.email_placeholder) || 'tu.email@empresa.com' %>"
+                  maxlength="255"
+                  class="input-enterprise"
+                >
+              </div>
+            </div>
+
+            <div class="form-grupo">
+              <label for="asunto"><%= (t.contact && t.contact.form && t.contact.form.subject) || 'Tipo de Consulta' %> *</label>
+              <select id="asunto" name="asunto" required class="input-enterprise">
+                <option value=""><%= (t.contact && t.contact.form && t.contact.form.subject_placeholder) || 'Selecciona el tipo de consulta' %></option>
+                <option value="<%= (t.contact && t.contact.form && t.contact.form.options && t.contact.form.options.auditoria) || 'Auditoría de Seguridad' %>"><%= (t.contact && t.contact.form && t.contact.form.options && t.contact.form.options.auditoria) || 'Auditoría de Seguridad' %></option>
+                <option value="<%= (t.contact && t.contact.form && t.contact.form.options && t.contact.form.options.implementacion) || 'Implementación Enterprise' %>"><%= (t.contact && t.contact.form && t.contact.form.options && t.contact.form.options.implementacion) || 'Implementación Enterprise' %></option>
+                <option value="<%= (t.contact && t.contact.form && t.contact.form.options && t.contact.form.options.consultoria) || 'Consultoría Técnica' %>"><%= (t.contact && t.contact.form && t.contact.form.options && t.contact.form.options.consultoria) || 'Consultoría Técnica' %></option>
+                <option value="<%= (t.contact && t.contact.form && t.contact.form.options && t.contact.form.options.colaboracion) || 'Colaboración en Proyecto' %>"><%= (t.contact && t.contact.form && t.contact.form.options && t.contact.form.options.colaboracion) || 'Colaboración en Proyecto' %></option>
+                <option value="<%= (t.contact && t.contact.form && t.contact.form.options && t.contact.form.options.otro) || 'Otro' %>"><%= (t.contact && t.contact.form && t.contact.form.options && t.contact.form.options.otro) || 'Otros' %></option>
+              </select>
+            </div>
+
+            <div class="form-grupo">
+              <label for="mensaje"><%= (t.contact && t.contact.form && t.contact.form.message) || 'Descripción del Proyecto' %> *</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                required
+                placeholder="<%= (t.contact && t.contact.form && t.contact.form.message_placeholder) || 'Describe tu proyecto, requerimientos de seguridad, timeline, presupuesto...' %>"
+                rows="6"
+                maxlength="1000"
+                class="input-enterprise"
+              ></textarea>
+              <small class="contador-caracteres">0/1000 caracteres</small>
+            </div>
+
+            <div class="form-grupo">
+              <label class="checkbox-label enterprise">
+                <input type="checkbox" name="privacidad" required>
+                <span class="checkmark"></span>
+                <p><%= (t.contact && t.contact.form && t.contact.form.privacy) || 'Acepto la ' %><a href="/privacidad" target="_blank"> <%= (t.contact && t.contact.form && t.contact.form.privacy_link) || 'política de privacidad' %></a></p> *
+              </label>
+            </div>
+
+            <div class="security-note">
+              <span class="security-badge">🔒</span>
+              <small><%= (t.contact && t.contact.form && t.contact.form.security_note) || 'Todos los datos se transmiten de forma segura con encriptación SSL/TLS' %></small>
+            </div>
+
+            <button type="button" class="btn-enviar-enterprise" id="btn-enviar" onclick="enviarFormulario()">
+              <span class="icono">🚀</span>
+              <span class="btn-text"><%= (t.contact && t.contact.form && t.contact.form.submit) || 'Enviar Consulta Enterprise' %></span>
+              <span class="security-badge">🛡️</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Call to action profesional -->
+      <section class="cta-section" aria-label="Llamada a la acción">
+        <div class="cta-content">
+          <h2><%= (t && t.home && t.home.cta && t.home.cta.title) || '¿Necesitas un Administrador de Sistemas con Expertise en Seguridad?' %></h2>
+          <p><%= (t && t.home && t.home.cta && t.home.cta.description) || 'Especialista en seguridad enterprise con auditorías A+, infraestructura hardened y 0 incidentes de seguridad en producción.' %></p>
+
+          <div class="cta-buttons">
+            <a href="https://cv.dav-tech.work" class="btn-primary-large" target="_blank"><%= (t && t.home && t.home.cta && t.home.cta.buttons && t.home.cta.buttons.cv) || 'Ver Experiencia Completa' %></a>
+            <a href="#contacto" class="btn-secondary-large"><%= (t && t.home && t.home.cta && t.home.cta.buttons && t.home.cta.buttons.contacto) || 'Consulta de Seguridad' %></a>
           </div>
 
-          <div class="form-grupo">
-            <label for="email">Email *</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              placeholder="tu.email@ejemplo.com"
-              maxlength="255"
-            >
+          <div class="cta-links">
+            <a href="https://github.com/dav-tech-work/portfolio/tree/main/docs" class="cta-link" target="_blank">
+              <span class="icon">📋</span>
+              <span><%= (t && t.home && t.home.cta && t.home.cta.links && t.home.cta.links.documentacion) || 'Documentación Técnica' %></span>
+            </a>
+            <a href="https://www.linkedin.com/in/daniel-arribas-velazquez/" class="cta-link" target="_blank">
+              <span class="icon">🔗</span>
+              <span><%= (t && t.home && t.home.cta && t.home.cta.links && t.home.cta.links.perfil) || 'Perfil Profesional' %></span>
+            </a>
           </div>
-
-          <div class="form-grupo">
-            <label for="asunto">Asunto *</label>
-            <input
-              type="text"
-              id="asunto"
-              name="asunto"
-              required
-              placeholder="¿En qué puedo ayudarte?"
-              maxlength="200"
-            >
-          </div>
-
-          <div class="form-grupo">
-            <label for="mensaje">Mensaje *</label>
-            <textarea
-              id="mensaje"
-              name="mensaje"
-              required
-              placeholder="Describe tu consulta o propuesta..."
-              rows="6"
-              maxlength="1000"
-            ></textarea>
-            <small class="contador-caracteres">0/1000 caracteres</small>
-          </div>
-
-          <div class="form-grupo">
-            <label class="checkbox-label">
-              <input type="checkbox" name="privacidad" required>
-              <span class="checkmark"></span>
-              Acepto la <a href="/privacidad" target="_blank">política de privacidad</a> *
-            </label>
-          </div>
-
-          <button type="submit" class="btn-enviar">
-            <span class="icono">📤</span>
-            Enviar mensaje
-          </button>
-        </form>
-      </div>
+        </div>
+      </section>
     </div>
-  </section>
-</main>
+  </main>
 
-<style>
-.contacto {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
+<!-- Script específico para el contador de caracteres -->
+<script nonce="<%= nonce %>">
+  // Asegurar que el contador funcione incluso si el módulo principal falla
+  document.addEventListener('DOMContentLoaded', function() {
+    const textarea = document.getElementById('mensaje');
+    const contador = document.querySelector('.contador-caracteres');
 
-.contacto-info {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 3rem;
-  margin-top: 2rem;
-}
+    if (textarea && contador) {
+      // console.log('🔧 Configurando contador de caracteres...');
 
-.info-personal {
-  background: var(--color-fondo-secundario);
-  padding: 2rem;
-  border-radius: 12px;
-  height: fit-content;
-}
+      // Función para actualizar el contador
+      const actualizarContador = function() {
+        const longitud = textarea.value.length;
+        const maxLength = textarea.getAttribute('maxlength') || 1000;
 
-.contacto-detalles {
-  margin-top: 1.5rem;
-}
+        contador.textContent = `${longitud}/${maxLength} caracteres`;
 
-.contacto-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  background: var(--color-fondo);
-  border-radius: 8px;
-  transition: transform 0.2s ease;
-}
+        // Cambiar color según la longitud
+        if (longitud > maxLength * 0.9) {
+          contador.style.color = '#ef4444'; // Rojo
+        } else if (longitud > maxLength * 0.8) {
+          contador.style.color = '#f59e0b'; // Naranja
+        } else {
+          contador.style.color = 'var(--text-secondary, #b2bec3)';
+        }
 
-.contacto-item:hover {
-  transform: translateX(5px);
-}
+        // Mostrar advertencia si se acerca al límite
+        if (longitud >= maxLength) {
+          contador.style.fontWeight = 'bold';
+        } else {
+          contador.style.fontWeight = 'normal';
+        }
+      };
 
-.contacto-item .icono {
-  font-size: 1.2rem;
-  margin-right: 0.75rem;
-  min-width: 24px;
-}
+      // Configurar eventos
+      textarea.addEventListener('input', actualizarContador);
+      textarea.addEventListener('keyup', actualizarContador);
+      textarea.addEventListener('paste', actualizarContador);
+      textarea.addEventListener('cut', actualizarContador);
 
-.contacto-item a {
-  color: var(--color-enlace);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
+      // Inicializar contador
+      actualizarContador();
 
-.contacto-item a:hover {
-  color: var(--color-enlace-hover);
-  text-decoration: underline;
-}
-
-.formulario-contacto {
-  background: var(--color-fondo-secundario);
-  padding: 2rem;
-  border-radius: 12px;
-}
-
-.formulario {
-  margin-top: 1.5rem;
-}
-
-.form-grupo {
-  margin-bottom: 1.5rem;
-}
-
-.form-grupo label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--color-texto);
-}
-
-.form-grupo input,
-.form-grupo textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid var(--color-borde);
-  border-radius: 8px;
-  background: var(--color-fondo);
-  color: var(--color-texto);
-  font-size: 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.form-grupo input:focus,
-.form-grupo textarea:focus {
-  outline: none;
-  border-color: var(--color-primario);
-  box-shadow: 0 0 0 3px rgba(var(--color-primario-rgb), 0.1);
-}
-
-.form-grupo textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.contador-caracteres {
-  display: block;
-  text-align: right;
-  font-size: 0.875rem;
-  color: var(--color-texto-secundario);
-  margin-top: 0.25rem;
-}
-
-.checkbox-label {
-  display: flex !important;
-  align-items: center;
-  cursor: pointer;
-  font-weight: normal !important;
-}
-
-.checkbox-label input[type="checkbox"] {
-  width: auto !important;
-  margin-right: 0.5rem;
-}
-
-.btn-enviar {
-  background: var(--color-primario);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.btn-enviar:hover {
-  background: var(--color-primario-hover);
-  transform: translateY(-2px);
-}
-
-.btn-enviar:active {
-  transform: translateY(0);
-}
-
-.mensaje {
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.mensaje.exito {
-  background: rgba(34, 197, 94, 0.1);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  color: #22c55e;
-}
-
-.mensaje.error {
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #ef4444;
-}
-
-@media (max-width: 768px) {
-  .contacto-info {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .contacto {
-    padding: 1rem;
-  }
-}
-</style>
-
-<script>
-// Contador de caracteres para el textarea
-document.addEventListener('DOMContentLoaded', function() {
-  const textarea = document.getElementById('mensaje');
-  const contador = document.querySelector('.contador-caracteres');
-
-  if (textarea && contador) {
-    textarea.addEventListener('input', function() {
-      const longitud = this.value.length;
-      contador.textContent = `${longitud}/1000 caracteres`;
-
-      if (longitud > 900) {
-        contador.style.color = '#ef4444';
-      } else if (longitud > 800) {
-        contador.style.color = '#f59e0b';
-      } else {
-        contador.style.color = 'var(--color-texto-secundario)';
-      }
-    });
-  }
-});
+      // console.log('✅ Contador de caracteres configurado correctamente');
+    } else {
+      // console.warn('⚠️ No se pudo configurar el contador de caracteres');
+      // if (!textarea) console.warn('   - Textarea no encontrado');
+      // if (!contador) console.warn('   - Contador no encontrado');
+    }
+  });
 </script>
+
